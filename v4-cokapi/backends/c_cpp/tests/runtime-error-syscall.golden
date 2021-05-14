@@ -1,0 +1,265 @@
+{
+  "code": "#include <stdlib.h>\n#include <unistd.h>\nint main( void )\n{\n  char* arr = malloc(10);\n  (void) write( 1 /* stdout */, arr, 10 );\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 4, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 4, 
+          "ordered_varnames": [
+            "arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 5, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 4, 
+          "ordered_varnames": [
+            "arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_DATA", 
+            "0x53FE040", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE041", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE042", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE043", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE044", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE045", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE046", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE047", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE048", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE049", 
+            "char", 
+            "<UNINITIALIZED>"
+          ]
+        ]
+      }, 
+      "line": 6, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "0x53FE040"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 6, 
+          "ordered_varnames": [
+            "arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "exception", 
+      "exception_msg": "ERROR: Syscall param write(buf) points to uninitialised byte(s)\n(Stopped running after the first error. Please fix your code.)", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_DATA", 
+            "0x53FE040", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE041", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE042", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE043", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE044", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE045", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE046", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE047", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE048", 
+            "char", 
+            "<UNINITIALIZED>"
+          ], 
+          [
+            "C_DATA", 
+            "0x53FE049", 
+            "char", 
+            "<UNINITIALIZED>"
+          ]
+        ]
+      }, 
+      "line": 6, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "0x53FE040"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 6, 
+          "ordered_varnames": [
+            "arr"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

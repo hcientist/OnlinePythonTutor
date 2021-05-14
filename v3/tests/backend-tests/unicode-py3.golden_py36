@@ -1,0 +1,163 @@
+{
+  "code": "# for Python 3 only\nyinyang = '\\u262F'\nsmiley = '''\u263a'''\nfrownie = '\\u2639'\nheart = r'\u2661'\n\nlst = [smiley, frownie]\nlst2 = lst * 5\n",
+  "trace": [
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "yinyang": "\u262f"
+      },
+      "ordered_globals": [
+        "yinyang"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "yinyang": "\u262f",
+        "smiley": "\u263a"
+      },
+      "ordered_globals": [
+        "yinyang",
+        "smiley"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "yinyang": "\u262f",
+        "smiley": "\u263a",
+        "frownie": "\u2639"
+      },
+      "ordered_globals": [
+        "yinyang",
+        "smiley",
+        "frownie"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "yinyang": "\u262f",
+        "smiley": "\u263a",
+        "frownie": "\u2639",
+        "heart": "\u2661"
+      },
+      "ordered_globals": [
+        "yinyang",
+        "smiley",
+        "frownie",
+        "heart"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "yinyang": "\u262f",
+        "smiley": "\u263a",
+        "frownie": "\u2639",
+        "heart": "\u2661",
+        "lst": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "yinyang",
+        "smiley",
+        "frownie",
+        "heart",
+        "lst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u2639"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "yinyang": "\u262f",
+        "smiley": "\u263a",
+        "frownie": "\u2639",
+        "heart": "\u2661",
+        "lst": [
+          "REF",
+          1
+        ],
+        "lst2": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "yinyang",
+        "smiley",
+        "frownie",
+        "heart",
+        "lst",
+        "lst2"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "LIST",
+          "\u263a",
+          "\u2639"
+        ],
+        "2": [
+          "LIST",
+          "\u263a",
+          "\u2639",
+          "\u263a",
+          "\u2639",
+          "\u263a",
+          "\u2639",
+          "\u263a",
+          "\u2639",
+          "\u263a",
+          "\u2639"
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+  Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+  Copyright (C) Philip Guo (philip@pgbovine.net)
+  LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
+-->
+
+<head>
+  <title>Python Tutor codcast recorder</title>
+
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+  <!-- let Webpack take care of everything. Use the [hash] feature to
+       create unique filenames for releases:
+       https://webpack.github.io/docs/long-term-caching.html -->
+  <script type="text/javascript" src="build/recorder.bundle.js?331ca7964f" charset="utf-8"></script>
+
+<!-- insert google-analytics.txt contents here -->
+
+</head>
+
+<body>
+
+<table id="experimentalHeader">
+<tr>
+<td valign="top" id="headerTdLeft"></td>
+<td valign="top" id="headerTdRight"></td>
+</tr>
+</table>
+
+
+<div id="pyInputPane">
+
+<div id="codeInputWarnings">Write code in
+
+  <select id="pythonVersionSelector">
+    <option value="3" selected>Python 3.6</option>
+    <option value="2">Python 2.7</option>
+    <option value="java">Java 8</option>
+    <option value="c">C (gcc 4.8, C11)</option>
+    <option value="cpp">C++ (gcc 4.8, C++11)</option>
+    <option value="js">JavaScript ES6</option>
+    <option value="ts">TypeScript 1.4</option>
+    <option value="ruby">Ruby 2.2</option>
+  </select>
+
+</div>
+
+<div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
+
+<div id="codeInputPane"></div> <!-- populate with Ace code editor instance -->
+<div id="frontendErrorOutput"></div>
+<div id="surveyPane"></div>
+
+<p>
+<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
+</p>
+
+<div id="instructionsPane"></div>
+
+<div id="javaOptionsPane" style="margin-top: 20px;">
+<!--[<i>coming soon!</i>] Java options: pass in command-line arguments and feed user input to stdin-->
+</div>
+
+<div id="optionsPane">
+  <select id="cumulativeModeSelector">
+    <option value="false">hide exited frames [default]</option>
+    <option value="true">show all frames (Python)</option>
+  </select>
+  <select id="heapPrimitivesSelector">
+    <option value="false">inline primitives and try to nest objects</option>
+    <option value="nevernest" selected>inline primitives but don't nest objects [default]</option>
+    <option value="true">render all objects on the heap (Python/Java)</option>
+  </select>
+  <select id="textualMemoryLabelsSelector">
+    <option value="false">draw pointers as arrows [default]</option>
+    <option value="true">use text labels for pointers</option>
+  </select>
+</div>
+
+
+<div id="testCasesParent"></div>
+
+<div id="exampleSnippets"></div>
+
+</div>
+
+<div id="pyOutputPane"></div>
+
+<div id="footer"></div>
+
+</body>
+</html>

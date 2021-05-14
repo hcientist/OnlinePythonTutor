@@ -1,0 +1,152 @@
+{
+  "code": "from collections import *\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict", 
+        "OrderedDict", 
+        "namedtuple", 
+        "MutableMapping", 
+        "KeysView", 
+        "Container", 
+        "Mapping", 
+        "Callable", 
+        "UserList", 
+        "UserString", 
+        "MappingView", 
+        "Hashable", 
+        "deque", 
+        "MutableSet", 
+        "ValuesView", 
+        "UserDict", 
+        "Counter", 
+        "MutableSequence", 
+        "Sized", 
+        "Set", 
+        "Iterator", 
+        "Sequence", 
+        "ItemsView", 
+        "ByteString", 
+        "Iterable"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Hashable": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "OrderedDict": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "deque": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "MutableMapping": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "KeysView": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "Container": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "Mapping": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "Callable": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "UserList": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "UserString": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "MappingView": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "defaultdict": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "namedtuple": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ], 
+        "MutableSet": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "ValuesView": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "UserDict": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "MutableSequence": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "Sized": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "Set": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "Iterator": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "Sequence": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "ItemsView": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "ByteString": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "Iterable": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

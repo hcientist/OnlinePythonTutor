@@ -1,0 +1,988 @@
+{
+  "code": "# original reported by papajohn in Oct 2013\nclass Monster:\n    vampire = {2: 'scary'}\n    def werewolf(self):\n        return self.vampire[2]\n\nclass Blob(Monster):\n    vampire = {2: 'night'}\n    def __init__(self, ghoul):\n        self.witch = ghoul.vampire\n        self.witch[3] = self\n\nspooky = Blob(Monster)\nspooky.werewolf = lambda self: Monster.vampire[2]\n\n\n# minimized by pgbovine ...\n'''\nclass Monster:\n    def werewolf(self):\n        pass\n\nclass Blob(Monster):\n    def __init__(self, ghoul):\n        pass\n\nspooky = Blob(Monster)\n'''\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Monster"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Monster": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Monster", 
+          [], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            2, 
+            "scary"
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "werewolf(self)", 
+          null
+        ]
+      }, 
+      "line": 7, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Monster", 
+        "Blob"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "Monster": [
+          "REF", 
+          1
+        ], 
+        "Blob": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Monster", 
+          [], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            2, 
+            "scary"
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "werewolf(self)", 
+          null
+        ], 
+        "4": [
+          "CLASS", 
+          "Blob", 
+          [
+            "Monster"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              6
+            ]
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__init__(self, ghoul)", 
+          null
+        ], 
+        "6": [
+          "DICT", 
+          [
+            2, 
+            "night"
+          ]
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Monster", 
+        "Blob"
+      ], 
+      "stdout": "", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              7
+            ], 
+            "ghoul": [
+              "REF", 
+              1
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "self", 
+            "ghoul"
+          ]
+        }
+      ], 
+      "globals": {
+        "Monster": [
+          "REF", 
+          1
+        ], 
+        "Blob": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Monster", 
+          [], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            2, 
+            "scary"
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "werewolf(self)", 
+          null
+        ], 
+        "4": [
+          "CLASS", 
+          "Blob", 
+          [
+            "Monster"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              6
+            ]
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__init__(self, ghoul)", 
+          null
+        ], 
+        "6": [
+          "DICT", 
+          [
+            2, 
+            "night"
+          ]
+        ], 
+        "7": [
+          "INSTANCE", 
+          "Blob"
+        ]
+      }, 
+      "line": 9, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [
+        "Monster", 
+        "Blob"
+      ], 
+      "stdout": "", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              7
+            ], 
+            "ghoul": [
+              "REF", 
+              1
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "self", 
+            "ghoul"
+          ]
+        }
+      ], 
+      "globals": {
+        "Monster": [
+          "REF", 
+          1
+        ], 
+        "Blob": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Monster", 
+          [], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            2, 
+            "scary"
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "werewolf(self)", 
+          null
+        ], 
+        "4": [
+          "CLASS", 
+          "Blob", 
+          [
+            "Monster"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              6
+            ]
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__init__(self, ghoul)", 
+          null
+        ], 
+        "6": [
+          "DICT", 
+          [
+            2, 
+            "night"
+          ]
+        ], 
+        "7": [
+          "INSTANCE", 
+          "Blob"
+        ]
+      }, 
+      "line": 10, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Monster", 
+        "Blob"
+      ], 
+      "stdout": "", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "self": [
+              "REF", 
+              7
+            ], 
+            "ghoul": [
+              "REF", 
+              1
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "self", 
+            "ghoul"
+          ]
+        }
+      ], 
+      "globals": {
+        "Monster": [
+          "REF", 
+          1
+        ], 
+        "Blob": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Monster", 
+          [], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            2, 
+            "scary"
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "werewolf(self)", 
+          null
+        ], 
+        "4": [
+          "CLASS", 
+          "Blob", 
+          [
+            "Monster"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              6
+            ]
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__init__(self, ghoul)", 
+          null
+        ], 
+        "6": [
+          "DICT", 
+          [
+            2, 
+            "night"
+          ]
+        ], 
+        "7": [
+          "INSTANCE", 
+          "Blob", 
+          [
+            "witch", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ]
+      }, 
+      "line": 11, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Monster", 
+        "Blob"
+      ], 
+      "stdout": "", 
+      "func_name": "__init__", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "__return__": null, 
+            "self": [
+              "REF", 
+              7
+            ], 
+            "ghoul": [
+              "REF", 
+              1
+            ]
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "__init__", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "__init___f1", 
+          "ordered_varnames": [
+            "self", 
+            "ghoul", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "Monster": [
+          "REF", 
+          1
+        ], 
+        "Blob": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Monster", 
+          [], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            2, 
+            "scary"
+          ], 
+          [
+            3, 
+            [
+              "REF", 
+              7
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "werewolf(self)", 
+          null
+        ], 
+        "4": [
+          "CLASS", 
+          "Blob", 
+          [
+            "Monster"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              6
+            ]
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__init__(self, ghoul)", 
+          null
+        ], 
+        "6": [
+          "DICT", 
+          [
+            2, 
+            "night"
+          ]
+        ], 
+        "7": [
+          "INSTANCE", 
+          "Blob", 
+          [
+            "witch", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ]
+      }, 
+      "line": 11, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "Monster", 
+        "Blob", 
+        "spooky"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "spooky": [
+          "REF", 
+          7
+        ], 
+        "Monster": [
+          "REF", 
+          1
+        ], 
+        "Blob": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Monster", 
+          [], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            2, 
+            "scary"
+          ], 
+          [
+            3, 
+            [
+              "REF", 
+              7
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "werewolf(self)", 
+          null
+        ], 
+        "4": [
+          "CLASS", 
+          "Blob", 
+          [
+            "Monster"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              6
+            ]
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__init__(self, ghoul)", 
+          null
+        ], 
+        "6": [
+          "DICT", 
+          [
+            2, 
+            "night"
+          ]
+        ], 
+        "7": [
+          "INSTANCE", 
+          "Blob", 
+          [
+            "witch", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ]
+      }, 
+      "line": 14, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Monster", 
+        "Blob", 
+        "spooky"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "spooky": [
+          "REF", 
+          7
+        ], 
+        "Monster": [
+          "REF", 
+          1
+        ], 
+        "Blob": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Monster", 
+          [], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            2, 
+            "scary"
+          ], 
+          [
+            3, 
+            [
+              "REF", 
+              7
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "werewolf(self)", 
+          null
+        ], 
+        "4": [
+          "CLASS", 
+          "Blob", 
+          [
+            "Monster"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              6
+            ]
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__init__(self, ghoul)", 
+          null
+        ], 
+        "6": [
+          "DICT", 
+          [
+            2, 
+            "night"
+          ]
+        ], 
+        "7": [
+          "INSTANCE", 
+          "Blob", 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "witch", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "<lambda>(self) <line 14>", 
+          null
+        ]
+      }, 
+      "line": 28, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "Monster", 
+        "Blob", 
+        "spooky"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "spooky": [
+          "REF", 
+          7
+        ], 
+        "Monster": [
+          "REF", 
+          1
+        ], 
+        "Blob": [
+          "REF", 
+          4
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Monster", 
+          [], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "DICT", 
+          [
+            2, 
+            "scary"
+          ], 
+          [
+            3, 
+            [
+              "REF", 
+              7
+            ]
+          ]
+        ], 
+        "3": [
+          "FUNCTION", 
+          "werewolf(self)", 
+          null
+        ], 
+        "4": [
+          "CLASS", 
+          "Blob", 
+          [
+            "Monster"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "vampire", 
+            [
+              "REF", 
+              6
+            ]
+          ]
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__init__(self, ghoul)", 
+          null
+        ], 
+        "6": [
+          "DICT", 
+          [
+            2, 
+            "night"
+          ]
+        ], 
+        "7": [
+          "INSTANCE", 
+          "Blob", 
+          [
+            "werewolf", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "witch", 
+            [
+              "REF", 
+              2
+            ]
+          ]
+        ], 
+        "8": [
+          "FUNCTION", 
+          "<lambda>(self) <line 14>", 
+          null
+        ]
+      }, 
+      "line": 28, 
+      "event": "return"
+    }
+  ]
+}

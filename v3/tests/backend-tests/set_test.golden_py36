@@ -1,0 +1,151 @@
+{
+  "code": "x = set()\nx.add('a')\nx.add('a')\nx.add('b')\nx.add('c')\nx.add('b')\n\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "SET"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "SET",
+          "a"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "SET",
+          "a"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "SET",
+          "b",
+          "a"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "SET",
+          "c",
+          "b",
+          "a"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "SET",
+          "c",
+          "b",
+          "a"
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

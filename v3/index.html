@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ -->
+
+<head>
+
+<title>Python Tutor - Visualize Python, Java, JavaScript, TypeScript, Ruby, C, and C++ code execution</title>
+
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+<!-- requirements for pytutor.js -->
+<script type="text/javascript" src="js/d3.v2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
+<script type="text/javascript" src="js/jquery.jsPlumb-1.3.10-all-min.js "></script> <!-- for rendering SVG connectors
+                                                                                         DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR -->
+
+<script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script> <!-- for sliders and other UI elements -->
+<link type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/pytutor.js"></script>
+<link rel="stylesheet" href="css/pytutor.css"/>
+
+<script type="text/javascript" src="js/jquery.corner.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<link rel="stylesheet" href="css/index.css"/>
+
+</head>
+
+<body>
+
+
+<div class="mainBodyPane">
+
+<table class='layoutTbl'>
+  <tr>
+    <td>
+
+<div class="activityPane" id="learnPane">
+
+<h1><span id="learnHeading">VISUALIZE</span> <span class="smallH1">
+<a href="visualize.html#py=2">Python</a>,
+<a href="java.html">Java</a>,
+<a href="javascript.html">JavaScript</a>,
+<a href="typescript.html">TypeScript</a>,
+<a href="ruby.html">Ruby</a>,
+<a href="c.html">C</a>,
+and
+<a href="cpp.html">C++</a>
+programs
+
+</span></h1>
+
+<p><a id="optLink" href="visualize.html">Python Tutor</a>, created
+by <a
+href="http://www.pgbovine.net/">Philip Guo</a>,
+helps people overcome a fundamental
+barrier to learning programming: understanding what happens as the
+computer executes each line of a program's source code.</p>
+
+
+<p>Using this
+tool, you can write <b><a href="visualize.html#py=2">Python</a></b>,
+<a href="java.html"><b>Java</b></a>,
+<a href="javascript.html"><b>JavaScript</b></a>,
+<a href="typescript.html"><b>TypeScript</b></a>,
+<a href="ruby.html"><b>Ruby</b></a>,
+<a href="c.html"><b>C</b></a>,
+and
+<a href="cpp.html"><b>C++</b></a>
+programs in your Web
+browser and visualize what the computer is doing step-by-step as it executes those programs.
+
+So far, over <b>1.5 million people in over 180 countries</b> have used
+Python Tutor to visualize over 15 million pieces of code, often as a
+supplement to textbooks, lecture notes, and online programming
+tutorials.</p>
+
+<div id="startLink">
+  <a href="visualize.html">Start visualizing your code now</a>
+  (or try <a href="live.html">live programming</a>)
+</div>
+
+
+<p>For example, here is a visualization showing a Python program that <a
+href="http://en.wikipedia.org/wiki/Recursion_(computer_science)">recursively</a>
+finds the sum of a linked list:</p>
+
+<div id="demoViz"></div>
+
+<!--
+<p>
+
+Watch a <a href="http://www.youtube.com/watch?v=y3sVN7uaxDM">1-minute
+video demo</a> of visualizing execution in the <a
+href="http://ipython.org/">IPython</a> shell in <a
+href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/opt-ipy.py">interactive
+mode</a>
+
+</p>
+-->
+
+<p>
+<b><a
+href="http://pgbovine.net/publications/Online-Python-Tutor-web-based-program-visualization_SIGCSE-2013.pdf">Read</a></b>
+the research paper &ndash; Philip J. Guo. Online Python Tutor: Embeddable
+Web-Based Program Visualization for CS Education. In <i>Proceedings
+of the ACM Technical Symposium on Computer Science Education
+(SIGCSE)</i>, March 2013. [<a
+href="http://pgbovine.net/publications/Online-Python-Tutor-web-based-program-visualization_SIGCSE-2013.txt">BibTeX</a>]
+</p>
+
+
+</div>
+
+    </td>
+  </tr>
+</table>
+
+<table class='layoutTbl'>
+  <tr>
+    <td id="embedPaneTd">
+
+<div class="activityPane" id="embedPane">
+
+<h1><span id="embedHeading">SHARE</span> <span class="smallH1">live visualization sessions</span></h1>
+
+<p>Click the &ldquo;Start shared session&rdquo; button to allow an instructor or friend
+    to join your session. You can chat about your code and navigate
+    the visualization together to get live, real-time tutoring. Watch this one-minute
+    <a href="http://youtu.be/Z2TIjNArOK4">video demo</a>:
+</p>
+
+<iframe width="480" height="360" src="http://www.youtube.com/embed/Z2TIjNArOK4" frameborder="0" allowfullscreen></iframe>
+
+<p>Also, you can click the &ldquo;Generate
+permanent link&rdquo; button (at the bottom of <a href="visualize.html">this
+page</a>) and paste that link in an email, social networking
+post, or forum question. When recipients click on your link, they will
+see the exact visualization you've created.</p>
+
+<p>For example, clicking <a
+href="visualize.html#code=%23+find+primes+using+a+for-else+construct%0Afor+n+in+range(2,+10)%3A%0A++++x_range+%3D+range(2,+n)%0A++++for+x+in+x_range%3A%0A++++++++if+n+%25+x+%3D%3D+0%3A%0A++++++++++++break%0A++++else%3A%0A++++++++%23+loop+fell+through+without+finding+a+factor%0A++++++++print(n)&mode=display&cumulative=false&py=2&curInstr=43">this
+link</a> brings you directly to step 44 of 57 in a program that finds
+prime numbers using the Python <tt>for-else</tt> construct.</p>
+
+</div>
+
+    </td>
+    <td id="sharePaneTd">
+
+<div class="activityPane" id="sharePane">
+
+<h1><span id="shareHeading">EMBED</span> <span class="smallH1"> in any Web page</span></h1>
+
+<p>Using a single line of JavaScript code, you can <a
+href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/embedding-HOWTO.md">embed</a> a Python Tutor
+visualization within any Web page (as shown in the &ldquo;Learn&rdquo;
+box above). The screenshot below shows a visualization
+embedded within the online textbook for the introductory CS course at UC
+Berkeley (<a href="http://www.composingprograms.com/">CS61A</a>):
+
+</p>
+
+<a href="http://www.composingprograms.com/">
+<img src="opt-v3-cs61a-embed-small.png" style="width: 275px; border: 1px solid #aaa; margin-bottom: 10px;"/>
+</a>
+
+</div>
+
+
+<div class="activityPane" id="detailsPane">
+
+<p>
+Details:
+<ul>
+
+  <li/>Free, open-source BSD-licensed code on <a
+  href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>
+
+  <li/>View the <a
+  href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs">project
+  documentation</a> online.
+
+ <li/>Main technologies: Python, CGI, Node.js, and Docker for
+ run-time tracing backends; HTML/CSS/JavaScript with <a
+ href="http://www.jquery.org">jQuery</a>, <a
+ href="http://www.d3js.org/">D3.js</a>, <a
+ href="http://www.jsplumb.org/">jsPlumb</a>,
+ <a href="https://togetherjs.com/">TogetherJS</a>,
+ and <a
+ href="http://ace.c9.io/">Ace</a> for the frontend
+
+</ul>
+</p>
+
+<!--
+
+<p>
+Other Variants:
+<ul>
+
+  <li/><a
+  href="http://cscircles.cemc.uwaterloo.ca/java_visualize/">Online Java
+  Tutor</a>, created by <a
+  href="http://www.cs.princeton.edu/~dp6/">David Pritchard</a>
+
+  <li/><a href="http://www.onlinerubytutor.com/">Online Ruby Tutor</a>,
+  created by <a href="http://www.danielstutzman.com/">Daniel
+  Stutzman</a>
+
+  <li/><a href="http://epleweb.appspot.com/">EPLE</a>, a mash-up of
+  Online Python Tutor and <a
+  href="https://code.google.com/p/blockly/">Blockly</a>, created by <a
+  href="https://piergiu.wordpress.com/">Pier Giuliano Nioi</a>
+
+  <li/>Integration into <a
+  href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/opt-graphterm.md">GraphTerm</a>,
+  a project created by R. Saravanan
+
+</ul>
+</p>
+
+-->
+
+</div>
+
+    </td>
+
+  </tr>
+</table>
+
+</div>
+
+
+<div id="footer">
+
+<!--
+
+<p>Join the <a
+href="https://groups.google.com/forum/#!forum/pythontutor-users">pythontutor-users</a>
+mailing list to participate in user discussions and <a
+href="https://groups.google.com/forum/#!forum/pythontutor-announce">pythontutor-announce</a>
+to receive occasional announcements.
+<br/>
+(Your name and email address will be kept private; only the list owner can see them.)</p>
+
+-->
+
+<p>Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>. All rights reserved.</p>
+
+</div>
+
+
+</body>
+</html>

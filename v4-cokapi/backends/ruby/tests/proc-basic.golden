@@ -1,0 +1,2512 @@
+{
+  "code": "# Adapted from Learning Ruby by Michael Fitzgerald, O'Reilly\n\ncount = Proc.new {\n  [1,2,3,4,5].each {\n    |i| print i\n  }\n  puts\n}\n\nyour_proc = lambda { puts \"Lurch: 'You rang?'\" }\nmy_proc = proc { puts \"Morticia: 'Who was at the door, Lurch?'\" }\n\nputs count.class, your_proc.class, my_proc.class\n\ncount.call\nyour_proc.call\nmy_proc.call\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": null,
+            "your_proc": null,
+            "my_proc": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": null,
+            "my_proc": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "Proc\nProc\nProc\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:3",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "call",
+      "stdout": "Proc\nProc\nProc\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:4",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 1
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:5",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:5_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 1
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "return",
+      "stdout": "Proc\nProc\nProc\n1",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:6",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "i": 1,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "call",
+      "stdout": "Proc\nProc\nProc\n1",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:4",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 2
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n1",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:5",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:5_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 2
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "return",
+      "stdout": "Proc\nProc\nProc\n12",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:6",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "i": 2,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "call",
+      "stdout": "Proc\nProc\nProc\n12",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:4",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 3
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n12",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:5",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:5_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 3
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "return",
+      "stdout": "Proc\nProc\nProc\n123",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:6",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "i": 3,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "call",
+      "stdout": "Proc\nProc\nProc\n123",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:4",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 4
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n123",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:5",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:5_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 4
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "return",
+      "stdout": "Proc\nProc\nProc\n1234",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:6",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "i": 4,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "call",
+      "stdout": "Proc\nProc\nProc\n1234",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:4",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 5
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n1234",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:5",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:5_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i"
+          ],
+          "encoded_locals": {
+            "i": 5
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "return",
+      "stdout": "Proc\nProc\nProc\n12345",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "block in <main>:4",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block (2 levels) in <main>:6",
+          "frame_id": 3,
+          "unique_hash": "block (2 levels) in <main>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "i",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "i": 5,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n12345",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:7",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "return",
+      "stdout": "Proc\nProc\nProc\n12345\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:8",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n12345\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "call",
+      "stdout": "Proc\nProc\nProc\n12345\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:10",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n12345\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:10",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "return",
+      "stdout": "Proc\nProc\nProc\n12345\nLurch: 'You rang?'\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:10",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 17,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n12345\nLurch: 'You rang?'\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "call",
+      "stdout": "Proc\nProc\nProc\n12345\nLurch: 'You rang?'\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n12345\nLurch: 'You rang?'\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "Proc\nProc\nProc\n12345\nLurch: 'You rang?'\nMorticia: 'Who was at the door, Lurch?'\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 2,
+          "unique_hash": "block in <main>:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 17,
+      "event": "step_line",
+      "stdout": "Proc\nProc\nProc\n12345\nLurch: 'You rang?'\nMorticia: 'Who was at the door, Lurch?'\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:18",
+          "frame_id": 1,
+          "unique_hash": "<main>:18_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "count",
+            "your_proc",
+            "my_proc"
+          ],
+          "encoded_locals": {
+            "count": [
+              "REF",
+              1
+            ],
+            "your_proc": [
+              "REF",
+              2
+            ],
+            "my_proc": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Proc on line 3"
+        ],
+        "2": [
+          "Proc",
+          "Lambda on line 10"
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    }
+  ]
+}

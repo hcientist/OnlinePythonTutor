@@ -1,0 +1,172 @@
+{
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, hashlib, heapq, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, time, types, unittest\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "heapq", 
+        "__future__", 
+        "locale", 
+        "functools", 
+        "random", 
+        "datetime", 
+        "io", 
+        "operator", 
+        "array", 
+        "calendar", 
+        "abc", 
+        "pprint", 
+        "re", 
+        "json", 
+        "collections", 
+        "unittest", 
+        "math", 
+        "fractions", 
+        "string", 
+        "copy", 
+        "types", 
+        "hashlib", 
+        "bisect", 
+        "decimal", 
+        "itertools", 
+        "cmath", 
+        "doctest", 
+        "time", 
+        "pickle"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "heapq": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "__future__": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "locale": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "functools": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "random": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "datetime": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "io": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "operator": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "array": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "calendar": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "abc": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "pprint": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "re": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "json": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "collections": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "unittest": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "math": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "fractions": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "string": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "copy": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "types": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "hashlib": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "bisect": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "decimal": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "itertools": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "cmath": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "doctest": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "time": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ], 
+        "pickle": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported module"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

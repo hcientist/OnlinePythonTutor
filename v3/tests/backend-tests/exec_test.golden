@@ -1,0 +1,67 @@
+{
+  "code": "exec(\"import os; os.system('echo security breach')\")\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "call"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "exception_msg": "ImportError: os not found or not supported\nOnly these modules can be imported:\n  StringIO, __future__, abc, array, bisect, calendar,\n  cmath, collections, copy, datetime, decimal, doctest,\n  fractions, functools, hashlib, heapq, io, itertools,\n  json, locale, math, operator, pickle, pprint,\n  random, re, string, time, types, unittest\n\nYou can also try \"Python 3.6 with Anaconda (experimental)\",\nwhich is slower but lets you import many more modules.\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "exception"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "exception_msg": "ImportError: os not found or not supported\nOnly these modules can be imported:\n  StringIO, __future__, abc, array, bisect, calendar,\n  cmath, collections, copy, datetime, decimal, doctest,\n  fractions, functools, hashlib, heapq, io, itertools,\n  json, locale, math, operator, pickle, pprint,\n  random, re, string, time, types, unittest\n\nYou can also try \"Python 3.6 with Anaconda (experimental)\",\nwhich is slower but lets you import many more modules.\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "exception"
+    }
+  ]
+}

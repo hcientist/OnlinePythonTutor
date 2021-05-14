@@ -1,0 +1,8 @@
+# from Berkeley CS61a:
+def f(p, k):
+    def g(): # super tricky because there are two g's with DIFFERENT parent frames
+        print(k)
+    if k == 0:
+        f(g, 1)
+
+f(None, 0)

@@ -1,0 +1,6 @@
+JAVA_VERSION="1.8.0_20"
+OS_NAME="Linux"
+OS_VERSION="2.6"
+OS_ARCH="amd64"
+SOURCE=" .:d1a7ea2c3e10 corba:37bde23c96f6 deploy:9f92b19551ba hotspot:eaa4074a7e39 hotspot/make/closed:7b8971ea673e hotspot/src/closed:46e2fd79f6e3 hotspot/test/closed:a322c9505ea0 install:322f36cf257d jaxp:938b9d502c2b jaxws:7025a2c10ea4 jdk:dd229c5f57bf jdk/make/closed:064d86a87465 jdk/src/closed:deddcd953c36 jdk/test/closed:ebae4e85d16d langtools:5e6d409a7232 nashorn:a23ac9db4227 pubs:8cd570ff98cb sponsors:03740cc24995"
+BUILD_TYPE="commercial"

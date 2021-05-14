@@ -1,0 +1,1287 @@
+{
+  "code": "# Adapted from Learning Ruby by Michael Fitzgerald, O'Reilly\n\ndef num_args(x, y, *args)\n  length = args.size\n  label = length == 1 ? \" vararg\" : \" varargs\"\n  length.to_s + label + \" ( \" + args.inspect + \" )\" # implicit return\nend\n\nputs num_args 'myX', 'myY'\nputs num_args 'myX', 'myY', 1\nputs num_args('myX', 'myY', 100, 2.5, \"three\")\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:3",
+          "frame_id": 2,
+          "unique_hash": "num_args:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": null,
+            "label": null
+          }
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:4",
+          "frame_id": 2,
+          "unique_hash": "num_args:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": null,
+            "label": null
+          }
+        }
+      ],
+      "heap": {
+        "4": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:5",
+          "frame_id": 2,
+          "unique_hash": "num_args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": 0,
+            "label": null
+          }
+        }
+      ],
+      "heap": {
+        "5": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:6",
+          "frame_id": 2,
+          "unique_hash": "num_args:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": 0,
+            "label": " varargs"
+          }
+        }
+      ],
+      "heap": {
+        "6": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:7",
+          "frame_id": 2,
+          "unique_hash": "num_args:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              3
+            ],
+            "length": 0,
+            "label": " varargs",
+            "__return__": "0 varargs ( [] )"
+          }
+        }
+      ],
+      "heap": {
+        "7": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "3": [
+          "LIST"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "0 varargs ( [] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "8": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          8
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "0 varargs ( [] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:3",
+          "frame_id": 2,
+          "unique_hash": "num_args:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": null,
+            "label": null
+          }
+        }
+      ],
+      "heap": {
+        "9": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          9
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "0 varargs ( [] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:4",
+          "frame_id": 2,
+          "unique_hash": "num_args:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": null,
+            "label": null
+          }
+        }
+      ],
+      "heap": {
+        "11": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          11
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "0 varargs ( [] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:5",
+          "frame_id": 2,
+          "unique_hash": "num_args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": 1,
+            "label": null
+          }
+        }
+      ],
+      "heap": {
+        "12": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          12
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "0 varargs ( [] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:6",
+          "frame_id": 2,
+          "unique_hash": "num_args:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": 1,
+            "label": " vararg"
+          }
+        }
+      ],
+      "heap": {
+        "13": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "0 varargs ( [] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:7",
+          "frame_id": 2,
+          "unique_hash": "num_args:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              10
+            ],
+            "length": 1,
+            "label": " vararg",
+            "__return__": "1 vararg ( [1] )"
+          }
+        }
+      ],
+      "heap": {
+        "14": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "10": [
+          "LIST",
+          1
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          14
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "0 varargs ( [] )\n1 vararg ( [1] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "15": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          15
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "0 varargs ( [] )\n1 vararg ( [1] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:3",
+          "frame_id": 2,
+          "unique_hash": "num_args:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": null,
+            "label": null
+          }
+        }
+      ],
+      "heap": {
+        "16": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          2.5,
+          "three"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          16
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "0 varargs ( [] )\n1 vararg ( [1] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:4",
+          "frame_id": 2,
+          "unique_hash": "num_args:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": null,
+            "label": null
+          }
+        }
+      ],
+      "heap": {
+        "18": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          2.5,
+          "three"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          18
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "0 varargs ( [] )\n1 vararg ( [1] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:5",
+          "frame_id": 2,
+          "unique_hash": "num_args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": 3,
+            "label": null
+          }
+        }
+      ],
+      "heap": {
+        "19": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          2.5,
+          "three"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          19
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "0 varargs ( [] )\n1 vararg ( [1] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:6",
+          "frame_id": 2,
+          "unique_hash": "num_args:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": 3,
+            "label": " varargs"
+          }
+        }
+      ],
+      "heap": {
+        "20": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          2.5,
+          "three"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          20
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "0 varargs ( [] )\n1 vararg ( [1] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "num_args:7",
+          "frame_id": 2,
+          "unique_hash": "num_args:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "args",
+            "length",
+            "label",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": "myX",
+            "y": "myY",
+            "args": [
+              "REF",
+              17
+            ],
+            "length": 3,
+            "label": " varargs",
+            "__return__": "3 varargs ( [100, 2.5, \"three\"] )"
+          }
+        }
+      ],
+      "heap": {
+        "21": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ],
+        "17": [
+          "LIST",
+          100,
+          2.5,
+          "three"
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          21
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "0 varargs ( [] )\n1 vararg ( [1] )\n3 varargs ( [100, 2.5, \"three\"] )\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:12",
+          "frame_id": 1,
+          "unique_hash": "<main>:12_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "22": [
+          "FUNCTION",
+          "num_args",
+          ""
+        ]
+      },
+      "globals": {
+        "num_args": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "num_args"
+      ]
+    }
+  ]
+}

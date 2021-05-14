@@ -1,0 +1,1477 @@
+{
+  "code": "# Adapted from http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/\n\ndef callbacks(procs)\n  procs[:starting].call\n\n  puts \"Still going\"\n\n  procs[:finishing].call\nend\n\nh = {:starting => Proc.new { puts \"Starting\" },\n     :finishing => Proc.new { puts \"Finishing\" }}\n\ncallbacks(h)\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "callbacks:3",
+          "frame_id": 2,
+          "unique_hash": "callbacks:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "8": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          8
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "callbacks:4",
+          "frame_id": 2,
+          "unique_hash": "callbacks:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "9": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          9
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "callbacks:4",
+          "frame_id": 2,
+          "unique_hash": "callbacks:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "10": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "callbacks:4",
+          "frame_id": 2,
+          "unique_hash": "callbacks:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "11": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          11
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "Starting\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "callbacks:4",
+          "frame_id": 2,
+          "unique_hash": "callbacks:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "12": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          12
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "Starting\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "callbacks:6",
+          "frame_id": 2,
+          "unique_hash": "callbacks:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "13": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "Starting\nStill going\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "callbacks:8",
+          "frame_id": 2,
+          "unique_hash": "callbacks:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "14": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          14
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "call",
+      "stdout": "Starting\nStill going\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "callbacks:8",
+          "frame_id": 2,
+          "unique_hash": "callbacks:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:12",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:12_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "15": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          15
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "step_line",
+      "stdout": "Starting\nStill going\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "callbacks:8",
+          "frame_id": 2,
+          "unique_hash": "callbacks:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:12",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:12_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "16": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          16
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "return",
+      "stdout": "Starting\nStill going\nFinishing\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "callbacks:8",
+          "frame_id": 2,
+          "unique_hash": "callbacks:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:12",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:12_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "17": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          17
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "return",
+      "stdout": "Starting\nStill going\nFinishing\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "callbacks:9",
+          "frame_id": 2,
+          "unique_hash": "callbacks:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "procs",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "procs": [
+              "REF",
+              3
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "18": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          18
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "Starting\nStill going\nFinishing\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "h"
+          ],
+          "encoded_locals": {
+            "h": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "19": [
+          "FUNCTION",
+          "callbacks",
+          ""
+        ],
+        "3": [
+          "DICT",
+          [
+            [
+              "REF",
+              4
+            ],
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            [
+              "REF",
+              6
+            ],
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "4": [
+          "Symbol",
+          ":starting"
+        ],
+        "5": [
+          "Proc",
+          "Proc on line 11"
+        ],
+        "6": [
+          "Symbol",
+          ":finishing"
+        ],
+        "7": [
+          "Proc",
+          "Proc on line 12"
+        ]
+      },
+      "globals": {
+        "callbacks": [
+          "REF",
+          19
+        ]
+      },
+      "ordered_globals": [
+        "callbacks"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{ code: 'const MY_FAV = 7;\nconst MY_FAV = 20;\nconst MY_FAV2 = 25;',
+  trace: 
+   [ { event: 'uncaught_exception',
+       exception_msg: 'SyntaxError: Identifier \'MY_FAV\' has already been declared',
+       line: 2 } ] }

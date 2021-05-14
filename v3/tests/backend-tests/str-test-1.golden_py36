@@ -1,0 +1,2431 @@
+{
+  "code": "class A:\n    def __init__(self, _x):\n        self.x = _x\n\n    def __str__(self):\n        return \"i'm a \" + str(self.__class__)\n\nclass B(A):\n    def __init__(self, _x, _y):\n        A.__init__(self, _x)\n        self.y = _y\n\na_inst = A(100)\nb_inst = B(10, 20)\nprint(a_inst)\nprint(b_inst)\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_x": 100,
+            "self": [
+              "REF",
+              6
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f1"
+        }
+      ],
+      "heap": {
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>"
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_x": 100,
+            "self": [
+              "REF",
+              6
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f1"
+        }
+      ],
+      "heap": {
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>"
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "return",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_x": 100,
+            "self": [
+              "REF",
+              6
+            ],
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "self",
+            "_x",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f1"
+        }
+      ],
+      "heap": {
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 14,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "call",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_y": 20,
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x",
+            "_y"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f2"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>"
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_y": 20,
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x",
+            "_y"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f2"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>"
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_y": 20,
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x",
+            "_y"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "__init___f2"
+        },
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f3"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>"
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_y": 20,
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x",
+            "_y"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "__init___f2"
+        },
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f3"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>"
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "return",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_y": 20,
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x",
+            "_y"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "__init___f2"
+        },
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ],
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "self",
+            "_x",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f3"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_y": 20,
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self",
+            "_x",
+            "_y"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f2"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 11,
+      "event": "return",
+      "func_name": "__init__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__init__",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "_y": 20,
+            "_x": 10,
+            "self": [
+              "REF",
+              7
+            ],
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "self",
+            "_x",
+            "_y",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__init___f2"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ],
+        "b_inst": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst",
+        "b_inst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ],
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "call",
+      "func_name": "__str__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ],
+        "b_inst": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst",
+        "b_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__str__",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              6
+            ]
+          },
+          "ordered_varnames": [
+            "self"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__str___f4"
+        }
+      ],
+      "heap": {
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "__str__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ],
+        "b_inst": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst",
+        "b_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__str__",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              6
+            ]
+          },
+          "ordered_varnames": [
+            "self"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__str___f4"
+        }
+      ],
+      "heap": {
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "__str__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ],
+        "b_inst": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst",
+        "b_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__str__",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              6
+            ],
+            "__return__": "i'm a <class '__main__.A'>"
+          },
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__str___f4"
+        }
+      ],
+      "heap": {
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ],
+        "b_inst": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst",
+        "b_inst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ],
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ]
+      },
+      "stdout": "i'm a <class '__main__.A'>\n"
+    },
+    {
+      "line": 5,
+      "event": "call",
+      "func_name": "__str__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ],
+        "b_inst": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst",
+        "b_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__str__",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__str___f5"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": "i'm a <class '__main__.A'>\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "__str__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ],
+        "b_inst": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst",
+        "b_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__str__",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              7
+            ]
+          },
+          "ordered_varnames": [
+            "self"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__str___f5"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": "i'm a <class '__main__.A'>\n"
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "__str__",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ],
+        "b_inst": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst",
+        "b_inst"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "__str__",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              7
+            ],
+            "__return__": "i'm a <class '__main__.B'>"
+          },
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "__str___f5"
+        }
+      ],
+      "heap": {
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ],
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ]
+      },
+      "stdout": "i'm a <class '__main__.A'>\n"
+    },
+    {
+      "line": 16,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "B": [
+          "REF",
+          4
+        ],
+        "a_inst": [
+          "REF",
+          6
+        ],
+        "b_inst": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "B",
+        "a_inst",
+        "b_inst"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "__init__",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "__str__",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "__init__(self, _x)",
+          null
+        ],
+        "3": [
+          "FUNCTION",
+          "__str__(self)",
+          null
+        ],
+        "4": [
+          "CLASS",
+          "B",
+          [
+            "A"
+          ],
+          [
+            "__init__",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "__init__(self, _x, _y)",
+          null
+        ],
+        "6": [
+          "INSTANCE_PPRINT",
+          "A",
+          "i'm a <class '__main__.A'>",
+          [
+            "x",
+            100
+          ]
+        ],
+        "7": [
+          "INSTANCE_PPRINT",
+          "B",
+          "i'm a <class '__main__.B'>",
+          [
+            "x",
+            10
+          ],
+          [
+            "y",
+            20
+          ]
+        ]
+      },
+      "stdout": "i'm a <class '__main__.A'>\ni'm a <class '__main__.B'>\n"
+    }
+  ]
+}

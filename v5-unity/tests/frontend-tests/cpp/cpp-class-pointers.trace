@@ -1,0 +1,3244 @@
+{
+  "code": "// From: http://www.cprogramming.com/tutorial/lesson12.html\n\n#include <iostream>\n\nclass Computer {\npublic:\n  Computer();\n  ~Computer();\n  void setspeed ( int p );\n  int readspeed();\nprotected:\n  int processorspeed;\n};\n\nComputer::Computer() {\n  processorspeed = 0;\n}\n\nComputer::~Computer() {\n  //Destructors do not accept arguments\n}\n\nvoid Computer::setspeed ( int p ) {\n  processorspeed = p;\n}\n\nint Computer::readspeed()  {\n  return processorspeed;\n}\n\nint main() {\n  Computer compute;  \n  compute.setspeed(100); \n  int s = compute.readspeed();\n\n  Computer* pCompute = &compute;\n  pCompute->setspeed(5000);\n  s = pCompute->readspeed();\n\n  Computer* heapCompute = new Computer;\n  heapCompute->setspeed(30000);\n  s = heapCompute->readspeed();\n\n  delete heapCompute;\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 31, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 31, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 32, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 31, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::Computer()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 15, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 32, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 15, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "Computer::Computer()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 16, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 32, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 16, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::Computer()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 17, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  0
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 32, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 17, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 33, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  0
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 33, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::setspeed(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 23, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  0
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 33, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "p": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::setspeed(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "this", 
+            "p"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::setspeed(int)_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "Computer::setspeed(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 24, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  0
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 33, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "p": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              100
+            ], 
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000E0"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::setspeed(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [
+            "this", 
+            "p"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::setspeed(int)_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::setspeed(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 25, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  100
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 33, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "p": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              100
+            ], 
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000E0"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::setspeed(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 25, 
+          "ordered_varnames": [
+            "this", 
+            "p"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::setspeed(int)_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 34, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  100
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 34, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::readspeed()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 27, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  100
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 34, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::readspeed()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [
+            "this"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::readspeed()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "Computer::readspeed()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 28, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  100
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 34, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000E0"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::readspeed()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 28, 
+          "ordered_varnames": [
+            "this"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::readspeed()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::readspeed()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 29, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  100
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 34, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000E0"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::readspeed()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 29, 
+          "ordered_varnames": [
+            "this"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::readspeed()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 36, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  100
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              100
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 34, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 37, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  100
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              100
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 37, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::setspeed(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 23, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  100
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              100
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 37, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "p": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::setspeed(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "this", 
+            "p"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::setspeed(int)_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "Computer::setspeed(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 24, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  100
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              100
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 37, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "p": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5000
+            ], 
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000E0"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::setspeed(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [
+            "this", 
+            "p"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::setspeed(int)_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::setspeed(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 25, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              100
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 37, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "p": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              5000
+            ], 
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000E0"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::setspeed(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 25, 
+          "ordered_varnames": [
+            "this", 
+            "p"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::setspeed(int)_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 38, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              100
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 38, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::readspeed()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 27, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              100
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 38, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::readspeed()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [
+            "this"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::readspeed()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "Computer::readspeed()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 28, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              100
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 38, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000E0"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::readspeed()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 28, 
+          "ordered_varnames": [
+            "this"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::readspeed()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::readspeed()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 29, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              100
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 38, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0xFFF0000E0"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::readspeed()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 29, 
+          "ordered_varnames": [
+            "this"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::readspeed()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 40, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 38, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::Computer()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 15, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 40, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 15, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "Computer::Computer()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 16, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 40, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 16, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::Computer()", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 17, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 40, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 17, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 41, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 41, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::setspeed(int)", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 23, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 41, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "p": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::setspeed(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "this", 
+            "p"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::setspeed(int)_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "Computer::setspeed(int)", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                0
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 24, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 41, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "p": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              30000
+            ], 
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0x5C1E040"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::setspeed(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [
+            "this", 
+            "p"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::setspeed(int)_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::setspeed(int)", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                30000
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 25, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 41, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "p": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              30000
+            ], 
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0x5C1E040"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::setspeed(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 25, 
+          "ordered_varnames": [
+            "this", 
+            "p"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::setspeed(int)_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                30000
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 42, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 42, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::readspeed()", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                30000
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 27, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 42, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::readspeed()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [
+            "this"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::readspeed()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "Computer::readspeed()", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                30000
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 28, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 42, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0x5C1E040"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::readspeed()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 28, 
+          "ordered_varnames": [
+            "this"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::readspeed()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::readspeed()", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                30000
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 29, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              5000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 42, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "this": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0x5C1E040"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::readspeed()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 29, 
+          "ordered_varnames": [
+            "this"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::readspeed()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                30000
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 44, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              30000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 44, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::~Computer()", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                30000
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 19, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              30000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 44, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::~Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 19, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::~Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::~Computer()", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040", 
+          [
+            "C_STRUCT", 
+            "0x5C1E040", 
+            "Computer", 
+            [
+              "processorspeed", 
+              [
+                "C_DATA", 
+                "0x5C1E040", 
+                "int", 
+                30000
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 21, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              30000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 44, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::~Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 21, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::~Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040"
+        ]
+      }, 
+      "line": 45, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              30000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 45, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "Computer::~Computer()", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040"
+        ]
+      }, 
+      "line": 19, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              30000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 45, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::~Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 19, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::~Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "Computer::~Computer()", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040"
+        ]
+      }, 
+      "line": 21, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              30000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 45, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "Computer::~Computer()", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 21, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "Computer::~Computer()_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x5C1E040": [
+          "C_ARRAY", 
+          "0x5C1E040"
+        ]
+      }, 
+      "line": 46, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "compute": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "Computer", 
+              [
+                "processorspeed", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "int", 
+                  5000
+                ]
+              ]
+            ], 
+            "heapCompute": [
+              "C_DATA", 
+              "0xFFF0000F8", 
+              "pointer", 
+              "0x5C1E040"
+            ], 
+            "pCompute": [
+              "C_DATA", 
+              "0xFFF0000F0", 
+              "pointer", 
+              "0xFFF0000E0"
+            ], 
+            "s": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              30000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 45, 
+          "ordered_varnames": [
+            "compute", 
+            "s", 
+            "pCompute", 
+            "heapCompute"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 46, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 46, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

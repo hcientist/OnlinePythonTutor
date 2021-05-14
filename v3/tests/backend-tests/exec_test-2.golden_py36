@@ -1,0 +1,131 @@
+{
+  "code": "exec('''\nx = 1\ny = 2\nz = x + y\n''')\n\nw = x + y + z\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 1
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 1,
+        "y": 2
+      },
+      "ordered_globals": [
+        "x",
+        "y"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": 1,
+        "y": 2,
+        "z": 3
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "x": 1,
+        "y": 2,
+        "z": 3,
+        "w": 6
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "w"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+.curLineStepGutter {
+  background-image: url("redarrow.png");
+}
+
+.prevLineStepGutter {
+  background-image: url("lightgreenarrow.png");
+}
+
+.curPrevOverlapLineStepGutter {
+  background-image: url("redgreenarrow.png");
+}
+
+.errorLine {
+  position: absolute;
+  z-index: 20;
+  border-top: 1px solid #e93f34;
+  border-bottom: 1px solid #e93f34;
+  /*background: rgba(200, 0, 0, 0.15);*/
+}
+
+#sliderStuff {
+  padding-top: 3px;
+}
+
+/* copied from pytutor.css - TODO: integrate and merge together */
+/* VCR control buttons for stepping through execution */
+#vcrControls {
+  margin: 15px auto;
+  /*width: 100%;*/
+  text-align: center;
+}
+
+#vcrControls button {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+#curInstr {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+div#rawUserInputDiv {
+  padding: 5px;
+  width: 95%;
+  margin: 5px auto;
+  text-align: center;
+  border: 1px #e93f34 solid;
+}
+
+
+/* keep it a fixed min height so that footer below it doesn't jiggle up
+   and down */
+#frontendErrorOutput {
+  min-height: 40px;
+}
+
+#liveModeHeader {
+  margin-left: 3px;
+  margin-bottom: 15px;
+  color: #888;
+  width: 600px;
+}
+
+/* copied from pytutor.css */
+div#legendDiv {
+  margin-top: 8px;
+  padding: 0px;
+  text-align: left;
+  color: #666;
+  font-size: 9pt;
+  width: 500px;
+}
+
+#prevLegendArrowSVG, #curLegendArrowSVG {
+  width: 18px;
+  height: 10px;
+}
+
+
+/* translucent dimmed div: http://stackoverflow.com/a/21457838 */
+.dimmed {
+  position: relative;
+}
+
+.dimmed:after {
+  content: " ";
+  z-index: 10;
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(200, 0, 0, 0.12);
+}
+
+/* augment */
+div.ExecutionVisualizer #dataViz {
+  padding-right: 20px;
+}
+
+/* override Ace defaults */
+.ace_gutter {
+}
+
+.ace_gutter-cell {
+}
+
+.ace_gutter-layer {
+  background-color: white;
+  margin-right: 2px;
+  color: #aaa;
+}

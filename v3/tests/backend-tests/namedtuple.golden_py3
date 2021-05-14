@@ -1,0 +1,698 @@
+{
+  "code": "from collections import namedtuple\n\nRestaurant = namedtuple('Restaurant', 'name cuisine phone dish price')\n\nR1 = Restaurant(\"Taillevent\", \"French\", \"343-3434\", \"Escargots\", 24.50)\nR2 = Restaurant(\"La Tour D'Argent\", \"French\", \"343-3344\", \"Ris de Veau\", 48.50)\n\n#R3 = Restaurant(\"Pascal\", \"French\", \"333-4444\", \"Bouillabaisse\", 32.00)\n#R4 = Restaurant(\"Thai Touch\", \"Thai\", \"444-3333\", \"Mee Krob\", 10.95)\n#R5 = Restaurant(\"Thai Dishes\", \"Thai\", \"333-4433\", \"Paht Woon Sen\",  8.50)\n#R6 = Restaurant(\"Thai Spoon\", \"Thai\", \"334-3344\", \"Mussamun\", 9.00)\n#R7 = Restaurant(\"McDonald's\", \"Burgers\", \"333-4443\", \"Big Mac\", 3.95)\n#R8 = Restaurant(\"Burger King\", \"Burgers\", \"444-3344\", \"Whopper\", 3.75)\n#R9 = Restaurant(\"Wahoo's\", \"Fish Tacos\", \"443-4443\", \"Mahi Mahi Burrito\", 7.50)\n#R10 = Restaurant(\"In-N-Out Burger\", \"Burgers\", \"434-3344\", \"Cheeseburger\", 2.50)\n#R11 = Restaurant(\"The Shack\", \"Burgers\", \"333-3334\", \"Hot Link Burger\", 4.50)\n#R12 = Restaurant(\"Gina's\", \"Pizza\", \"334-4433\", \"Combo Pizza\", 12.95)\n#R13 = Restaurant(\"Peacock, Room\", \"Indian\", \"333-4443\", \"Rogan Josh\", 12.50)\n#R14 = Restaurant(\"Gaylord\", \"Indian\", \"333-3433\", \"Tandoori Chicken\", 13.50)\n#R15 = Restaurant(\"Mr. Chow\", \"Chinese\", \"222-3333\", \"Peking Duck\", 24.50)\n#R16 = Restaurant(\"Chez Panisse\", \"California\", \"222-3322\", \"Grilled Duck Breast\", 25.00)\n#R17 = Restaurant(\"Spago\", \"California\", \"333-2222\", \"Striped Bass\", 24.50)\n#R18 = Restaurant(\"Sriped Bass\", \"Seafood\", \"333-2233\", \"Cedar Plank Salmon\", 21.50)\n#R19 = Restaurant(\"Golden Pagoda\", \"Chinese\", \"232-3232\", \"Egg Foo Young\", 8.50)\n#R20 = Restaurant(\"Langer's\", \"Delicatessen\", \"333-2223\", \"Pastrami Sandwich\", 11.50)\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "namedtuple": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "namedtuple": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ], 
+        "Restaurant": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getstate__(self)", 
+          null
+        ], 
+        "4": [
+          "INSTANCE", 
+          "staticmethod"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(self)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "INSTANCE", 
+          "classmethod"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "12": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "13": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "14": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "15": [
+          "INSTANCE", 
+          "property"
+        ]
+      }, 
+      "line": 5, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "namedtuple": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "Restaurant": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getstate__(self)", 
+          null
+        ], 
+        "4": [
+          "INSTANCE", 
+          "staticmethod"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(self)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "INSTANCE", 
+          "classmethod"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "12": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "13": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "14": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "15": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "16": [
+          "INSTANCE_PPRINT", 
+          "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
+        ]
+      }, 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "namedtuple", 
+        "Restaurant", 
+        "R1", 
+        "R2"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "namedtuple": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ], 
+        "R1": [
+          "REF", 
+          16
+        ], 
+        "R2": [
+          "REF", 
+          17
+        ], 
+        "Restaurant": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "Restaurant", 
+          [
+            "tuple"
+          ], 
+          [
+            "__getnewargs__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "__slots__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "_asdict", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "_fields", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "_make", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "_replace", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "cuisine", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "dish", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "phone", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "price", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__getnewargs__(self)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "__getstate__(self)", 
+          null
+        ], 
+        "4": [
+          "INSTANCE", 
+          "staticmethod"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__repr__(self)", 
+          null
+        ], 
+        "6": [
+          "TUPLE"
+        ], 
+        "7": [
+          "FUNCTION", 
+          "_asdict(self)", 
+          null
+        ], 
+        "8": [
+          "TUPLE", 
+          "name", 
+          "cuisine", 
+          "phone", 
+          "dish", 
+          "price"
+        ], 
+        "9": [
+          "INSTANCE", 
+          "classmethod"
+        ], 
+        "10": [
+          "FUNCTION", 
+          "_replace(_self, **kwds)", 
+          null
+        ], 
+        "11": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "12": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "13": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "14": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "15": [
+          "INSTANCE", 
+          "property"
+        ], 
+        "16": [
+          "INSTANCE_PPRINT", 
+          "Restaurant", 
+          "Restaurant(name='Taillevent', cuisine='French', phone='343-3434', dish='Escargots', price=24.5)", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Escargots"
+          ], 
+          [
+            "name", 
+            "Taillevent"
+          ], 
+          [
+            "phone", 
+            "343-3434"
+          ], 
+          [
+            "price", 
+            24.500
+          ]
+        ], 
+        "17": [
+          "INSTANCE_PPRINT", 
+          "Restaurant", 
+          "Restaurant(name=\"La Tour D'Argent\", cuisine='French', phone='343-3344', dish='Ris de Veau', price=48.5)", 
+          [
+            "cuisine", 
+            "French"
+          ], 
+          [
+            "dish", 
+            "Ris de Veau"
+          ], 
+          [
+            "name", 
+            "La Tour D'Argent"
+          ], 
+          [
+            "phone", 
+            "343-3344"
+          ], 
+          [
+            "price", 
+            48.500
+          ]
+        ]
+      }, 
+      "line": 6, 
+      "event": "return"
+    }
+  ]
+}

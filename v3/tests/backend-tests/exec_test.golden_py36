@@ -1,0 +1,67 @@
+{
+  "code": "exec(\"import os; os.system('echo security breach')\")\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "call",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "exception",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "",
+      "exception_msg": "ImportError: os not found or not supported\nOnly these modules can be imported:\n  __future__, abc, array, bisect, calendar, cmath,\n  collections, copy, datetime, decimal, doctest, fractions,\n  functools, hashlib, heapq, io, itertools, json,\n  locale, math, operator, pickle, pprint, random,\n  re, string, time, types, typing, unittest\n\nYou can also try \"Python 3.6 with Anaconda (experimental)\",\nwhich is slower but lets you import many more modules.\n"
+    },
+    {
+      "line": 1,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "exception",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": "",
+      "exception_msg": "ImportError: os not found or not supported\nOnly these modules can be imported:\n  __future__, abc, array, bisect, calendar, cmath,\n  collections, copy, datetime, decimal, doctest, fractions,\n  functools, hashlib, heapq, io, itertools, json,\n  locale, math, operator, pickle, pprint, random,\n  re, string, time, types, typing, unittest\n\nYou can also try \"Python 3.6 with Anaconda (experimental)\",\nwhich is slower but lets you import many more modules.\n"
+    }
+  ]
+}

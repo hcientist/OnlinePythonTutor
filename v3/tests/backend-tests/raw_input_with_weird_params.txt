@@ -1,0 +1,3 @@
+# these showed up in my server logs as errors:
+
+max = raw_input(max) # max is a built-in function

@@ -1,0 +1,197 @@
+{
+  "code": "from collections import *\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "deque": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "defaultdict": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "namedtuple": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
+        ],
+        "UserDict": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "UserList": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "UserString": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "OrderedDict": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "ChainMap": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Awaitable": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Coroutine": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "AsyncIterable": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "AsyncIterator": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "AsyncGenerator": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Hashable": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Iterable": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Iterator": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Generator": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Reversible": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Sized": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Container": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Callable": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Collection": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Set": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "MutableSet": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Mapping": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "MutableMapping": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "MappingView": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "KeysView": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "ItemsView": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "ValuesView": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "Sequence": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "MutableSequence": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "ByteString": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ]
+      },
+      "ordered_globals": [
+        "deque",
+        "defaultdict",
+        "namedtuple",
+        "UserDict",
+        "UserList",
+        "UserString",
+        "Counter",
+        "OrderedDict",
+        "ChainMap",
+        "Awaitable",
+        "Coroutine",
+        "AsyncIterable",
+        "AsyncIterator",
+        "AsyncGenerator",
+        "Hashable",
+        "Iterable",
+        "Iterator",
+        "Generator",
+        "Reversible",
+        "Sized",
+        "Container",
+        "Callable",
+        "Collection",
+        "Set",
+        "MutableSet",
+        "Mapping",
+        "MutableMapping",
+        "MappingView",
+        "KeysView",
+        "ItemsView",
+        "ValuesView",
+        "Sequence",
+        "MutableSequence",
+        "ByteString"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    }
+  ]
+}

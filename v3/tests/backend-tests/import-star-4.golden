@@ -1,0 +1,342 @@
+{
+  "code": "from operator import *\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "iand", 
+        "countOf", 
+        "gt", 
+        "ixor", 
+        "pow", 
+        "not_", 
+        "imul", 
+        "ge", 
+        "irepeat", 
+        "setslice", 
+        "lshift", 
+        "rshift", 
+        "eq", 
+        "iadd", 
+        "index", 
+        "le", 
+        "xor", 
+        "sub", 
+        "imod", 
+        "neg", 
+        "getslice", 
+        "contains", 
+        "ne", 
+        "idiv", 
+        "isSequenceType", 
+        "attrgetter", 
+        "abs", 
+        "irshift", 
+        "methodcaller", 
+        "lt", 
+        "mul", 
+        "inv", 
+        "repeat", 
+        "is_", 
+        "truediv", 
+        "isub", 
+        "indexOf", 
+        "isNumberType", 
+        "ior", 
+        "pos", 
+        "add", 
+        "delitem", 
+        "iconcat", 
+        "ipow", 
+        "isCallable", 
+        "div", 
+        "concat", 
+        "mod", 
+        "or_", 
+        "is_not", 
+        "getitem", 
+        "and_", 
+        "itruediv", 
+        "isMappingType", 
+        "setitem", 
+        "floordiv", 
+        "delslice", 
+        "truth", 
+        "sequenceIncludes", 
+        "ilshift", 
+        "invert", 
+        "itemgetter", 
+        "ifloordiv"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "iand": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "countOf": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "gt": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "ixor": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "pow": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "not_": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "imul": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "ge": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "repeat": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "idiv": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "lshift": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "is_": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "eq": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "iadd": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "index": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "le": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "xor": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "sub": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "imod": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "truth": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "neg": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "getslice": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "contains": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "ne": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "setslice": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "isSequenceType": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "attrgetter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "abs": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "irshift": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "methodcaller": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "lt": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "mul": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "inv": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "irepeat": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "rshift": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "truediv": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "sequenceIncludes": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "or_": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "indexOf": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "ior": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "pos": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "add": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "delitem": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "iconcat": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "ipow": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "isCallable": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "ilshift": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "concat": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "mod": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "isub": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "is_not": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "and_": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "itruediv": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "isMappingType": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "setitem": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "floordiv": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "delslice": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "getitem": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "isNumberType": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "div": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "invert": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "itemgetter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "ifloordiv": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

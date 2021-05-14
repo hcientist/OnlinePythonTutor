@@ -1,0 +1,14 @@
+{
+  "globalDependencies": {
+    "ace": "registry:dt/ace#0.0.0+20160727012524",
+    "jquery": "registry:dt/jquery#1.10.0+20170310222111",
+    "jquery.bbq": "registry:dt/jquery.bbq#1.2.0+20160510010627",
+    "jqueryui": "registry:dt/jqueryui#1.11.0+20161214061125",
+    "node": "registry:dt/node#7.0.0+20170322231424",
+    "qtip2": "registry:dt/qtip2#2.2.1+20160510010627"
+  },
+  "dependencies": {
+    "d3": "registry:dt/d3#4.7.0+20170308023845",
+    "diff-match-patch": "registry:dt/diff-match-patch#1.0.0+20161122165823"
+  }
+}

@@ -1,0 +1,6 @@
+node_modules/
+typings/
+*.js.map
+# ignore *.png only in this directory
+/*.png
+npm-debug.log

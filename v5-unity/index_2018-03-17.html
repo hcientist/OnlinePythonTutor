@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+  Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+  Copyright (C) Philip Guo (philip@pgbovine.net)
+  LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
+-->
+
+<head>
+
+<title>Python Tutor - Visualize Python, Java, JavaScript, TypeScript, Ruby, C, and C++ code execution</title>
+
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+  <!-- let Webpack take care of everything -->
+  <script type="text/javascript" src="build/index.bundle.js?930a15d335" charset="utf-8"></script>
+
+<!-- insert google-analytics.txt contents here -->
+
+</head>
+
+<body>
+
+
+<div class="mainBodyPane">
+
+<table class='layoutTbl'>
+  <tr>
+    <td>
+
+<div class="activityPane" id="learnPane">
+
+<h1><span id="learnHeading">VISUALIZE</span> <span class="smallH1">
+Python, Java, JavaScript, TypeScript, Ruby, C, and C++
+
+</span></h1>
+
+<p><a id="optLink" href="visualize.html">Python Tutor</a>, created
+by <a
+href="http://www.pgbovine.net/">Philip Guo</a> (<a href="https://twitter.com/pgbovine">@pgbovine</a>),
+helps people overcome a fundamental
+barrier to learning programming: understanding what happens as the
+computer runs each line of source code.</p>
+
+
+<p>Using this
+tool, you can write
+<a href="visualize.html#py=2">Python 2</a>,
+<a href="visualize.html#py=3">Python 3</a>,
+<a href="java.html">Java</a>,
+<a href="javascript.html">JavaScript</a>,
+<a href="typescript.html">TypeScript</a>,
+<a href="ruby.html">Ruby</a>,
+<a href="c.html">C</a>,
+and
+<a href="cpp.html">C++</a>
+code in your web
+browser and visualize what the computer is doing step-by-step as it
+executes.
+</p>
+
+<p><b>Over 3.5 million people in over 180 countries</b> have used Python
+Tutor to visualize over 50 million pieces of code, often as a
+supplement to textbooks, lectures, and online tutorials.</p>
+
+<div id="startLink">
+  <a href="visualize.html">Start visualizing your code now</a>
+  (or try <a href="live.html">live programming</a>)
+</div>
+
+<iframe width="720" height="480" src="https://www.youtube.com/embed/McYTtgl8ogI" frameborder="0" allowfullscreen></iframe>
+
+<p>Here's a live example:</p>
+
+<!-- <p>Here is a visualization showing a Python program that <a href="http://en.wikipedia.org/wiki/Recursion_(computer_science)">recursively</a> finds the sum of a linked list:</p>-->
+
+<div id="demoViz"></div>
+
+<p>
+<b><a
+href="http://pgbovine.net/publications.htm#Online_Python_Tutor_web_based_program_visualization_SIGCSE_2013">Read</a></b>
+the research paper &ndash; Philip J. Guo. Online Python Tutor: Embeddable
+Web-Based Program Visualization for CS Education. SIGCSE 2013.
+</p>
+
+
+</div>
+
+    </td>
+  </tr>
+</table>
+
+<table class='layoutTbl'>
+  <tr>
+    <td id="embedPaneTd">
+
+<div class="activityPane" id="embedPane">
+
+<h1><span id="embedHeading">GET LIVE HELP</span> <span class="smallH1"></span></h1>
+
+<p>Click the &ldquo;Get live help!&rdquo; button to allow anyone on the website
+    to join your session, or start a private chat. Using this feature, you can chat about your code and navigate
+    visualizations together to receive real-time tutoring. Watch this short
+    <a href="https://www.youtube.com/watch?v=oDY7ScMPtqI">video demo</a>:
+</p>
+
+<iframe width="480" height="360" src="http://www.youtube.com/embed/oDY7ScMPtqI" frameborder="0" allowfullscreen></iframe>
+
+<p>You can also click the &ldquo;Generate
+permanent link&rdquo; button (at the bottom of <a href="visualize.html">this
+page</a>) and paste that link in an email, social networking
+post, or forum question. When recipients click on your link, they will
+see the exact visualization you've created.
+
+For example, clicking <a
+href="visualize.html#code=%23+find+primes+using+a+for-else+construct%0Afor+n+in+range(2,+10)%3A%0A++++x_range+%3D+range(2,+n)%0A++++for+x+in+x_range%3A%0A++++++++if+n+%25+x+%3D%3D+0%3A%0A++++++++++++break%0A++++else%3A%0A++++++++%23+loop+fell+through+without+finding+a+factor%0A++++++++print(n)&mode=display&cumulative=false&py=2&curInstr=43">this
+link</a> brings you directly to step 44 of 57 in a program that finds
+prime numbers using the <tt>for-else</tt> construct.</p>
+
+<p>
+<b><a href="http://pgbovine.net/publications.htm#Codechella_multiuser_program_visualizations_VLHCC_2015">Read</a></b>
+the paper &ndash; Philip J. Guo, Jeffery White, Renan
+Zanelatto. Codechella: Multi-User Program Visualizations for Real-Time
+Tutoring and Collaborative Learning. VL/HCC 2015.
+</p>
+
+
+</div>
+
+    </td>
+    <td id="sharePaneTd">
+
+<div class="activityPane" id="sharePane">
+
+<h1><span id="shareHeading">EMBED</span> <span class="smallH1"> in any webpage</span></h1>
+
+<p>Using a single line of JavaScript code, you can <a
+href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/embedding-HOWTO.md">embed</a> a Python Tutor
+visualization within any webpage. The screenshot below shows a visualization
+embedded within the online textbook for the introductory CS course at UC
+Berkeley (<a href="http://www.composingprograms.com/">CS61A</a>):
+
+</p>
+
+<a href="http://www.composingprograms.com/">
+<img id="cp-thumbnail" style="width: 275px; border: 1px solid #aaa; margin-bottom: 10px;"/>
+</a>
+
+</div>
+
+
+<div class="activityPane" id="detailsPane">
+
+<p>
+Details:
+<ul>
+
+  <li/>Free, open-source BSD-licensed code on <a
+  href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>
+
+  <li/>View <a
+  href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3/docs">technical
+  documentation</a> online.
+
+ <li/>Main technologies: Python, CGI, Node.js, and Docker for
+ run-time tracing backends; HTML/CSS/JavaScript with <a
+ href="http://www.jquery.org">jQuery</a>, <a
+ href="http://www.d3js.org/">D3.js</a>, <a
+ href="http://www.jsplumb.org/">jsPlumb</a>,
+ <a href="https://togetherjs.com/">TogetherJS</a>,
+ and <a
+ href="http://ace.c9.io/">Ace</a> for the frontend
+
+</ul>
+</p>
+
+</div>
+
+    </td>
+
+  </tr>
+</table>
+
+</div>
+
+
+<div id="footer">
+
+<p>Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>. All rights reserved.</p>
+
+</div>
+
+
+</body>
+</html>

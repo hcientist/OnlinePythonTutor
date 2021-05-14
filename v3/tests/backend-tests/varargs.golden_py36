@@ -1,0 +1,267 @@
+{
+  "code": "def parrot(mandatory, mandatory2, *args, **kwargs):\n  pass\n\nparrot('a', 'b', 'c', 'd', 'e', name='Philip', age='35')\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "parrot": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "parrot"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "parrot(mandatory, mandatory2, *args, **kwargs)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "call",
+      "func_name": "parrot",
+      "globals": {
+        "parrot": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "parrot"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "parrot",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "kwargs": [
+              "REF",
+              2
+            ],
+            "args": [
+              "REF",
+              3
+            ],
+            "mandatory2": "b",
+            "mandatory": "a"
+          },
+          "ordered_varnames": [
+            "mandatory",
+            "mandatory2",
+            "args",
+            "kwargs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "parrot_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "DICT",
+          [
+            "name",
+            "Philip"
+          ],
+          [
+            "age",
+            "35"
+          ]
+        ],
+        "3": [
+          "TUPLE",
+          "c",
+          "d",
+          "e"
+        ],
+        "1": [
+          "FUNCTION",
+          "parrot(mandatory, mandatory2, *args, **kwargs)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "parrot",
+      "globals": {
+        "parrot": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "parrot"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "parrot",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "kwargs": [
+              "REF",
+              2
+            ],
+            "args": [
+              "REF",
+              3
+            ],
+            "mandatory2": "b",
+            "mandatory": "a"
+          },
+          "ordered_varnames": [
+            "mandatory",
+            "mandatory2",
+            "args",
+            "kwargs"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "parrot_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "DICT",
+          [
+            "name",
+            "Philip"
+          ],
+          [
+            "age",
+            "35"
+          ]
+        ],
+        "3": [
+          "TUPLE",
+          "c",
+          "d",
+          "e"
+        ],
+        "1": [
+          "FUNCTION",
+          "parrot(mandatory, mandatory2, *args, **kwargs)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "return",
+      "func_name": "parrot",
+      "globals": {
+        "parrot": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "parrot"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "parrot",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "kwargs": [
+              "REF",
+              2
+            ],
+            "args": [
+              "REF",
+              3
+            ],
+            "mandatory2": "b",
+            "mandatory": "a",
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "mandatory",
+            "mandatory2",
+            "args",
+            "kwargs",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "parrot_f1"
+        }
+      ],
+      "heap": {
+        "2": [
+          "DICT",
+          [
+            "name",
+            "Philip"
+          ],
+          [
+            "age",
+            "35"
+          ]
+        ],
+        "3": [
+          "TUPLE",
+          "c",
+          "d",
+          "e"
+        ],
+        "1": [
+          "FUNCTION",
+          "parrot(mandatory, mandatory2, *args, **kwargs)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "parrot": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "parrot"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "parrot(mandatory, mandatory2, *args, **kwargs)",
+          null
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

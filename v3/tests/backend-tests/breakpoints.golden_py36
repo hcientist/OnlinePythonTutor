@@ -1,0 +1,1392 @@
+{
+  "code": "# when '#break' is the last string in a line, then stop at only those lines\n\nx = [1, 2, 3]\ny = [4, 5, 6]\nz = y\ny = x\nx = z\n\nx = [1, 2, 3] # a different [1, 2, 3] list!\ny = x\nx.append(4) #break\ny.append(5)\nz = [1, 2, 3, 4, 5] # a different list!  #break\nx.append(6)\ny.append(7)\ny = \"hello\" #break\n\n\ndef foo(lst): #break\n    lst.append(\"hello\") #break\n    bar(lst)\n\ndef bar(myLst):\n    print(myLst) #break\n\nfoo(x)\nfoo(z)\n",
+  "trace": [
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": [
+          "REF",
+          3
+        ],
+        "z": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3
+        ],
+        "2": [
+          "LIST",
+          4,
+          5,
+          6
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": [
+          "REF",
+          3
+        ],
+        "z": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4
+        ],
+        "2": [
+          "LIST",
+          4,
+          5,
+          6
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": [
+          "REF",
+          3
+        ],
+        "z": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "2": [
+          "LIST",
+          4,
+          5,
+          6
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 14,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": [
+          "REF",
+          3
+        ],
+        "z": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 16,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": [
+          "REF",
+          3
+        ],
+        "z": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 19,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 23,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 19,
+      "event": "call",
+      "func_name": "foo",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 20,
+      "event": "step_line",
+      "func_name": "foo",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 21,
+      "event": "step_line",
+      "func_name": "foo",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 24,
+      "event": "step_line",
+      "func_name": "bar",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "foo_f1"
+        },
+        {
+          "func_name": "bar",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "myLst": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "myLst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "bar_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 24,
+      "event": "return",
+      "func_name": "bar",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "foo_f1"
+        },
+        {
+          "func_name": "bar",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "myLst": [
+              "REF",
+              3
+            ],
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "myLst",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "bar_f2"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n"
+    },
+    {
+      "line": 21,
+      "event": "return",
+      "func_name": "foo",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              3
+            ],
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "lst",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f1"
+        }
+      ],
+      "heap": {
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n"
+    },
+    {
+      "line": 19,
+      "event": "call",
+      "func_name": "foo",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n"
+    },
+    {
+      "line": 20,
+      "event": "step_line",
+      "func_name": "foo",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n"
+    },
+    {
+      "line": 21,
+      "event": "step_line",
+      "func_name": "foo",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          "hello"
+        ],
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n"
+    },
+    {
+      "line": 24,
+      "event": "step_line",
+      "func_name": "bar",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "foo_f3"
+        },
+        {
+          "func_name": "bar",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "myLst": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "myLst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "bar_f4"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          "hello"
+        ],
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n"
+    },
+    {
+      "line": 24,
+      "event": "return",
+      "func_name": "bar",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "lst"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "foo_f3"
+        },
+        {
+          "func_name": "bar",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "myLst": [
+              "REF",
+              4
+            ],
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "myLst",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "bar_f4"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          "hello"
+        ],
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n[1, 2, 3, 4, 5, 'hello']\n"
+    },
+    {
+      "line": 21,
+      "event": "return",
+      "func_name": "foo",
+      "globals": {
+        "x": [
+          "REF",
+          3
+        ],
+        "y": "hello",
+        "z": [
+          "REF",
+          4
+        ],
+        "foo": [
+          "REF",
+          5
+        ],
+        "bar": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "foo",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "lst": [
+              "REF",
+              4
+            ],
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "lst",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "foo_f3"
+        }
+      ],
+      "heap": {
+        "4": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          "hello"
+        ],
+        "3": [
+          "LIST",
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          "hello"
+        ],
+        "5": [
+          "FUNCTION",
+          "foo(lst)",
+          null
+        ],
+        "6": [
+          "FUNCTION",
+          "bar(myLst)",
+          null
+        ]
+      },
+      "stdout": "[1, 2, 3, 4, 5, 6, 7, 'hello']\n[1, 2, 3, 4, 5, 'hello']\n"
+    }
+  ]
+}

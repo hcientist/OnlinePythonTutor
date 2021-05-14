@@ -1,0 +1,1925 @@
+{
+  "code": "# The ultimate Unicode test for Python 2\n\nx = '\u263a' # this is a REGULAR str with some funky bytes, NOT a smiley\ny = u'\u263a' # this is a unicode string U+263A representing a smiley\nprint x\nprint y\nassert x != y\n\nx_lst = [x]\nx_lst *= 3\n\nz = '\\x8e' # this string isn't valid unicode\nprint z\n\nprint x, y, z\n\nxyz_lst = [x, y, z]\nxyz_lst *= 3\ntypes_lst = [repr(type(e)) for e in xyz_lst]\nprint xyz_lst\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "x": "\u263a"
+      }, 
+      "heap": {}, 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a"
+      }, 
+      "heap": {}, 
+      "line": 5, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y"
+      ], 
+      "stdout": "\u263a\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a"
+      }, 
+      "heap": {}, 
+      "line": 6, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a"
+      }, 
+      "heap": {}, 
+      "line": 7, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ]
+      }, 
+      "line": 9, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": "\u00e2\u0098\u00ba", 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x": "\u263a"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a"
+        ]
+      }, 
+      "line": 10, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": "\u00e2\u0098\u00ba", 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x": "\u263a"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ]
+      }, 
+      "line": 12, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": "\u00e2\u0098\u00ba", 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "z": "\ufffd", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x": "\u263a"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ]
+      }, 
+      "line": 13, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": "\u00e2\u0098\u00ba", 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "z": "\ufffd", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x": "\u263a"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ]
+      }, 
+      "line": 15, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "y": "\u00e2\u0098\u00ba", 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "z": "\ufffd", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x": "\u263a"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ]
+      }, 
+      "line": 17, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 18, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\u263a", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\u00e2\u0098\u00ba", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\ufffd", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\u263a", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\u00e2\u0098\u00ba", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\ufffd", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\u263a", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\u00e2\u0098\u00ba", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\ufffd", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd"
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ]
+      }, 
+      "line": 19, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e", 
+        "types_lst"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\ufffd", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd", 
+        "types_lst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ], 
+        "8": [
+          "LIST", 
+          "<type 'str'>", 
+          "<type 'unicode'>", 
+          "<type 'str'>", 
+          "<type 'str'>", 
+          "<type 'unicode'>", 
+          "<type 'str'>", 
+          "<type 'str'>", 
+          "<type 'unicode'>", 
+          "<type 'str'>"
+        ]
+      }, 
+      "line": 20, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "x", 
+        "y", 
+        "__warningregistry__", 
+        "x_lst", 
+        "z", 
+        "xyz_lst", 
+        "e", 
+        "types_lst"
+      ], 
+      "stdout": "\u263a\n\u00e2\u0098\u00ba\n\ufffd\n\u263a \u00e2\u0098\u00ba \ufffd\n['\\xe2\\x98\\xba', u'\\xe2\\x98\\xba', '\\x8e', '\\xe2\\x98\\xba', u'\\xe2\\x98\\xba', '\\x8e', '\\xe2\\x98\\xba', u'\\xe2\\x98\\xba', '\\x8e']\n", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "e": "\ufffd", 
+        "__warningregistry__": [
+          "REF", 
+          1
+        ], 
+        "x_lst": [
+          "REF", 
+          6
+        ], 
+        "xyz_lst": [
+          "REF", 
+          7
+        ], 
+        "y": "\u00e2\u0098\u00ba", 
+        "x": "\u263a", 
+        "z": "\ufffd", 
+        "types_lst": [
+          "REF", 
+          8
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "DICT", 
+          [
+            [
+              "REF", 
+              2
+            ], 
+            true
+          ]
+        ], 
+        "2": [
+          "TUPLE", 
+          "Unicode unequal comparison failed to convert both arguments to Unicode - interpreting them as being unequal", 
+          [
+            "REF", 
+            3
+          ], 
+          7
+        ], 
+        "3": [
+          "CLASS", 
+          "UnicodeWarning", 
+          [
+            "Warning"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              5
+            ]
+          ]
+        ], 
+        "4": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'exceptions.UnicodeWarning' objects>"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "6": [
+          "LIST", 
+          "\u263a", 
+          "\u263a", 
+          "\u263a"
+        ], 
+        "7": [
+          "LIST", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd", 
+          "\u263a", 
+          "\u00e2\u0098\u00ba", 
+          "\ufffd"
+        ], 
+        "8": [
+          "LIST", 
+          "<type 'str'>", 
+          "<type 'unicode'>", 
+          "<type 'str'>", 
+          "<type 'str'>", 
+          "<type 'unicode'>", 
+          "<type 'str'>", 
+          "<type 'str'>", 
+          "<type 'unicode'>", 
+          "<type 'str'>"
+        ]
+      }, 
+      "line": 20, 
+      "event": "return"
+    }
+  ]
+}

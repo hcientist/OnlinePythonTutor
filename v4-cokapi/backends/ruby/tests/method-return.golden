@@ -1,0 +1,713 @@
+{
+  "code": "# Adapted from Learning Ruby by Michael Fitzgerald, O'Reilly\n\ndef foo\n  'implicit return string'\nend\n\nx = foo\nputs x\n\ndef bar\n  'nop string'\n  return 'explicit return string'\nend\n\ny = bar\nputs y\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": null,
+            "y": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": null,
+            "y": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": null,
+            "y": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "foo:3",
+          "frame_id": 2,
+          "unique_hash": "foo:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": null,
+            "y": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "foo:4",
+          "frame_id": 2,
+          "unique_hash": "foo:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": null,
+            "y": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "foo:5",
+          "frame_id": 2,
+          "unique_hash": "foo:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "implicit return string"
+          }
+        }
+      ],
+      "heap": {
+        "4": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "implicit return string",
+            "y": null
+          }
+        }
+      ],
+      "heap": {
+        "5": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "implicit return string\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "implicit return string",
+            "y": null
+          }
+        }
+      ],
+      "heap": {
+        "6": [
+          "FUNCTION",
+          "foo",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "foo"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "step_line",
+      "stdout": "implicit return string\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "implicit return string",
+            "y": null
+          }
+        }
+      ],
+      "heap": {
+        "7": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "8": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          7
+        ],
+        "bar": [
+          "REF",
+          8
+        ]
+      },
+      "ordered_globals": [
+        "foo",
+        "bar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "call",
+      "stdout": "implicit return string\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "implicit return string",
+            "y": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "bar:10",
+          "frame_id": 2,
+          "unique_hash": "bar:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "9": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "10": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          9
+        ],
+        "bar": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "foo",
+        "bar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "step_line",
+      "stdout": "implicit return string\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "implicit return string",
+            "y": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "bar:12",
+          "frame_id": 2,
+          "unique_hash": "bar:12_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "11": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "12": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          11
+        ],
+        "bar": [
+          "REF",
+          12
+        ]
+      },
+      "ordered_globals": [
+        "foo",
+        "bar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "return",
+      "stdout": "implicit return string\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "implicit return string",
+            "y": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "bar:13",
+          "frame_id": 2,
+          "unique_hash": "bar:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": "explicit return string"
+          }
+        }
+      ],
+      "heap": {
+        "13": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "14": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          13
+        ],
+        "bar": [
+          "REF",
+          14
+        ]
+      },
+      "ordered_globals": [
+        "foo",
+        "bar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "implicit return string\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "implicit return string",
+            "y": "explicit return string"
+          }
+        }
+      ],
+      "heap": {
+        "15": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "16": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          15
+        ],
+        "bar": [
+          "REF",
+          16
+        ]
+      },
+      "ordered_globals": [
+        "foo",
+        "bar"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "implicit return string\nexplicit return string\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": "implicit return string",
+            "y": "explicit return string"
+          }
+        }
+      ],
+      "heap": {
+        "17": [
+          "FUNCTION",
+          "foo",
+          ""
+        ],
+        "18": [
+          "FUNCTION",
+          "bar",
+          ""
+        ]
+      },
+      "globals": {
+        "foo": [
+          "REF",
+          17
+        ],
+        "bar": [
+          "REF",
+          18
+        ]
+      },
+      "ordered_globals": [
+        "foo",
+        "bar"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+First run 'make deps' to install node dependencies
+
+Then run 'make' to create the proper docker container
+
+This backend has been tested to work on node-v6.0.0

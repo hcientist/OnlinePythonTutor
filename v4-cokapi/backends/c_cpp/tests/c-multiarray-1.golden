@@ -1,0 +1,1931 @@
+{
+  "code": "// simplified from the test suite of https://github.com/codespecs/daikon\n//   daikon/tests/kvasir-tests/\nconst int DIM1 = 3;\nconst int DIM2 = 4;\n\nint main() {\n  int x[DIM1][DIM2];\n  int i, j;\n  for (i = 0; i < DIM1; i++)\n    for(j = 0; j < DIM2; j++)\n      x[i][j] = i+j*i;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 6, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 6, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 7, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 6, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              0
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              0
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              1
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              1
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              3
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              3
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              0
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              4
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              4
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              0
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              0
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              1
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              1
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              3
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              3
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              1
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              4
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              4
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              0
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              0
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              1
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              1
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              3
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              3
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              2
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              4
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 12, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              3
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              4
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {
+        "DIM1": [
+          "C_DATA", 
+          "0x400714", 
+          "int", 
+          3
+        ], 
+        "DIM2": [
+          "C_DATA", 
+          "0x400718", 
+          "int", 
+          4
+        ]
+      }, 
+      "heap": {}, 
+      "line": 12, 
+      "ordered_globals": [
+        "DIM1", 
+        "DIM2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "i": [
+              "C_DATA", 
+              "0xFFF0000C0", 
+              "int", 
+              3
+            ], 
+            "j": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "int", 
+              4
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 12, 
+          "ordered_varnames": [
+            "i", 
+            "j"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

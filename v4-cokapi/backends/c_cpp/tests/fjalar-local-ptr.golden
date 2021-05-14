@@ -1,0 +1,5674 @@
+{
+  "code": "// From the test suite of https://github.com/codespecs/daikon\n//   daikon/tests/kvasir-tests/\n\n#include <stdlib.h>\n#include <stdio.h>\n\nvoid foo(void) { }\n\nstatic int *leaf_global1, *leaf_global2, *leaf_global3, *leaf_global4;\nvoid leaf(void) {\n  int local1 = 1, local2 = 2;\n  leaf_global1 = leaf_global2 = &local1;\n  leaf_global3 = &local2;\n  leaf_global4 = &local1;\n}\n\nint *nonleaf_global1, *nonleaf_global2, *nonleaf_global3, *nonleaf_global4;\nvoid nonleaf(void) {\n  int local1 = 1, local2 = 2;\n  //printf(\"\");\n  nonleaf_global1 = nonleaf_global2 = &local1;\n  nonleaf_global3 = &local2;\n  nonleaf_global4 = &local1;\n}\n\nint* intPtr;\nint** intPtrPtr;\n\nfloat* floatPtr1;\nfloat* floatPtr2;\n\nint main() {\n  //char *unused = malloc(40);\n\n  int localIntArray[8] = {3, 1, 4, 1, 5, 9, 2, 6};\n\n  float localFloat = 3.1415;\n  float localFloatArray[8] = {0.3, 0.1, 0.4, 0.1, 0.5, 0.9, 0.2, 0.6};\n\n  intPtr = localIntArray;\n\n  floatPtr1 = &localFloat;\n  floatPtr2 = localFloatArray;\n\n  intPtrPtr = &intPtr;\n\n  foo();\n\n  leaf();\n  nonleaf();\n\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0x0"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 32, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000C4", 
+              "float", 
+              "<UNINITIALIZED>"
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000E8", 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000C8", 
+              [
+                "C_DATA", 
+                "0xFFF0000C8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000CC", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 32, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0x0"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 35, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              "<UNINITIALIZED>"
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 35, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0x0"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 37, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              "<UNINITIALIZED>"
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 37, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0x0"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 38, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 38, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0x0"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 40, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 38, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0x0"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 42, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 40, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0x0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 43, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 42, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 45, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 45, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 47, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 47, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "foo", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 7, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 47, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "foo", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 7, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "foo_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 49, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "leaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "leaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "leaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "leaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 12, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              1
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "leaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "leaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "leaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0x0"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 13, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              1
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "leaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 12, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "leaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "leaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 14, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              1
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "leaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "leaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "leaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 15, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 49, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              1
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "leaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 15, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "leaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 50, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 50, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "nonleaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 19, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 50, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "nonleaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 19, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "nonleaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "nonleaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 21, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 50, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              1
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "nonleaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 19, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "nonleaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "nonleaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0x0"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 22, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 50, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              1
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "nonleaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 21, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "nonleaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "nonleaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0x0"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 23, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 50, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              1
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "nonleaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 22, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "nonleaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "nonleaf", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0xFFF0000A8"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 24, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 50, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "local1": [
+              "C_DATA", 
+              "0xFFF0000A8", 
+              "int", 
+              1
+            ], 
+            "local2": [
+              "C_DATA", 
+              "0xFFF0000AC", 
+              "int", 
+              2
+            ]
+          }, 
+          "frame_id": "0xFFF0000B0", 
+          "func_name": "nonleaf", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [
+            "local1", 
+            "local2"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "nonleaf_0xFFF0000B0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0xFFF0000A8"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 52, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 52, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {
+        "floatPtr1": [
+          "C_DATA", 
+          "0x601088", 
+          "pointer", 
+          "0xFFF0000CC"
+        ], 
+        "floatPtr2": [
+          "C_DATA", 
+          "0x601068", 
+          "pointer", 
+          "0xFFF0000F0"
+        ], 
+        "intPtr": [
+          "C_DATA", 
+          "0x601060", 
+          "pointer", 
+          "0xFFF0000D0"
+        ], 
+        "intPtrPtr": [
+          "C_DATA", 
+          "0x601078", 
+          "pointer", 
+          "0x601060"
+        ], 
+        "leaf_global1": [
+          "C_DATA", 
+          "0x601040", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global2": [
+          "C_DATA", 
+          "0x601048", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "leaf_global3": [
+          "C_DATA", 
+          "0x601050", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "leaf_global4": [
+          "C_DATA", 
+          "0x601058", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global1": [
+          "C_DATA", 
+          "0x601098", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global2": [
+          "C_DATA", 
+          "0x601080", 
+          "pointer", 
+          "0xFFF0000A8"
+        ], 
+        "nonleaf_global3": [
+          "C_DATA", 
+          "0x601090", 
+          "pointer", 
+          "0xFFF0000AC"
+        ], 
+        "nonleaf_global4": [
+          "C_DATA", 
+          "0x601070", 
+          "pointer", 
+          "0xFFF0000A8"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 53, 
+      "ordered_globals": [
+        "leaf_global1", 
+        "leaf_global2", 
+        "leaf_global3", 
+        "leaf_global4", 
+        "nonleaf_global1", 
+        "nonleaf_global2", 
+        "nonleaf_global3", 
+        "nonleaf_global4", 
+        "intPtr", 
+        "intPtrPtr", 
+        "floatPtr1", 
+        "floatPtr2"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "localFloat": [
+              "C_DATA", 
+              "0xFFF0000CC", 
+              "float", 
+              3.1415
+            ], 
+            "localFloatArray": [
+              "C_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "float", 
+                0.3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "float", 
+                0.4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "float", 
+                0.1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "float", 
+                0.5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "float", 
+                0.9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "float", 
+                0.2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "float", 
+                0.6
+              ]
+            ], 
+            "localIntArray": [
+              "C_ARRAY", 
+              "0xFFF0000D0", 
+              [
+                "C_DATA", 
+                "0xFFF0000D0", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000D8", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000DC", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E0", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E4", 
+                "int", 
+                9
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000E8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000EC", 
+                "int", 
+                6
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 53, 
+          "ordered_varnames": [
+            "localIntArray", 
+            "localFloat", 
+            "localFloatArray"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

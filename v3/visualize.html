@@ -1,0 +1,512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ -->
+
+<head>
+  <title>Visualize Python, Java, JavaScript, TypeScript, and Ruby code execution</title>
+
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+<!-- requirements for pytutor.js -->
+<script type="text/javascript" src="js/d3.v2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
+<script type="text/javascript" src="js/jquery.ba-dotimeout.min.js"></script> <!-- for event debouncing -->
+<script type="text/javascript" src="js/jquery.jsPlumb-1.3.10-all-min.js "></script> <!-- for rendering SVG connectors
+                                                                                         DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR -->
+<script type="text/javascript" src="js/diff_match_patch.js"></script>
+
+<script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script> <!-- for sliders and other UI elements -->
+<link type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet" />
+
+<!-- for annotation bubbles -->
+<script type="text/javascript" src="js/jquery.qtip.min.js"></script>
+<link type="text/css" href="css/jquery.qtip.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/pytutor.js"></script>
+<link rel="stylesheet" href="css/pytutor.css"/>
+
+<!-- for holistic mode -->
+<!--
+<script type="text/javascript" src="js/holistic.js"></script>
+<link rel="stylesheet" href="css/holistic.css"/>
+ -->
+
+<!-- requirements for opt-frontend.js -->
+
+<!-- Ace online code editor -->
+<script type="text/javascript" src="js/ace/src-min-noconflict/ace.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="js/opt-frontend-common.js"></script>
+<script type="text/javascript" src="js/opt-frontend.js"></script>
+<link rel="stylesheet" href="css/opt-frontend.css"/>
+
+<!-- include this AFTER opt-frontend.js so that configuration
+     global variables are already defined at load time -->
+<script type="text/javascript" src="js/togetherjs/togetherjs-min.js"></script>
+
+<script type="text/javascript" src="js/socket.io-client/socket.io.js"></script>
+
+<!-- for Codeopticon, adapted from: http://reason.cs.illinois.edu/wenpu1/chatbox.html -->
+<link type="text/css" href="codeopticon/css/jquery.ui.chatbox-LEARNER.css" rel="stylesheet" />
+<script type="text/javascript" src="codeopticon/js/jquery.ui.chatbox-LEARNER.js"></script>
+<script type="text/javascript" src="codeopticon/js/codeopticon-learner.js"></script> <!-- include after opt-frontend* -->
+
+<script type="text/javascript" src="js/opt-testcases.js"></script>
+<link rel="stylesheet" href="css/opt-testcases.css"/>
+
+<!-- insert google-analytics.txt contents here -->
+
+</head>
+
+<body>
+
+<table id="experimentalHeader">
+<tr>
+<td valign="top">
+
+<div id="ssDiv">
+  <button id="sharedSessionBtn" type="button" class="togetherjsBtn">
+  Start shared session
+  </button>
+  <div style="font-size: 7pt; margin-left: 2px; margin-top: 3px;">
+  <a href="https://www.youtube.com/watch?v=Z2TIjNArOK4" target="_blank">What are shared sessions?</a>
+  </div>
+</div>
+
+<div id="sharedSessionDisplayDiv" style="display: none;">
+  <button id="stopTogetherJSBtn" type="button" class="togetherjsBtn">
+  End shared session
+  </button>
+
+  <div style="width: 200px; font-size: 8pt; color: #666; margin-top: 5px;">
+  Your chat logs and code may be recorded, anonymized, and analyzed for research.
+  </div>
+</div>
+
+</td>
+<td valign="top">
+
+<div id="togetherjsStatus"></div>
+
+<div id="surveyHeader"></div>
+
+</td>
+</tr>
+</table>
+
+
+<div id="pyInputPane">
+
+<div id="codeInputWarnings">Write code in
+
+  <select id="pythonVersionSelector">
+    <option value="2">Python 2.7</option>
+    <option value="3">Python 3.3</option>
+    <!--<option value="2crazy">Py 2.crazy</option>-->
+    <option value="java">Java 8</option>
+    <option value="js">JavaScript ES6</option>
+    <option value="ts">TypeScript 1.4</option>
+    <option value="ruby">Ruby 2.2</option>
+    <option value="c">C (gcc 4.8, C11) EXPERIMENTAL</option>
+    <option value="cpp">C++ (gcc 4.8, C++11) EXPERIMENTAL</option>
+  </select>
+
+</div>
+
+<div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
+
+<div id="codeInputPane"></div> <!-- populate with a CodeMirror or Ace code editor instance -->
+<div id="frontendErrorOutput"></div>
+<div id="surveyPane"></div>
+
+<p>
+<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
+<button style="margin-left: 20px;" id="liveModeBtn" class="bigBtn" type="button">Live Programming Mode <font color="#e93f34">(NEW!)</font></button>
+</p>
+
+
+<div id="javaOptionsPane" style="margin-top: 20px;">
+[<i>coming soon!</i>] Java options: pass in command-line arguments and feed user input to stdin
+</div>
+
+
+<div id="optionsPane" style="margin-top: 20px; line-height: 150%;">
+  <select id="cumulativeModeSelector">
+    <option value="false">hide exited frames [default]</option>
+    <option value="true">show all frames (Python)</option>
+    <!-- <option value="holistic">holistic mode (experimental)</option> -->
+  </select>
+  <select id="heapPrimitivesSelector">
+    <option value="false">inline primitives &amp; nested objects [default]</option>
+    <option value="true">render all objects on the heap (Python/Java)</option>
+  </select>
+  <select id="textualMemoryLabelsSelector">
+    <option value="false">draw pointers as arrows [default]</option>
+    <option value="true">use text labels for pointers</option>
+  </select>
+
+  <!-- hide these for now -->
+  <select id="drawParentPointerSelector" style="display: none;">
+    <option value="false">hide environment parent pointers (default)</option>
+    <!--<option value="true">show environment parent pointers</option>-->
+  </select>
+  <select id="showOnlyOutputsSelector" style="display: none;">
+    <option value="false">show everything (default)</option>
+    <!--<option value="true">show only outputs</option>-->
+  </select>
+</div>
+
+
+<p style="margin-top: 25px;"><a href="#" id="createTestsLink">Create test cases</a></p>
+
+<div id="testCasesPane"></div>
+
+<p>The examples below illustrate some of this tool's visualization
+capabilities but are <em>not</em> meant as standalone programming
+lessons. For effective learning, people often use this tool as a
+supplement to textbooks, lecture notes, and online programming
+tutorials.</p>
+
+<p style="margin-top: 25px; font-weight: bold;">Python Examples</p>
+
+<p style="margin-top: 10px;">Basic:
+
+<a class="exampleLink" id="aliasExampleLink" href="#">hello</a> |
+<a class="exampleLink" id="happyExampleLink" href="#">happy</a> |
+<a class="exampleLink" id="tutorialExampleLink" href="#">intro</a> |
+<a class="exampleLink" id="filterExampleLink" href="#">filter</a> |
+<a class="exampleLink" id="strtokExampleLink" href="#">tokenize</a> |
+<a class="exampleLink" id="insSortExampleLink" href="#">insertion sort</a> |
+<a class="exampleLink" id="forElseLink" href="#">for-else</a> |
+<a class="exampleLink" id="rawInputExampleLink" href="#">user input</a>
+</p>
+
+<p style="margin-top: 15px;">Math:
+<a class="exampleLink" id="factExampleLink" href="#">factorial</a> |
+<a class="exampleLink" id="fibonacciExampleLink" href="#">fibonacci</a> |
+<a class="exampleLink" id="memoFibExampleLink" href="#">memoized fibonacci</a> |
+<a class="exampleLink" id="newtonExampleLink" href="#">square root</a> |
+<a class="exampleLink" id="pwGcdLink" href="#">gcd</a> |
+<a class="exampleLink" id="towersOfHanoiLink" href="#">towers of hanoi</a>
+</p>
+
+
+<p style="margin-top: 15px;">Objects:
+
+<a class="exampleLink" id="oop1ExampleLink" href="#">OOP 1</a> |
+<a class="exampleLink" id="oop2ExampleLink" href="#">OOP 2</a> |
+<a class="exampleLink" id="oopSmallExampleLink" href="#">OOP 3</a> |
+<a class="exampleLink" id="inheritanceExampleLink" href="#">inheritance</a>
+
+</p>
+
+<p style="margin-top: 15px;">Linked Lists:
+<a class="exampleLink" id="ll1Link" href="#">LL 1</a> |
+<a class="exampleLink" id="ll2Link" href="#">LL 2</a> |
+<a class="exampleLink" id="sumListLink" href="#">LL sum</a>
+</p>
+
+<p style="margin-top: 15px;">Pointer Aliasing:<br/>
+<a class="exampleLink" id="aliasing1Link" href="#">aliasing1</a> |
+<a class="exampleLink" id="aliasing2Link" href="#">aliasing2</a> |
+<a class="exampleLink" id="aliasing3Link" href="#">aliasing3</a> |
+<a class="exampleLink" id="aliasing4Link" href="#">aliasing4</a> |
+<a class="exampleLink" id="aliasing5Link" href="#">aliasing5</a> |
+<a class="exampleLink" id="aliasing6Link" href="#">aliasing6</a> |
+<a class="exampleLink" id="aliasing7Link" href="#">aliasing7</a> |
+<a class="exampleLink" id="aliasing8Link" href="#">aliasing8</a> |
+<a class="exampleLink" id="pwSumListLink" href="#">sumList</a>
+</p>
+
+<p style="margin-top: 15px;">Higher-Order Functions:<br/>
+
+<a class="exampleLink" id="closure1Link" href="#">closure1</a> |
+<a class="exampleLink" id="closure2Link" href="#">closure2</a> |
+<a class="exampleLink" id="closure3Link" href="#">closure3</a> |
+<a class="exampleLink" id="closure4Link" href="#">closure4</a> |
+<a class="exampleLink" id="closure5Link" href="#">closure5</a> |
+<a class="exampleLink" id="mapExampleLink" href="#">list map</a> |
+<a class="exampleLink" id="sumExampleLink" href="#">summation</a> |
+<a class="exampleLink" id="lambdaParamLink" href="#">lambda param</a>
+
+</p>
+
+<p style="margin-top: 15px;">Advanced:<br/>
+<a class="exampleLink" id="listCompLink" href="#">list comp</a> |
+<a class="exampleLink" id="compsLink" href="#">list/set/dict comp</a> |
+<a class="exampleLink" id="decoratorsLink" href="#">decorator</a> |
+<a class="exampleLink" id="genPrimesLink" href="#">generator</a> |
+<a class="exampleLink" id="genExprLink" href="#">genexpr</a> |
+<a class="exampleLink" id="varargsLink" href="#">varargs</a> |
+<a class="exampleLink" id="pwTryFinallyLink" href="#">exception</a> |
+<a class="exampleLink" id="metaclassLink" href="#">metaclass</a>
+</p>
+
+<p style="margin-top: 15px;">Python 3 only: <a class="exampleLink" id="tortureLink" href="#">student torture</a> |
+<a class="exampleLink" id="nonlocalLink" href="#">nonlocal</a>
+</p>
+
+<p style="margin-top: 25px; font-weight: bold;">Java Examples</p>
+
+<p>
+Basic:
+<a class="exampleLink" id="javaVarLink" href="#">Variables</a> |
+<a class="exampleLink" id="javaCFLink" href="#">ControlFlow</a> |
+<a class="exampleLink" id="javaSqrtLink" href="#">Sqrt</a> |
+<a class="exampleLink" id="javaExecLimitLink" href="#">ExecLimit</a> |
+<a class="exampleLink" id="javaStringsLink" href="#">Strings</a>
+</p>
+
+<p>
+Methods:
+<a class="exampleLink" id="javaPassByValLink" href="#">PassByValue</a> |
+<a class="exampleLink" id="javaRecurLink" href="#">Recursion</a> |
+<a class="exampleLink" id="javaSOLink" href="#">StackOverflow</a>
+</p>
+
+<p>
+OOP:
+<a class="exampleLink" id="javaRolexLink" href="#">Rolex</a> |
+<a class="exampleLink" id="javaPersonLink" href="#">Person</a> |
+<a class="exampleLink" id="javaComplexLink" href="#">Complex</a> |
+<a class="exampleLink" id="javaCastingLink" href="#">Casting</a>
+</p>
+
+<p>
+Data structures:
+<a class="exampleLink" id="javaLLLink" href="#">LinkedList</a> |
+<a class="exampleLink" id="javaStackQueueLink" href="#">StackQueue</a> |
+<a class="exampleLink" id="javaPostfixLink" href="#">Postfix</a> |
+<a class="exampleLink" id="javaSTLink" href="#">SymbolTable</a>
+</p>
+
+<p>
+Java features:
+<a class="exampleLink" id="javaToStringLink" href="#">ToString</a> |
+<a class="exampleLink" id="javaReflectLink" href="#">Reflect</a> |
+<a class="exampleLink" id="javaExceptionLink" href="#">Exception</a> |
+<a class="exampleLink" id="javaExceptionFlowLink" href="#">ExceptionFlow</a> |
+<a class="exampleLink" id="javaTwoClassesLink" href="#">TwoClasses</a>
+</p>
+
+<p>
+Misc:
+<a class="exampleLink" id="javaForestLink" href="#">Forest</a> |
+<a class="exampleLink" id="javaKnapsackLink" href="#">Knapsack</a> |
+<a class="exampleLink" id="javaStaticInitLink" href="#">StaticInitializer</a> |
+<a class="exampleLink" id="javaSyntheticLink" href="#">Synthetic</a>
+</p>
+
+<p style="margin-top: 5px;">(All Java examples created by <a href="https://github.com/daveagp">David Pritchard</a>)</p>
+
+<p style="margin-top: 25px; font-weight: bold;">JavaScript Examples</p>
+
+<p style="margin-top: 5px;">
+  <a class="exampleLink" id="jsFactExLink" href="#">factorial</a> |
+  <a class="exampleLink" id="jsDatatypesExLink" href="#">data types</a> |
+  <a class="exampleLink" id="jsExceptionExLink" href="#">exception</a> |
+  <a class="exampleLink" id="jsClosureExLink" href="#">closure</a> |
+  <a class="exampleLink" id="jsShadowingExLink" href="#">shadowing</a> |
+  <a class="exampleLink" id="jsConstructorExLink" href="#">constructor</a> |
+  <a class="exampleLink" id="jsInhExLink" href="#">inheritance</a>
+</p>
+
+<p style="margin-top: 25px; font-weight: bold;">TypeScript Examples</p>
+
+<p style="margin-top: 5px;">
+  <a class="exampleLink" id="tsHelloExLink" href="#">hello</a> |
+  <a class="exampleLink" id="tsGreeterExLink" href="#">classes</a> |
+  <a class="exampleLink" id="tsInheritanceExLink" href="#">inheritance</a> |
+  <a class="exampleLink" id="tsGreeterGenericsExLink" href="#">generics</a>
+</p>
+
+<p style="margin-top: 25px; font-weight: bold;">Ruby Examples</p>
+
+<p style="margin-top: 5px;">
+  <a class="exampleLink" id="rubyContainersLink" href="#">Containers</a> |
+  <a class="exampleLink" id="rubyGlobalsLink" href="#">Globals</a> |
+  <a class="exampleLink" id="rubyConstantsLink" href="#">Constants</a> |
+  <a class="exampleLink" id="rubyBlocksLink" href="#">Blocks</a> |
+  <a class="exampleLink" id="rubyBlocksScopingLink" href="#">Block scoping</a> |
+  <a class="exampleLink" id="rubyBlocksScoping3Link" href="#">More block scoping</a>
+  <p/>
+  <a class="exampleLink" id="rubyProcLink" href="#">Proc & Lambda</a> |
+  <a class="exampleLink" id="rubyProcScopingLink" href="#">Proc scoping</a> |
+  <a class="exampleLink" id="rubyProcReturnLink" href="#">Proc return</a> |
+  <a class="exampleLink" id="rubyLambdaScopingLink" href="#">Lambda scoping</a> |
+  <a class="exampleLink" id="rubyInheritanceLink" href="#">Inheritance</a> |
+  <a class="exampleLink" id="rubySymbolsLink" href="#">Symbols</a>
+  <p/>
+  <a class="exampleLink" id="rubyPrivateProtectedLink" href="#">Protected & private</a> |
+  <a class="exampleLink" id="rubyInstClassVarsComplexLink" href="#">Class & instance vars</a> |
+  <a class="exampleLink" id="rubyToplevelLink" href="#">Toplevel defs</a> |
+  <a class="exampleLink" id="rubyMegagreeterLink" href="#">Megagreeter</a>
+</p>
+
+<p style="margin-top: 25px; font-weight: bold;">C Examples</p>
+
+<p style="margin-top: 5px;">
+  <a class="exampleLink" id="cMengThesisLink" href="#">Thesis</a> |
+  <a class="exampleLink" id="cGlobalsLink" href="#">Globals</a> |
+  <a class="exampleLink" id="cStructLink" href="#">Structs</a> |
+  <a class="exampleLink" id="cNestedStructLink" href="#">Nested structs</a> |
+  <a class="exampleLink" id="cArrOverflowLink" href="#">Array overflow</a> |
+  <a class="exampleLink" id="cArrParamLink" href="#">Array param</a>
+  <p/>
+  <a class="exampleLink" id="cStringRevLink" href="#">String reverse</a> |
+  <a class="exampleLink" id="cPtrLevelsLink" href="#">Pointer levels</a> |
+  <a class="exampleLink" id="cPtrChainLink" href="#">Pointer chain</a> |
+  <a class="exampleLink" id="cPtrWildLink" href="#">Pointers wild</a> |
+  <a class="exampleLink" id="cTypedefLink" href="#">Typedef</a>
+</p>
+
+<p style="margin-top: 25px; font-weight: bold;">C++ Examples</p>
+
+<p style="margin-top: 5px;">
+  <a class="exampleLink" id="cppFirstLink" href="#">Basic</a> |
+  <a class="exampleLink" id="cppPassRefLink" href="#">Pass by ref</a> |
+  <a class="exampleLink" id="cppClassLink" href="#">Class</a> |
+  <a class="exampleLink" id="cppClassPtrLink" href="#">Class pointer</a> |
+  <a class="exampleLink" id="cppDateLink" href="#">Date class</a> |
+  <a class="exampleLink" id="cppInheritLink" href="#">Inheritance</a> |
+  <a class="exampleLink" id="cppVirtualLink" href="#">Virtual method</a>
+</p>
+
+</div>
+
+
+<div id="pyOutputPane">
+</div>
+
+<div id="footer">
+
+<p>
+  <button id="genUrlBtn" class="smallBtn" type="button">Generate permanent link</button> <input type="text" id="urlOutput" size="70"/>
+</p>
+
+<p>Click the button above to create a permanent link to your
+visualization. To report a bug, paste the link along with a brief error
+description in an email addressed to philip@pgbovine.net</p>
+
+<div id="embedLinkDiv">
+<p>
+  <button id="genEmbedBtn" class="smallBtn" type="button">Generate embed code</button> <input type="text" id="embedCodeOutput" size="70"/>
+</p>
+
+<p>To embed this visualization in your webpage, click the 'Generate
+embed code' button above and paste the resulting HTML code into your
+webpage. Adjust the height and width parameters and
+change the link to <b>https://</b> if needed.</p>
+</div>
+
+<p style="margin-top: 25px;">
+<a href="http://pythontutor.com/">Python Tutor</a> (<a href="https://github.com/pgbovine/OnlinePythonTutor">code on GitHub</a>) supports seven
+languages (despite its name!):</p>
+
+<p>1. Python <a href="http://www.python.org/doc/2.7/">2.7</a> and <a
+href="http://www.python.org/doc/3.3.0/">3.3</a> with limited module
+imports and no file I/O.
+The following modules may be imported: 
+bisect,
+collections,
+copy,
+datetime,
+functools,
+hashlib,
+heapq,
+itertools,
+json,
+math,
+operator,
+random,
+re,
+string,
+time,
+io/StringIO.
+<a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v3">Backend source code</a>.
+</p>
+
+<p>2. Java using Oracle's Java 8. The original <a
+href="http://cscircles.cemc.uwaterloo.ca/java_visualize/">Java
+visualizer</a> was created by <a href="https://github.com/daveagp">David Pritchard</a> and Will Gwozdz.
+It supports
+<code><a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html">StdIn</a></code>, 
+<code><a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html">StdOut</a></code>, 
+most other <a href="http://introcs.cs.princeton.edu/java/stdlib"><tt>stdlib</tt> libraries</a>,
+<a href="http://introcs.cs.princeton.edu/java/43stack/Stack.java.html"><tt>Stack</tt></a>,
+<a href="http://introcs.cs.princeton.edu/java/43stack/Queue.java.html"><tt>Queue</tt></a>,
+and <a href="http://introcs.cs.princeton.edu/java/44st/ST.java.html"><tt>ST</tt></a>.
+(To access Java's built-in <tt>Stack</tt>/<tt>Queue</tt> classes, write
+<tt>import java.util.Stack;</tt> &mdash; note, <tt>import
+java.util.*;</tt> won't work.)
+<a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/java">Backend
+source code</a>.</p>
+
+<p>3. JavaScript running in Node.js v6.0.0 with limited support for ES6. <a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript">Backend
+source code</a>.</p>
+
+<p>4. <a href="http://www.typescriptlang.org">TypeScript</a> 1.4.1 running in Node.js v6.0.0. <a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/javascript">Backend
+source code</a>.</p>
+
+<p>5. Ruby 2 using MRI 2.2.2. <a
+href="https://github.com/pgbovine/OnlinePythonTutor/tree/master/v4-cokapi/backends/ruby">Backend
+source code</a>.</p>
+
+<p>6. C using gcc 4.8, C11, and Valgrind Memcheck.
+<a href="https://github.com/pgbovine/opt-cpp-backend">Backend source code</a>.</p>
+
+<p>7. C++ using gcc 4.8, C++11, and Valgrind Memcheck.
+<a href="https://github.com/pgbovine/opt-cpp-backend">Backend source code</a>.</p>
+
+<p style="margin-top: 30px;">Privacy Policy: By using Online Python
+Tutor, your visualized code, options, user interactions, text chats, and
+IP address are logged on our server and may be analyzed for research
+purposes. Nearly all Web services collect this basic information from
+users. However, the Online Python Tutor website (pythontutor.com) does
+not collect any personal information or session state from users, nor
+does it issue any cookies.</p>
+
+<p style="margin-top: 25px;">
+Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+</p>
+
+</div>
+
+<!-- for Codeopticon,
+     adapted from: http://reason.cs.illinois.edu/wenpu1/chatbox.html -->
+<div id="chat_div"></div>
+
+</body>
+</html>

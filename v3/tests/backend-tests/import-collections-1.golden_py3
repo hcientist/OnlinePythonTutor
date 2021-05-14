@@ -1,0 +1,101 @@
+{
+  "code": "import collections\nd = collections.defaultdict\ndl = d(list)\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "collections"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "collections": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE", 
+          "module"
+        ]
+      }, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "collections", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "collections": [
+          "REF", 
+          1
+        ], 
+        "d": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE", 
+          "module"
+        ]
+      }, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "collections", 
+        "d", 
+        "dl"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "dl": [
+          "REF", 
+          2
+        ], 
+        "collections": [
+          "REF", 
+          1
+        ], 
+        "d": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "2": [
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {})"
+        ]
+      }, 
+      "line": 3, 
+      "event": "return"
+    }
+  ]
+}

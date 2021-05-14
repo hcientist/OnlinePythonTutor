@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) 2010-2012 Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ -->
+
+
+<head>
+  <title>Online Python Tutor</title>
+
+<!-- jQuery 1.6.0 -->
+
+<!-- local version for offline testing -->
+<script type="text/javascript" src="jquery.min.js"></script>
+
+<!-- online version hosted by Google -->
+<!--
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+ -->
+
+
+<!-- load these local files only when localTesting == true 
+
+<script type="text/javascript" src="mock-data.js"></script> 
+
+-->
+
+<script type="text/javascript" src="jquery.ba-bbq.min.js"></script>
+
+<!-- disable autogrow for simplicity
+  <script type="text/javascript" src="jquery.autogrow.js"></script>
+ -->
+
+<!-- jsPlumb library for rendering connectors -->
+<script type="text/javascript" src="jquery.jsPlumb-1.3.3-all-min.js "></script>
+
+<!-- my own code -->
+<script type="text/javascript" src="edu-python.js"></script>
+<script type="text/javascript" src="edu-python-tutor.js"></script>
+
+<link rel="stylesheet" href="edu-python.css"/>
+
+</head>
+
+<body>
+
+<div id="pyInputPane">
+
+Write your Python code here:
+<br/>
+
+<textarea class="codeInputPane" id="pyInput" cols="55" rows="20" wrap="off"></textarea>
+
+<p>
+
+<button id="executeBtn" class="bigBtn" type="button">Visualize execution</button>
+
+</p>
+
+<p style="margin-top: 25px;">Try these small examples:<br/>
+
+<a id="aliasExampleLink" href="#">aliasing</a> |
+<a id="tutorialExampleLink" href="#">intro</a> |
+<a id="factExampleLink" href="#">factorial</a> |
+<a id="fibonacciExampleLink" href="#">fibonacci</a> |
+<a id="memoFibExampleLink" href="#">memoized fib</a> |
+<a id="newtonExampleLink" href="#">square root</a> |
+<a id="insSortExampleLink" href="#">insertion sort</a>
+<br/>
+<a id="filterExampleLink" href="#">filter</a> |
+<a id="strtokExampleLink" href="#">tokenize</a> |
+<a id="oopSmallExampleLink" href="#">OOP</a> |
+<a id="pwGcdLink" href="#">gcd</a> |
+<a id="pwSumListLink" href="#">sumList</a> |
+<a id="towersOfHanoiLink" href="#">towers of hanoi</a> |
+<a id="pwTryFinallyLink" href="#">exceptions</a>
+
+</p>
+
+<p style="margin-top: 25px;">Examples from the MIT 
+<a href="http://mit.edu/6.01/">6.01</a> course:<br/>
+
+<a id="mapExampleLink" href="#">list map</a> |
+<a id="sumExampleLink" href="#">summation</a> |
+<a id="oop1ExampleLink" href="#">OOP 1</a> |
+<a id="oop2ExampleLink" href="#">OOP 2</a> |
+<a id="inheritanceExampleLink" href="#">inheritance</a>
+
+</p>
+
+<p style="margin-top: 25px;">
+Then try some sample programming questions:<br/>
+Solve:
+<a href="question.html?two-sum">Two-sum</a> |
+<a href="question.html?reverse">Reverse list</a> |
+<a href="question.html?remove-dups">Remove duplicate chars</a>
+
+<br/>Debug:
+<a href="question.html?debug-ireverse">In-place reverse</a> |
+<a href="question.html?debug-bsearch">Binary search</a> |
+<a href="question.html?debug-mergesort">Mergesort</a>
+
+<br/>Optimize:
+
+<a href="question.html?optimize-sum">Greatest sum</a> |
+<a href="question.html?optimize-find-dups">Find duplicates</a> |
+<a href="question.html?optimize-search">List search</a>
+
+</p>
+
+
+
+
+</div>
+
+
+<table border="0" id="pyOutputPane">
+<tr>
+<td valign="top">
+
+<center>
+
+<div id="pyCodeOutputDiv">
+
+Use <b>left</b> and <b>right</b> arrow keys to step through this code:
+<table id="pyCodeOutput"></table>
+
+</div>
+
+<div id="editCodeLinkDiv">
+
+<button id="editBtn" class="medBtn" type="button">Edit code</button>
+
+</div>
+
+<div id="vcrControls">
+  <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>
+  <button id="jmpStepBack", type="button">&lt; Back</button>
+  <span id="curInstr">Step ? of ?</span>
+  <button id="jmpStepFwd", type="button">Forward &gt;</button>
+  <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>
+</div>
+
+<div id="errorOutput"></div>
+
+
+</center>
+
+Program output:
+<br/>
+<textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>
+
+
+</td>
+<td valign="top">
+
+<div id="dataViz"></div>
+
+</td>
+</tr>
+</table>
+
+<center>
+
+
+<div id="footer">
+
+<input type="checkbox" id="classicModeCheckbox"/> Use low-bandwidth mode (for older browsers)
+
+
+<p/>
+This application supports the core <a
+href="http://docs.python.org/release/2.6/">Python 2.6</a> language, with no
+module imports or file I/O.  It's meant to be used as a platform for
+creating programming tutorials, not for running or debugging
+production code.
+
+<p style="margin-top: 8px;"/>Official Python 3 support is coming soon;
+for now, try the Python 3 forks by <a
+href="http://cscircles.cemc.uwaterloo.ca/visualize/">CS Circles</a> and
+<a href="http://netserv.ict.ru.ac.za/python3_viz/">Peter Wentworth</a>.
+
+<p style="margin-top: 8px;"/> 
+Check out the <a
+href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>
+repository and send bug reports, feedback, and suggestions to philip@pgbovine.net
+
+<p style="margin-top: 8px;"/>
+Copyright &copy; 2010-2012 <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+</div>
+
+</center>
+
+</body>
+</html>

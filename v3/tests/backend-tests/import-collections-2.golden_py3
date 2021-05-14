@@ -1,0 +1,144 @@
+{
+  "code": "from collections import defaultdict\nd = defaultdict(list)\nd['hello'].append('a')\nd['hello'].append('b')\nd['hello'].append('c')\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 2, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "d": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {})"
+        ]
+      }, 
+      "line": 3, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "d": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {'hello': ['a']})"
+        ]
+      }, 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "d": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {'hello': ['a', 'b']})"
+        ]
+      }, 
+      "line": 5, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "defaultdict", 
+        "d"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "defaultdict": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "d": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT", 
+          "defaultdict", 
+          "defaultdict(<class 'list'>, {'hello': ['a', 'b', 'c']})"
+        ]
+      }, 
+      "line": 5, 
+      "event": "return"
+    }
+  ]
+}

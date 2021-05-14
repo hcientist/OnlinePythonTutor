@@ -1,0 +1,305 @@
+{
+  "code": "class A:\n    x = 5\n    class B:\n        y = 6\n        class C:\n            z = 7\n\na = A()\nb = a.B()\nc = b.C()\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "x",
+            5
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "y",
+            6
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [],
+          [
+            "z",
+            7
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "a": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "a"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "x",
+            5
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "y",
+            6
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [],
+          [
+            "z",
+            7
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "A"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "a": [
+          "REF",
+          4
+        ],
+        "b": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "a",
+        "b"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "x",
+            5
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "y",
+            6
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [],
+          [
+            "z",
+            7
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "A"
+        ],
+        "5": [
+          "INSTANCE",
+          "B"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ],
+        "a": [
+          "REF",
+          4
+        ],
+        "b": [
+          "REF",
+          5
+        ],
+        "c": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "A",
+        "a",
+        "b",
+        "c"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "CLASS",
+          "A",
+          [],
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "x",
+            5
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "B",
+          [],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "y",
+            6
+          ]
+        ],
+        "3": [
+          "CLASS",
+          "C",
+          [],
+          [
+            "z",
+            7
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "A"
+        ],
+        "5": [
+          "INSTANCE",
+          "B"
+        ],
+        "6": [
+          "INSTANCE",
+          "C"
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

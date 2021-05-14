@@ -1,0 +1,114 @@
+---
+2015-06-28
+
+Starting to learn Ruby to build an OPT backend for it ... relevant notes
+
+test cases in tests/
+
+gets is like raw_input, so should support that eventually since
+raw_input is a pretty popular OPT feature
+
+must richly support lambdas -- TODO: what are they called in ruby?!?
+
+ok there's local variable scoping even within a loop, which doesn't
+exist in Python/JS. so we might need more frames than just for function
+calls
+
+global variables are prefaced with $, but they're ugly and non-idiomatic
+but 'constants' (identifiers starting with a capital letter) can also be
+global in scope
+
+since everything is an object in Ruby, we need to make some
+simplifications for the visualization; e.g., it's overkill to show the
+entire class hierarchy for a 'primitive' Fixnum (number) object.
+
+Terminology translation:
+  Python 'list', Ruby 'array'
+  Python 'dict', Ruby 'hash'
+
+Ruby strings are mutable ... but i don't think that affects the
+visualization at all
+
+Ruby block is crucial for scoping! need to definitely support it well
+  - maybe extract out the actual source code for the block to display
+    it, like we do for JS funcs?
+
+symbols should probably be rendered specially
+
+hmmm, how do we visualize 'extensions' to built-in classes, such as:
+
+class Array
+  def iterate!
+    self.each_with_index { |n, i|
+      self[i] = yield(n)
+    }
+  end
+end
+
+see
+http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/
+choice excerpt: "So to recap, we went through Ruby’s four closure types,
+blocks, Procs, lambdas and Methods. We also know that blocks and Procs
+act like drop-in code snippets, while lambdas and Methods act just like
+methods."
+
+A lambda is simply a block with a name. but Proc (with a capital P)
+isn't the same as a lambda. a lambda is simply an anonymous method.
+
+
+Look into using reflection methods such as Kernel::local_variables,
+Object::instance_variables, global_variables, constants, methods,
+instance_methods, etc.
+
+Use 'set' subtraction using '-':
+  class Dog
+    attr :bark, true
+  end
+  Dog.instance_methods - Object.instance_methods
+
+or even better, use Dog.instance_methods(false) to not get your
+ancestors' methods!
+
+we need to display 'module' contents and how a class includes (points
+to) a module, since that's a central concept for mixins
+
+interesting -- classes can be 'opened' multiple times and have stuff
+added to them (even stdlib classes)
+
+
+it looks like we should target Ruby 2.X since there's the TracePoint
+class for easy tracing:
+http://ruby-doc.org/core-2.0.0/TracePoint.html
+
+the byebug debugger builds upon it:
+https://github.com/deivid-rodriguez/byebug
+
+
+more misc docs:
+http://stackoverflow.com/questions/30584454/get-method-arguments-using-rubys-tracepoint
+http://kgrz.io/2014/04/19/ruby-trace-leave-oh-my.html
+
+
+StringIO could be useful:
+http://ruby-doc.org/stdlib-2.0.0/libdoc/stringio/rdoc/StringIO.html
+
+maybe use eval as well?
+http://polishinggems.blogspot.com/2011/06/how-to-evaluate-ruby-script-file-from.html
+
+---
+2015-07-06
+
+to get debugger inspector functionality in Ruby 2.x, use:
+
+gem install debug_inspector
+gem install binding_of_caller
+
+Also see here for inspirational example code for getting a pretty backtrace:
+https://github.com/ko1/pretty_backtrace/blob/master/lib/pretty_backtrace.rb
+
+
+---
+2015-07-11
+
+http://eli.thegreenplace.net/2006/04/18/understanding-ruby-blocks-procs-and-methods/
+

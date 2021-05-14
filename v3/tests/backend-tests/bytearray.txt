@@ -1,0 +1,4 @@
+# reported as an error in server logs
+hex_string = "deadbeef"
+hex_data = hex_string.decode("hex")
+new = bytearray(hex_data)

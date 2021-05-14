@@ -1,0 +1,5 @@
+{ code: 'let x = 5;\nlet x = 10;\nvar y = 15;',
+  trace: 
+   [ { event: 'uncaught_exception',
+       exception_msg: 'SyntaxError: Identifier \'x\' has already been declared',
+       line: 2 } ] }

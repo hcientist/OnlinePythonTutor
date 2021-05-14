@@ -1,0 +1,405 @@
+@charset "utf-8";
+/*
+  blafdoc.css
+  Release 5.1.1 2009-02-27
+  Copyright 2002, 2009, Oracle and/or its affiliates. All rights reserved.
+*/
+
+body {
+  font-family: sans-serif;
+/*  line-height: 125%; */
+  color: black;
+  background-color: white;
+  font-size: small;
+}
+* html body {
+  /* http://www.info.com.ph/~etan/w3pantheon/style/modifiedsbmh.html */
+  font-size: x-small; /* for IE5.x/win */
+  f\ont-size: small;  /* for other IE versions */
+}
+
+h1 {
+  font-size: 165%;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
+
+h2 {
+  font-size: 152%;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 139%;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 126%;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 113%;
+  font-weight: bold;
+  display: inline;
+}
+
+h6 {
+  font-size: 100%;
+  font-weight: bold;
+  font-style: italic;
+  display: inline;
+}
+
+a:link {
+  color: #039;
+  background: inherit;
+}
+
+a:visited {
+  color: #72007C;
+  background: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a img, img[usemap] {
+  border-style: none;
+}
+
+code, pre, samp, tt {
+  font-family: monospace;
+  font-size: 110%;
+}
+
+caption {
+  text-align: center;
+  font-weight: bold;
+  width: auto;
+}
+
+dt {
+  font-weight: bold;
+}
+
+table {
+  font-size: small; /* for ICEBrowser */
+}
+
+td {
+  vertical-align: top;
+}
+
+th {
+  font-weight: bold;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+ol ol {
+  list-style-type: lower-alpha;
+}
+
+ol ol ol {
+  list-style-type: lower-roman;
+}
+
+td p:first-child, td pre:first-child {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+table.table-border {
+  border-collapse: collapse;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+table.table-border th {
+  padding: 0.5ex 0.25em;
+  color: black;
+  background-color: #f7f7ea;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+table.table-border td {
+  padding: 0.5ex 0.25em;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+span.gui-object, span.gui-object-action {
+  font-weight: bold;
+}
+
+span.gui-object-title { }
+
+p.horizontal-rule {
+  width: 100%;
+  border: solid #cc9;
+  border-width: 0px 0px 1px 0px;
+  margin-bottom: 4ex;
+}
+
+div.zz-skip-header {
+  display: none;
+}
+
+td.zz-nav-header-cell {
+  text-align: left;
+  font-size: 95%;
+  width: 99%;
+  color: black;
+  background: inherit;
+  font-weight: normal;
+  vertical-align: top;
+  margin-top: 0ex;
+  padding-top: 0ex;
+}
+
+a.zz-nav-header-link {
+  font-size: 95%;
+}
+
+td.zz-nav-button-cell {
+  white-space: nowrap;
+  text-align: center;
+  width: 1%;
+  vertical-align: top;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-top: 0ex;
+  padding-top: 0ex;
+}
+
+a.zz-nav-button-link {
+  font-size: 90%;
+}
+
+div.zz-nav-footer-menu {
+  width: 100%;
+  text-align: center;
+  margin-top: 2ex;
+  margin-bottom: 4ex;
+}
+
+p.zz-legal-notice, a.zz-legal-notice-link {
+  font-size: 85%;
+  /* display: none; */ /* Uncomment to hide legal notice */
+}
+
+/*************************************/
+/*  Begin DARB Formats               */
+/*************************************/
+
+.bold, .codeinlinebold, .syntaxinlinebold, .term, .glossterm, .seghead,
+.glossaryterm, .keyword, .msg, .msgexplankw, .msgactionkw, .notep1,
+.xreftitlebold, .xrefglossterm {
+  font-weight: bold;
+}
+
+.italic, .codeinlineitalic, .syntaxinlineitalic, .variable,
+.xreftitleitalic {
+  font-style: italic;
+}
+
+.bolditalic, .codeinlineboldital, .syntaxinlineboldital,
+.titleinfigure, .titleinexample, .titleintable, .titleinequation,
+.xreftitleboldital {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.itemizedlisttitle, .orderedlisttitle, .segmentedlisttitle,
+.variablelisttitle {
+  font-weight: bold;
+}
+
+.bridgehead, .titleinrefsubsect {
+  font-weight: bold;
+}
+
+.subhead1 {
+  display: block;
+  font-size: 152%;
+  font-weight: bold;
+}
+
+.subhead2 {
+  display: block;
+  font-size: 139%;
+  font-weight: bold;
+}
+
+.subhead3 {
+  display: block;
+  font-size: 126%;
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.superscript {
+  vertical-align: super;
+}
+
+.subscript {
+  vertical-align: sub;
+}
+
+.listofeft {
+  border: none;
+}
+
+.betadraft, .alphabetanotice, .revenuerecognitionnotice {
+  color: #f00;
+  background: inherit;
+}
+
+.betadraftsubtitle {
+  text-align: center;
+  font-weight: bold;
+  color: #f00;
+  background: inherit;
+}
+
+.comment {
+  color: #080;
+  background: inherit;
+  font-weight: bold;
+}
+
+.copyrightlogo {
+  text-align: center;
+  font-size: 85%;
+}
+
+.tocsubheader {
+  list-style-type: none;
+}
+
+table.icons td {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.l1ix dd, dd dl.l2ix, dd dl.l3ix {
+  margin-top: 0ex;
+  margin-bottom: 0ex;
+}
+
+div.infoboxnote, div.infoboxnotewarn, div.infoboxnotealso {
+  margin-top: 4ex;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-bottom: 4ex;
+  padding: 0.25em;
+  border-top: 1pt solid gray;
+  border-bottom: 1pt solid gray;
+}
+
+p.notep1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.tahiti-highlight-example {
+  background: #ff9;
+  text-decoration: inherit;
+}
+.tahiti-highlight-search {
+  background: #9cf;
+  text-decoration: inherit;
+}
+.tahiti-sidebar-heading {
+  font-size: 110%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+/*************************************/
+/*  End DARB Formats                 */
+/*************************************/
+
+@media all {
+/*
+  * * {
+    line-height: 120%;
+  }
+*/
+  dd {
+    margin-bottom: 2ex;
+  }
+  dl:first-child {
+    margin-top: 2ex;
+  }
+}
+
+@media print {
+  body {
+    font-size: 11pt;
+    padding: 0px !important;
+  }
+
+  a:link, a:visited {
+    color: black;
+    background: inherit;
+  }
+
+  code, pre, samp, tt {
+    font-size: 10pt;
+  }
+
+  #nav, #search_this_book, #comment_form,
+  #comment_announcement, #flipNav, .noprint {
+    display: none !important;
+  }
+
+  body#left-nav-present {
+    overflow: visible !important;
+  }
+}
+
+.level1 {
+font-family: sans-serif;
+font-weight: normal;
+font-style: normal;
+margin-left: 20px;
+}
+
+.level2{
+font-family: sans-serif;
+font-weight: normal;
+font-style: normal;
+margin-left: 40px;
+}
+
+.level3{
+font-family: sans-serif;
+font-weight: normal;
+font-style: normal;
+margin-left: 60px;
+}
+
+.level4{
+font-family: sans-serif;
+font-weight: normal;
+font-style: normal;
+margin-left: 80px;
+}
+
+.related-topics {
+width:60%;
+margin-top:30px;
+padding-top: 10px;
+border-top-color: #999999;
+border-top-style: solid;
+border-top-width:1px;
+font-size: 139%;
+font-weight: bold;
+}

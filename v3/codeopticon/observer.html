@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Codeopticon</title>
+
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+<script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="../js/diff_match_patch.js"></script>
+<script type="text/javascript" src="../js/ace/src-min-noconflict/ace.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="js/socket.io.js"></script>
+<script type="text/javascript" src="js/underscore-min.js"></script>
+
+<script type="text/javascript" src="jquery-ui-1.11.4.custom-cupertino/jquery-ui.min.js"></script>
+<script src="../js/jquery.ba-dotimeout.min.js"></script>
+
+<!-- chat box widget -->
+<link type="text/css" href="css/jquery.ui.chatbox-OBSERVER.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.ui.chatbox-OBSERVER.js"></script>
+
+<script type="text/javascript" src="js/usermon-class.js"></script>
+<script type="text/javascript" src="js/observer.js"></script>
+
+<link type="text/css" href="css/usermon-class.css" rel="stylesheet" />
+<link type="text/css" href="jquery-ui-1.11.4.custom-cupertino/jquery-ui.min.css" rel="stylesheet" />
+
+<style type="text/css">
+.userPane {
+  width: 300px;
+  border: 1px solid black;
+  float: left;
+}
+
+.stats {
+  font-family: Lucida Console, fixed;
+  font-size: 9pt;
+  float: right;
+  text-align: right;
+}
+
+table td {
+  min-width: 300px;
+  width: 300px;
+  max-width: 300px;
+
+  height: 300px;
+  max-height: 300px;
+
+  border: 2px solid #999;
+  vertical-align: top;
+  padding: 8px;
+}
+
+table .cellHeader {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10pt;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+table .cellHeader button {
+  font-size: 8pt;
+  margin-left: 8px;
+}
+
+table .cellContent {
+  max-height: 300px;
+  overflow: auto;
+}
+
+li {
+  margin-left: -10px;
+}
+
+.cellUserMonParent {
+  margin-bottom: 10px;
+}
+
+#coRoot {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+</style>
+
+</head>
+<body>
+
+<p>Codeopticon!!!</p>
+
+<div id="coRoot">
+
+  <!-- <p>Youngins: [TODO: hide pane by default, and toggle to show, which will hopefully make transitions less jarring]</p> -->
+  <table id="younginRoot"></table>
+
+  Main:<br/>
+  <table id="mainRoot"></table>
+
+  <p/>
+  Overflow:<br/>
+  <div id="graveyardRoot"></div>
+
+</div>
+
+<div id="footer" style="margin-top: 20px; padding-left: 20px; font-size: 8pt; color: #666"></div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+{
+  "code": "from json import *\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "load", 
+        "JSONEncoder", 
+        "dump", 
+        "JSONDecoder", 
+        "dumps", 
+        "loads"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "load": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
+        ], 
+        "JSONEncoder": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "dump": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
+        ], 
+        "JSONDecoder": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "dumps": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
+        ], 
+        "loads": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported function"
+        ]
+      }, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

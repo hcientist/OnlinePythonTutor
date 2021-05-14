@@ -1,0 +1,332 @@
+{
+  "code": "x = 2.5\ny = 2.0 # display as a SPECIAL_FLOAT\nz = 2\ninf = Float::INFINITY\nneg_inf = -1 * inf\ngarlic_naan = Float::NAN\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 1,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:1",
+          "frame_id": 1,
+          "unique_hash": "<main>:1_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "inf",
+            "neg_inf",
+            "garlic_naan"
+          ],
+          "encoded_locals": {
+            "x": null,
+            "y": null,
+            "z": null,
+            "inf": null,
+            "neg_inf": null,
+            "garlic_naan": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "inf",
+            "neg_inf",
+            "garlic_naan"
+          ],
+          "encoded_locals": {
+            "x": 2.5,
+            "y": null,
+            "z": null,
+            "inf": null,
+            "neg_inf": null,
+            "garlic_naan": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "inf",
+            "neg_inf",
+            "garlic_naan"
+          ],
+          "encoded_locals": {
+            "x": 2.5,
+            "y": [
+              "SPECIAL_FLOAT",
+              "2.0"
+            ],
+            "z": null,
+            "inf": null,
+            "neg_inf": null,
+            "garlic_naan": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "inf",
+            "neg_inf",
+            "garlic_naan"
+          ],
+          "encoded_locals": {
+            "x": 2.5,
+            "y": [
+              "SPECIAL_FLOAT",
+              "2.0"
+            ],
+            "z": 2,
+            "inf": null,
+            "neg_inf": null,
+            "garlic_naan": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:5",
+          "frame_id": 1,
+          "unique_hash": "<main>:5_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "inf",
+            "neg_inf",
+            "garlic_naan"
+          ],
+          "encoded_locals": {
+            "x": 2.5,
+            "y": [
+              "SPECIAL_FLOAT",
+              "2.0"
+            ],
+            "z": 2,
+            "inf": [
+              "SPECIAL_FLOAT",
+              "Infinity"
+            ],
+            "neg_inf": null,
+            "garlic_naan": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "inf",
+            "neg_inf",
+            "garlic_naan"
+          ],
+          "encoded_locals": {
+            "x": 2.5,
+            "y": [
+              "SPECIAL_FLOAT",
+              "2.0"
+            ],
+            "z": 2,
+            "inf": [
+              "SPECIAL_FLOAT",
+              "Infinity"
+            ],
+            "neg_inf": [
+              "SPECIAL_FLOAT",
+              "-Infinity"
+            ],
+            "garlic_naan": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z",
+            "inf",
+            "neg_inf",
+            "garlic_naan"
+          ],
+          "encoded_locals": {
+            "x": 2.5,
+            "y": [
+              "SPECIAL_FLOAT",
+              "2.0"
+            ],
+            "z": 2,
+            "inf": [
+              "SPECIAL_FLOAT",
+              "Infinity"
+            ],
+            "neg_inf": [
+              "SPECIAL_FLOAT",
+              "-Infinity"
+            ],
+            "garlic_naan": [
+              "SPECIAL_FLOAT",
+              "NaN"
+            ]
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    }
+  ]
+}

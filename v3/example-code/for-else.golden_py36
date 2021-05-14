@@ -1,0 +1,1531 @@
+{
+  "code": "# find primes using a for-else construct\nfor n in range(2, 10):\n    x_range = range(2, n)\n    for x in x_range:\n        if n % x == 0:\n            break\n    else:\n        # loop fell through without finding a factor\n        print(n)\n",
+  "trace": [
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 2
+      },
+      "ordered_globals": [
+        "n"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 2,
+        "x_range": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "n",
+        "x_range"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 2)"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 2,
+        "x_range": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "n",
+        "x_range"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 2)"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 2,
+        "x_range": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "n",
+        "x_range"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 2)"
+        ]
+      },
+      "stdout": "2\n"
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 3,
+        "x_range": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "n",
+        "x_range"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 2)"
+        ]
+      },
+      "stdout": "2\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 3,
+        "x_range": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "n",
+        "x_range"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
+        ]
+      },
+      "stdout": "2\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 3,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
+        ]
+      },
+      "stdout": "2\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 3,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
+        ]
+      },
+      "stdout": "2\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 3,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
+        ]
+      },
+      "stdout": "2\n"
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 3,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 4,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 3)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 4,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 4,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 4,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 4,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 4)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 3
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 3
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 4
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 4
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 4
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n"
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 5,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 4
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 6,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 4
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 5)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 6,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 4
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 6,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 6,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 6,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 6)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 3
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 3
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 4
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 4
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 5
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 5
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 6
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 6
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 6
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n"
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 7,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 6
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 8,
+        "x_range": [
+          "REF",
+          2
+        ],
+        "x": 6
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "2": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 7)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 8,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 6
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 8,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 8,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 8,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 9,
+        "x_range": [
+          "REF",
+          1
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 8)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 9,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 9,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 9,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 2
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 9,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 3
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 9,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 3
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "n": 9,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 3
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    },
+    {
+      "line": 2,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "n": 9,
+        "x_range": [
+          "REF",
+          3
+        ],
+        "x": 3
+      },
+      "ordered_globals": [
+        "n",
+        "x_range",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "3": [
+          "INSTANCE_PPRINT",
+          "range",
+          "range(2, 9)"
+        ]
+      },
+      "stdout": "2\n3\n5\n7\n"
+    }
+  ]
+}

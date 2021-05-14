@@ -1,0 +1,150 @@
+{
+  "code": "x = 10\ny = 0\nz = x / y\nputs z\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 1,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:1",
+          "frame_id": 1,
+          "unique_hash": "<main>:1_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z"
+          ],
+          "encoded_locals": {
+            "x": null,
+            "y": null,
+            "z": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z"
+          ],
+          "encoded_locals": {
+            "x": 10,
+            "y": null,
+            "z": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z"
+          ],
+          "encoded_locals": {
+            "x": 10,
+            "y": 0,
+            "z": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "exception",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "z"
+          ],
+          "encoded_locals": {
+            "x": 10,
+            "y": 0,
+            "z": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ],
+      "exception_msg": "divided by 0"
+    }
+  ]
+}

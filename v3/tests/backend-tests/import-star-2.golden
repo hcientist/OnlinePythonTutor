@@ -1,0 +1,138 @@
+{
+  "code": "from io import *\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "RawIOBase", 
+        "UnsupportedOperation", 
+        "IOBase", 
+        "BufferedRWPair", 
+        "StringIO", 
+        "open", 
+        "SEEK_SET", 
+        "BufferedRandom", 
+        "TextIOBase", 
+        "BlockingIOError", 
+        "TextIOWrapper", 
+        "SEEK_END", 
+        "BufferedReader", 
+        "BufferedWriter", 
+        "FileIO", 
+        "SEEK_CUR", 
+        "BufferedIOBase", 
+        "BytesIO"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "RawIOBase": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ], 
+        "UnsupportedOperation": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "IOBase": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ], 
+        "BufferedRWPair": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "StringIO": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "SEEK_SET": 0, 
+        "BufferedRandom": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "TextIOBase": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ], 
+        "BufferedReader": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "TextIOWrapper": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "SEEK_END": 2, 
+        "BlockingIOError": [
+          "REF", 
+          1
+        ], 
+        "BufferedIOBase": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ], 
+        "FileIO": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "BytesIO": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "BufferedWriter": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "open": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported builtin_function_or_method"
+        ], 
+        "SEEK_CUR": 1
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "BlockingIOError", 
+          [
+            "IOError"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "characters_written", 
+            [
+              "REF", 
+              3
+            ]
+          ]
+        ], 
+        "2": [
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'BlockingIOError' objects>"
+        ], 
+        "3": [
+          "member_descriptor", 
+          "<member 'characters_written' of 'BlockingIOError' objects>"
+        ]
+      }, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

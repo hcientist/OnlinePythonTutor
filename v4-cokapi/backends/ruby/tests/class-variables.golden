@@ -1,0 +1,2292 @@
+{
+  "code": "# from https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Classes\n\nclass MyClass\n  @@value = 1\n  def add_one\n    @@value= @@value + 1\n  end\n  \n  def value\n    @@value\n  end\nend\ninstanceOne = MyClass.new\ninstanceTwo = MyClass.new\nputs instanceOne.value\ninstanceOne.add_one\nputs instanceOne.value\nputs instanceTwo.value\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": null,
+            "instanceTwo": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": null,
+            "instanceTwo": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:3",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": null,
+            "instanceTwo": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:4",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": null,
+            "instanceTwo": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:5",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": null,
+            "instanceTwo": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:9",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": null,
+            "instanceTwo": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:12",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:12_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              3
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "4": [
+          "FUNCTION",
+          "value",
+          ""
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": null,
+            "instanceTwo": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              6
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "6": [
+          "FUNCTION",
+          "value",
+          ""
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "7": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "8": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              10
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "10": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "11": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:9",
+          "frame_id": 2,
+          "unique_hash": "value:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              14
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "13": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "14": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:10",
+          "frame_id": 2,
+          "unique_hash": "value:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              15
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              16
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "15": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "16": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:15",
+          "frame_id": 1,
+          "unique_hash": "<main>:15_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:11",
+          "frame_id": 2,
+          "unique_hash": "value:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ],
+            "__return__": 1
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              17
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              18
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "17": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "18": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              19
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              20
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "19": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "20": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "call",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "add_one:5",
+          "frame_id": 2,
+          "unique_hash": "add_one:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              21
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              22
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "21": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "22": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "add_one:6",
+          "frame_id": 2,
+          "unique_hash": "add_one:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              23
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              24
+            ]
+          ],
+          [
+            "@@value",
+            1
+          ]
+        ],
+        "23": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "24": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "add_one:7",
+          "frame_id": 2,
+          "unique_hash": "add_one:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ],
+            "__return__": 2
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              25
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              26
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "25": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "26": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 17,
+      "event": "step_line",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              27
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              28
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "27": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "28": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:9",
+          "frame_id": 2,
+          "unique_hash": "value:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              29
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              30
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "29": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "30": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:10",
+          "frame_id": 2,
+          "unique_hash": "value:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              31
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              32
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "31": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "32": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "1\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:17",
+          "frame_id": 1,
+          "unique_hash": "<main>:17_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:11",
+          "frame_id": 2,
+          "unique_hash": "value:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              9
+            ],
+            "__return__": 2
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              33
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              34
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "33": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "34": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "step_line",
+      "stdout": "1\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:18",
+          "frame_id": 1,
+          "unique_hash": "<main>:18_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              35
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              36
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "35": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "36": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "1\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:18",
+          "frame_id": 1,
+          "unique_hash": "<main>:18_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:9",
+          "frame_id": 2,
+          "unique_hash": "value:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              12
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              37
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              38
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "37": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "38": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "1\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:18",
+          "frame_id": 1,
+          "unique_hash": "<main>:18_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:10",
+          "frame_id": 2,
+          "unique_hash": "value:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              12
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              39
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              40
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "39": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "40": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "1\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:18",
+          "frame_id": 1,
+          "unique_hash": "<main>:18_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "value:11",
+          "frame_id": 2,
+          "unique_hash": "value:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              12
+            ],
+            "__return__": 2
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              41
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              42
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "41": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "42": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "step_line",
+      "stdout": "1\n2\n2\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:19",
+          "frame_id": 1,
+          "unique_hash": "<main>:19_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "instanceOne",
+            "instanceTwo"
+          ],
+          "encoded_locals": {
+            "instanceOne": [
+              "REF",
+              9
+            ],
+            "instanceTwo": [
+              "REF",
+              12
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "add_one",
+            [
+              "REF",
+              43
+            ]
+          ],
+          [
+            "value",
+            [
+              "REF",
+              44
+            ]
+          ],
+          [
+            "@@value",
+            2
+          ]
+        ],
+        "43": [
+          "FUNCTION",
+          "add_one",
+          ""
+        ],
+        "44": [
+          "FUNCTION",
+          "value",
+          ""
+        ],
+        "9": [
+          "INSTANCE",
+          "MyClass"
+        ],
+        "12": [
+          "INSTANCE",
+          "MyClass"
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config transient="false" date="1404825707319">
+	<site enabled="true" updateable="true" policy="USER-EXCLUDE" url="platform:/base/">
+		<feature id="org.eclipse.babel.nls_rt.equinox_ja" url="features/org.eclipse.babel.nls_rt.equinox_ja_4.2.0.v20130724060447/" version="4.2.0.v20130724060447">
+		</feature>
+		<feature id="org.eclipse.babel.nls_rt.equinox_zh" url="features/org.eclipse.babel.nls_rt.equinox_zh_4.2.0.v20130724060447/" version="4.2.0.v20130724060447">
+		</feature>
+		<feature id="com.jrockit.mc.feature.core" plugin-identifier="com.jrockit.mc.ui" url="features/com.jrockit.mc.feature.core_5.4.0.162463/" version="5.4.0.162463">
+		</feature>
+		<feature id="com.jrockit.mc.rcp.product" url="features/com.jrockit.mc.rcp.product_5.4.0.162463/" version="5.4.0.162463">
+		</feature>
+		<feature id="com.jrockit.mc.feature.rcp.ja" url="features/com.jrockit.mc.feature.rcp.ja_5.4.0.162463/" version="5.4.0.162463">
+		</feature>
+		<feature id="com.jrockit.mc.feature.rcp.zh_CN" url="features/com.jrockit.mc.feature.rcp.zh_CN_5.4.0.162463/" version="5.4.0.162463">
+		</feature>
+		<feature id="org.eclipse.babel.nls_eclipse_ja" url="features/org.eclipse.babel.nls_eclipse_ja_4.2.0.v20130724060447/" version="4.2.0.v20130724060447">
+		</feature>
+		<feature id="com.jrockit.mc.feature.console" url="features/com.jrockit.mc.feature.console_5.4.0.162463/" version="5.4.0.162463">
+		</feature>
+		<feature id="com.jrockit.mc.feature.rcp" url="features/com.jrockit.mc.feature.rcp_5.4.0.162463/" version="5.4.0.162463">
+		</feature>
+		<feature id="org.eclipse.equinox.p2.rcp.feature" url="features/org.eclipse.equinox.p2.rcp.feature_1.1.0.v20121211-153934-785EoBqNKNZz-DW7sUc8hFwz00wd/" version="1.1.0.v20121211-153934-785EoBqNKNZz-DW7sUc8hFwz00wd">
+		</feature>
+		<feature id="org.eclipse.babel.nls_eclipse_zh" url="features/org.eclipse.babel.nls_eclipse_zh_4.2.0.v20130724060447/" version="4.2.0.v20130724060447">
+		</feature>
+		<feature id="org.eclipse.help" plugin-identifier="org.eclipse.help.base" url="features/org.eclipse.help_1.4.1.v20120912-145617-8R7xFOXFLWUl7PpMEeZNIGkb4/" version="1.4.1.v20120912-145617-8R7xFOXFLWUl7PpMEeZNIGkb4">
+		</feature>
+		<feature id="org.eclipse.equinox.p2.core.feature" url="features/org.eclipse.equinox.p2.core.feature_1.1.0.v20121211-153934-8297FndFWmE7h7Bpz-vcqkxyKz0/" version="1.1.0.v20121211-153934-8297FndFWmE7h7Bpz-vcqkxyKz0">
+		</feature>
+		<feature id="org.eclipse.rcp" url="features/org.eclipse.rcp_3.8.2.v20130118-180157-96BuGOZFxwOAeG8Ofmqicz0tPK/" version="3.8.2.v20130118-180157-96BuGOZFxwOAeG8Ofmqicz0tPK">
+		</feature>
+		<feature id="com.jrockit.mc.feature.flightrecorder" url="features/com.jrockit.mc.feature.flightrecorder_5.4.0.162463/" version="5.4.0.162463">
+		</feature>
+	</site>
+</config>

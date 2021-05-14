@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Online Python Tutor - iframe embed demo</title>
+</head>
+
+<body>
+
+<iframe width="800" height="500" frameborder="0" src="iframe-embed.html#code=%23+From+%22Teaching+with+Python%22+by+John+Zelle%0Adef+happy()%3A%0A++++print(%22Happy+Birthday+to+you!%22)%0A%0Adef+sing(P)%3A%0A++++happy()%0A++++happy()%0A++++print(%22Happy+Birthday+dear+%22+%2B+P+%2B+%22!%22)%0A++++happy()%0A%0A%23+main%0Asing(%22Fred%22)&py=2"> </iframe>
+
+<p/>
+
+<iframe width="800" height="700" frameborder="0" src="iframe-embed.html#code=%23+use+lists%0Ax+%3D+None%0Afor+i+in+range(6,+0,+-1)%3A%0A++x+%3D+%5Bi,+x%5D%0A%0A%23+use+tuples%0Ay+%3D+None%0Afor+i+in+range(6,+0,+-1)%3A%0A++y+%3D+(i,+y)%0A%0Ax%5B1%5D%5B0%5D%3Dy%5B1%5D%5B1%5D+%23+courtesy+of+John+DeNero!&cumulative=false&py=2&curInstr=29&verticalStack=true"> </iframe>
+
+<p/>
+
+<iframe width="900" height="500" frameborder="0" src="iframe-embed.html#code=%23+Example+to+torture+students%0A%23+from+UC+Berkeley+CS61a%0A%23+(only+works+in+Python+3)%0A%0Adef+f(t)%3A%0A++++def+g(t)%3A%0A++++++++def+h()%3A%0A++++++++++++nonlocal+t%0A++++++++++++t+%2B%3D+1%0A++++++++return+h,+lambda%3A+t%0A++++h,+gt+%3D+g(0)%0A++++return+h,+gt,+lambda%3A+t%0A%0Ah,+gt,+ft+%3D+f(0)%0Aft(),+gt()%0Ah()%0Aft(),+gt()&cumulative=true&py=3&curInstr=11"> </iframe>
+
+<p/>
+
+<iframe width="800" height="500" frameborder="0" src="iframe-embed.html#code=%23%20from%20https%3A//pandas.pydata.org/pandas-docs/stable/10min.html%0Aimport%20pandas%20as%20pd%0Aimport%20numpy%20as%20np%0As%20%3D%20pd.Series%28%5B1,3,5,np.nan,6,8%5D%29%0Adates%20%3D%20pd.date_range%28'20130101',%20periods%3D6%29%0Adf%20%3D%20pd.DataFrame%28np.random.randn%286,4%29,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20index%3Ddates,%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20columns%3Dlist%28'ABCD'%29%29%0Asummary%20%3D%20df.describe%28%29%0A%0A%23%20hide%20private%20fields%20and%20modules%0A%23pythontutor_hide%3A%20_*,%20pd,%20np&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=8&heapPrimitives=nevernest&origin=opt-frontend.js&py=py3anaconda&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
+
+<p/>
+
+<iframe width="800" height="500" frameborder="0" src="iframe-embed.html#code=public+class+Variables+%7B%0A+++public+static+void+main(String%5B%5D+args)+%7B%0A++++++String+me+%3D+%22me%22%3B%0A++++++String+you+%3D+%22you%22%3B%0A++++++String+tmp+%3D+me%3B%0A++++++me+%3D+you%3B%0A++++++you+%3D+tmp%3B%0A%0A++++++int+x+%3D+5%3B%0A++++++int+y+%3D+10%3B%0A++++++int+t+%3D+x%3B%0A++++++x+%3D+y%3B%0A++++++y+%3D+t%3B%0A+++%7D%0A%7D&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=java&rawInputLstJSON=%5B%5D&curInstr=7&codeDivWidth=350&codeDivHeight=400"> </iframe>
+
+<p/>
+
+<iframe width="800" height="500" frameborder="0" src="iframe-embed.html#code=function+Vector(x,+y)+%7B%0A++this.x+%3D+x%3B%0A++this.y+%3D+y%3B%0A%7D%0A%0AVector.prototype.plus+%3D+function(other)+%7B%0A++return+new+Vector(this.x+%2B+other.x,+this.y+%2B+other.y)%3B%0A%7D%3B%0A%0Avar+v1+%3D+new+Vector(1,+2)%3B%0Avar+v2+%3D+Vector(20,+30)%3B+//+whoops,+forgot+'new'&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=js&rawInputLstJSON=%5B%5D&curInstr=9&codeDivWidth=350&codeDivHeight=400"> </iframe>
+
+<p/>
+
+<iframe width="800" height="500" frameborder="0" src="iframe-embed.html#code=//+adapted+from+an+example+at+http%3A//www.typescriptlang.org/Playground%0Aclass+Greeter+%7B%0A++++greeting%3A+string%3B%0A++++constructor(message%3A+string%29+%7B%0A++++++++this.greeting+%3D+message%3B%0A++++%7D%0A++++greet(%29+%7B%0A++++++++return+%22Hello,+%22+%2B+this.greeting%3B%0A++++%7D%0A%7D%0A%0A%0Avar+greeter+%3D+new+Greeter(%22world%22%29%3B%0A%0Aconsole.log(greeter.greet(%29%29%3B&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=ts&rawInputLstJSON=%5B%5D&curInstr=8&codeDivWidth=350&codeDivHeight=400">
+</iframe>
+
+<p/>
+
+<iframe width="800" height="500" frameborder="0" src="iframe-embed.html#code=require+'set'%0A%0Amy_array+%3D+%5B1,+2,+3,+'hello',+false,+true,+nil%5D%0Amy_hash+%3D+%7B'John'+%3D%3E+26,+'Jane'+%3D%3E+21,+'Jack'+%3D%3E+30%7D%0Amy_set+%3D+my_array.to_set%0A%0Amy_hash%5B'nested+array'%5D+%3D+my_array%0Amy_array%5B1%5D+%3D+%5B'a',+'b',+'c'%5D&origin=opt-frontend.js&cumulative=true&heapPrimitives=true&textReferences=true&py=ruby&rawInputLstJSON=%5B%5D&curInstr=3&codeDivWidth=350&codeDivHeight=400"> </iframe>
+
+<p/>
+
+<iframe width="800" height="500" frameborder="0" src="iframe-embed.html#code=//+Example+C+code+for+OPT%0A%23include+%3Cstdlib.h%3E%0A%0A//+from+pg's+meng+thesis%0Aint+globalInt+%3D+42%3B%0A%0Aint+main(%29+%7B%0A++int+localArray%5B10%5D%3B+//+contents+uninitialized%0A++int+*a,+*b,+*c,+i,+j%3B+//+c+and+j+uninitialized,+*c+is+meaningless%0A++a+%3D+%26globalInt%3B%0A++b+%3D+(int*%29malloc(15*sizeof(int%29%29%3B%0A++//+Heap+buffer+overflow+after+i+%3D+14%0A++for+(i+%3D+1%3B+i+%3C+100%3B+i%2B%3D2%29+%7B%0A++++b%5Bi%5D+%3D+i%3B+//+Initialize+only+odd-indexed+elements+of+b%0A++%7D%0A++return+0%3B%0A%7D&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=c&rawInputLstJSON=%5B%5D&curInstr=10&codeDivWidth=350&codeDivHeight=400"> </iframe>
+
+<p/>
+
+<iframe width="800" height="500" frameborder="0" src="iframe-embed.html#code=//+Example+C%2B%2B+code+for+OPT%0Aint+main(%29+%7B%0A++int+*x+%3D+new+int%3B%0A++int+*x_array+%3D+new+int%5B10%5D%3B%0A%0A++x_array%5B1%5D+%3D+1%3B%0A++x_array%5B3%5D+%3D+3%3B%0A++x_array%5B5%5D+%3D+5%3B%0A%0A++delete+x%3B%0A++delete%5B%5D+x_array%3B%0A++return+0%3B%0A%7D&origin=opt-frontend.js&cumulative=false&heapPrimitives=false&textReferences=false&py=cpp&rawInputLstJSON=%5B%5D&curInstr=7&codeDivWidth=350&codeDivHeight=400"> </iframe>
+
+</body>
+</html>

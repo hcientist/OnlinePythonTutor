@@ -1,0 +1,81 @@
+{
+  "code": "x = float('inf')\ny = float('-inf')\nz = float('nan')\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "SPECIAL_FLOAT",
+          "Infinity"
+        ]
+      },
+      "ordered_globals": [
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "SPECIAL_FLOAT",
+          "Infinity"
+        ],
+        "y": [
+          "SPECIAL_FLOAT",
+          "-Infinity"
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "x": [
+          "SPECIAL_FLOAT",
+          "Infinity"
+        ],
+        "y": [
+          "SPECIAL_FLOAT",
+          "-Infinity"
+        ],
+        "z": [
+          "SPECIAL_FLOAT",
+          "NaN"
+        ]
+      },
+      "ordered_globals": [
+        "x",
+        "y",
+        "z"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    }
+  ]
+}

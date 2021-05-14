@@ -1,0 +1,5300 @@
+{
+  "code": "#   o p t M i n p a t h . p y\n#\n#  Chris Meyers. 09/25/2013\n#\nfrom htmlFrame import HtmlFrame\nfrom matrix import Matrix\n\nfrom random     import randint\nimport random\nrandom.seed(0) # for determinism\n\nhtmlPage = HtmlFrame()\nhtmlPage.banner = \"Minimum Path from top to bottom\"\n\ndef renderTriangle(t) :\n    t.dftFormat = \"<pre>%03s</pre>\"\n    t.tableAttr='border=\"0\" cellspacing=\"0\" cellpadding=\"4\"'\n    return t.renderHtml()\n\ndef minpath(nrows) :\n  mat = Matrix(1,2)\n  tri = Matrix(nrows,nrows)\n  org = Matrix(nrows,nrows)\n  for r in range(nrows) :\n    vals = [randint(1,9) for c in range(r+1)]\n    tri.setrowVals(r,vals)\n    org.setrowVals(r,vals)\n\n  org.title = \"Original Values\"\n  mat[0,0] = renderTriangle(org)\n  mat.tableAttr='border=\"1\" cellspacing=\"0\" cellpadding=\"4\"'\n\n  tri.style.setrowVal(nrows-1,\"background-color:lightgreen\")\n  for row in range(nrows-2,-1,-1) :\n    for col in range(row+1) :\n      left = tri[row+1,col]\n      right= tri[row+1,col+1]\n      this = tri[row,col]\n      tri.style[row,col] = \"background-color:pink\"\n      tri.title = \"Set to min(%s+%s, %s+%s)\" % (this,left,this,right)\n      mat[0,1] = renderTriangle(tri)\n      htmlPage.item1 = mat.renderHtml()\n      htmlPage.makeFrame()  #break\n      tri[row,col] = best = min(this+left,this+right)\n      tri.style[row,col] = \"background-color:lightgreen\"\n  mat[0,1] = renderTriangle(tri)\n  htmlPage.item1 = mat.renderHtml()\n  htmlPage.banner = \"Miniumum cost is %s\" % best\n  htmlPage.makeFrame()  #break\n\nminpath(4)\n", 
+  "trace": [
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 5, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 5, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 7, 
+            "col": 0, 
+            "row": 2
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(5+7, 5+5)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:pink\"><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 43, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(5+7, 5+5)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:pink\"><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 5, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 5, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 7, 
+            "col": 0, 
+            "row": 2
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(5+7, 5+5)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:pink\"><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 44, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(5+7, 5+5)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:pink\"><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 8, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 9, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 5, 
+            "col": 1, 
+            "best": 10, 
+            "row": 2
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(9+5, 9+8)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:pink\"><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 43, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(9+5, 9+8)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:pink\"><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 8, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 9, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 5, 
+            "col": 1, 
+            "best": 10, 
+            "row": 2
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(9+5, 9+8)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:pink\"><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 44, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(9+5, 9+8)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:pink\"><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 6, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 8, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 8, 
+            "col": 2, 
+            "best": 14, 
+            "row": 2
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(8+8, 8+6)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:pink\"><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 43, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(8+8, 8+6)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:pink\"><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 6, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 8, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 8, 
+            "col": 2, 
+            "best": 14, 
+            "row": 2
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(8+8, 8+6)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:pink\"><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 44, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(8+8, 8+6)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:pink\"><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 14, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 7, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 10, 
+            "col": 0, 
+            "best": 14, 
+            "row": 1
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+10, 7+14)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:pink\"><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 43, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+10, 7+14)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:pink\"><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 14, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 7, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 10, 
+            "col": 0, 
+            "best": 14, 
+            "row": 1
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+10, 7+14)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:pink\"><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 44, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+10, 7+14)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:pink\"><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 14, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 1, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 14, 
+            "col": 1, 
+            "best": 17, 
+            "row": 1
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(1+14, 1+14)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:pink\"><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 43, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(1+14, 1+14)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:pink\"><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 14, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 1, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 14, 
+            "col": 1, 
+            "best": 17, 
+            "row": 1
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(1+14, 1+14)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:pink\"><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 44, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(1+14, 1+14)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:pink\"><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 15, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 7, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 17, 
+            "col": 0, 
+            "best": 15, 
+            "row": 0
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+17, 7+15)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td style=\"background-color:pink\"><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:lightgreen\"><pre> 15</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 43, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+17, 7+15)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td style=\"background-color:pink\"><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:lightgreen\"><pre> 15</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 15, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 7, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 17, 
+            "col": 0, 
+            "best": 15, 
+            "row": 0
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Minimum Path from top to bottom"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+17, 7+15)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td style=\"background-color:pink\"><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:lightgreen\"><pre> 15</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 44, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Minimum Path from top to bottom</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+17, 7+15)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td style=\"background-color:pink\"><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:lightgreen\"><pre> 15</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 15, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 7, 
+            "nrows": 4, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 17, 
+            "col": 0, 
+            "best": 22, 
+            "row": 0
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Miniumum cost is 22"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+17, 7+15)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td style=\"background-color:lightgreen\"><pre> 22</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:lightgreen\"><pre> 15</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 49, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Miniumum cost is 22</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+17, 7+15)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td style=\"background-color:lightgreen\"><pre> 22</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:lightgreen\"><pre> 15</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "minpath", 
+      "stack_to_render": [
+        {
+          "frame_id": 1, 
+          "encoded_locals": {
+            "tri": [
+              "REF", 
+              24
+            ], 
+            "right": 15, 
+            "mat": [
+              "REF", 
+              23
+            ], 
+            "this": 7, 
+            "nrows": 4, 
+            "__return__": null, 
+            "r": 3, 
+            "vals": [
+              "REF", 
+              33
+            ], 
+            "org": [
+              "REF", 
+              25
+            ], 
+            "left": 17, 
+            "col": 0, 
+            "best": 22, 
+            "row": 0
+          }, 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "func_name": "minpath", 
+          "is_zombie": false, 
+          "parent_frame_id_list": [], 
+          "unique_hash": "minpath_f1", 
+          "ordered_varnames": [
+            "nrows", 
+            "mat", 
+            "tri", 
+            "org", 
+            "r", 
+            "vals", 
+            "row", 
+            "col", 
+            "left", 
+            "right", 
+            "this", 
+            "best", 
+            "__return__"
+          ]
+        }
+      ], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Miniumum cost is 22"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+17, 7+15)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td style=\"background-color:lightgreen\"><pre> 22</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:lightgreen\"><pre> 15</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-1x2"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "Matrix", 
+          "Matrix-4x4"
+        ], 
+        "33": [
+          "LIST", 
+          7, 
+          5, 
+          8, 
+          6
+        ]
+      }, 
+      "line": 49, 
+      "event": "return"
+    }, 
+    {
+      "ordered_globals": [
+        "HtmlFrame", 
+        "Matrix", 
+        "randint", 
+        "random", 
+        "htmlPage", 
+        "renderTriangle", 
+        "minpath"
+      ], 
+      "html_output": "\n<html><body>\n<h3>Miniumum cost is 22</h3>\n<div>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+17, 7+15)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td style=\"background-color:lightgreen\"><pre> 22</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:lightgreen\"><pre> 15</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table></div>\n<div></div>\n<div></div>\n</html></body>\n", 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "renderTriangle": [
+          "REF", 
+          21
+        ], 
+        "Matrix": [
+          "REF", 
+          5
+        ], 
+        "randint": [
+          "REF", 
+          18
+        ], 
+        "random": [
+          "REF", 
+          19
+        ], 
+        "minpath": [
+          "REF", 
+          22
+        ], 
+        "htmlPage": [
+          "REF", 
+          20
+        ], 
+        "HtmlFrame": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "HtmlFrame", 
+          [], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "makeEofPage", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "makeFrame", 
+            [
+              "REF", 
+              4
+            ]
+          ]
+        ], 
+        "2": [
+          "FUNCTION", 
+          "__init__(self, template, banner)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "makeEofPage(self)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "makeFrame(self, template)", 
+          null
+        ], 
+        "5": [
+          "CLASS", 
+          "Matrix", 
+          [], 
+          [
+            "__getitem__", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "__setitem__", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "__str__", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "getcol", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "getrow", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "populate", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "renderHtml", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "setcolVal", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "setcolVals", 
+            [
+              "REF", 
+              15
+            ]
+          ], 
+          [
+            "setrowVal", 
+            [
+              "REF", 
+              16
+            ]
+          ], 
+          [
+            "setrowVals", 
+            [
+              "REF", 
+              17
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "__getitem__(self, coords)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "__init__(self, nrows, ncols, data, dftFormat, dftStyle, title, tableAttr, tableHeaders, Expand)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "__setitem__(self, coords, value)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "__str__(self)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "getcol(self, col)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "getrow(self, row)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "populate(self, lists)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "renderHtml(self, wrap)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "setcolVal(self, col, value)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "setcolVals(self, col, values)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "setrowVal(self, row, value)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "setrowVals(self, row, values)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "randint(self, a, b)", 
+          null
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "HtmlFrame", 
+          [
+            "banner", 
+            "Miniumum cost is 22"
+          ], 
+          [
+            "item1", 
+            "\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><div>Original Values</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td><pre>  7</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  1</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  5</pre></td><td><pre>  9</pre></td><td><pre>  8</pre></td><td><pre>   </pre></td></tr>\n  <tr><td><pre>  7</pre></td><td><pre>  5</pre></td><td><pre>  8</pre></td><td><pre>  6</pre></td></tr>\n</table></td><td><div>Set to min(7+17, 7+15)</div>\n<table border=\"0\" cellspacing=\"0\" cellpadding=\"4\">\n  <tr><td style=\"background-color:lightgreen\"><pre> 22</pre></td><td><pre>   </pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 17</pre></td><td style=\"background-color:lightgreen\"><pre> 15</pre></td><td><pre>   </pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre> 10</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td style=\"background-color:lightgreen\"><pre> 14</pre></td><td><pre>   </pre></td></tr>\n  <tr><td style=\"background-color:lightgreen\"><pre>  7</pre></td><td style=\"background-color:lightgreen\"><pre>  5</pre></td><td style=\"background-color:lightgreen\"><pre>  8</pre></td><td style=\"background-color:lightgreen\"><pre>  6</pre></td></tr>\n</table></td></tr>\n</table>"
+          ], 
+          [
+            "item2", 
+            ""
+          ], 
+          [
+            "item3", 
+            ""
+          ], 
+          [
+            "outputOn", 
+            true
+          ], 
+          [
+            "template", 
+            "\n<html><body>\n<h3>%(banner)s</h3>\n<div>%(item1)s</div>\n<div>%(item2)s</div>\n<div>%(item3)s</div>\n</html></body>\n"
+          ]
+        ], 
+        "21": [
+          "FUNCTION", 
+          "renderTriangle(t)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "minpath(nrows)", 
+          null
+        ]
+      }, 
+      "line": 51, 
+      "event": "return"
+    }
+  ]
+}

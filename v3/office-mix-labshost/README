@@ -1,0 +1,10 @@
+Taken from: https://labsjs.blob.core.windows.net/sdk/LabsJS-1.0.4/labs.html
+
+To test locally, run:
+
+cd v3/
+python bottle_server.py
+
+and visit
+
+http://localhost:8080/office-mix-labshost/labshost.html?lab=http://localhost:8080/opt-office-mix.html?PostMessageLabHost

@@ -1,0 +1,170 @@
+{
+  "code": "@x = 42\n@y = 'hello'\nputs @x\nputs @y\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 1,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:1",
+          "frame_id": 1,
+          "unique_hash": "<main>:1_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "@x": 42
+      },
+      "ordered_globals": [
+        "@x"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "@x": 42,
+        "@y": "hello"
+      },
+      "ordered_globals": [
+        "@x",
+        "@y"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "42\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "@x": 42,
+        "@y": "hello"
+      },
+      "ordered_globals": [
+        "@x",
+        "@y"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "42\nhello\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:5",
+          "frame_id": 1,
+          "unique_hash": "<main>:5_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "@x": 42,
+        "@y": "hello"
+      },
+      "ordered_globals": [
+        "@x",
+        "@y"
+      ]
+    }
+  ]
+}

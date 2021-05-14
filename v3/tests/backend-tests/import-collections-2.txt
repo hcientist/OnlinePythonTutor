@@ -1,0 +1,5 @@
+from collections import defaultdict
+d = defaultdict(list)
+d['hello'].append('a')
+d['hello'].append('b')
+d['hello'].append('c')

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Visualize Graphs</title>
+
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+    <!-- let Webpack take care of everything. Use the [hash] feature to
+         create unique filenames for releases:
+         https://webpack.github.io/docs/long-term-caching.html -->
+
+    <script type="text/javascript" src="build/opt-graph.bundle.js?3bf4da0be3" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+<table id="experimentalHeader">
+    <tr>
+        <td valign="top" id="headerTdLeft"></td>
+        <td valign="top" id="headerTdRight"></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td valign="top" width="50%">
+            <div id="pyInputPane" >
+                <div id="codeInputWarnings">Write code in
+                    <select id="pythonVersionSelector">
+                        <option value="2">Python 2.7</option>
+                        <option value="3" selected>Python 3.6</option>
+                    </select>
+
+                </div>
+                <div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
+
+                <div id="codeInputPane"></div>
+                <div id="legendDiv"></div>
+                <div id="executionSlider" style="margin-top: 10px;"></div>
+
+                <div id="frontendErrorOutput"></div>
+            </div>
+            <div id="eurekaSurveyPane"></div>
+        </td>
+        <td valign="top">
+            <div id="pyOutputPane"/>
+        </td>
+        <td valign="center" width="50%" >
+            <!--  <img id="imageid" src="" height="450" width="450" > -->
+            <!-- Trigger/Open the Modal -->
+            <div class="w3-container">
+
+                <img src="data:," alt id="imageid" style='max-width: 100%;max-height: 100%; object-fit: contain;cursor:zoom-in' valign="center">
+
+                <div id="modal" class="modal">
+                    <span class="close" id="close">&times;</span>
+                    <div class="modal-content" >
+                        <div class="modal-body">
+                            <img class = "zoomimg" src="data:," id="modalimg" style='max-width: 100%;max-height: 100%;' valign="center">
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button id="zoom-in" type="button">+</button>
+                            <button id="zoom-out" type="button">-</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </tr>
+</table>
+
+<p>
+    <select id="graphSelector" >
+        <option value="FCG" selected>Function Call Graph</option>
+        <option value="CFG">Control Flow Graph</option>
+        <option value="DFG">Data Flow Graph</option>
+    </select>
+    <select id="functionSelector" ></select>
+    <button style="margin-left: 20px;" id="graphBtn" type="button">Visualize Graph</button>
+    <i class="tooltip" style="font-size:26px;margin:10px">&#9432;
+        <span class="tooltiptext" id="info"></span>
+    </i>
+</p>
+
+<div id="footer"></div>
+
+</body>
+</html>

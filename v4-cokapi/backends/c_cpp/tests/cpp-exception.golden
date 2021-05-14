@@ -1,0 +1,599 @@
+{
+  "code": "// From the test suite of https://github.com/codespecs/daikon\n//   daikon/tests/kvasir-tests/\n\n#include <stdio.h>\n#include <stdlib.h>\n\n\nvoid thrower(int a) {\n  throw 0x33;\n}\n\nvoid function(int a)\n{\n  try {\n    thrower(0x22);\n  } catch(int e) {\n    printf(\"Caught %d\\n\", e);\n  }\n}\n\nint main()\n{\n\n  function(0x11);\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 24, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 22, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "function(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 13, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "function(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 15, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              17
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "thrower(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 8, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              17
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 15, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000BC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000C0", 
+          "func_name": "thrower(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 8, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "thrower(int)_0xFFF0000C0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "thrower(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              17
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 15, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000BC", 
+              "int", 
+              34
+            ]
+          }, 
+          "frame_id": "0xFFF0000C0", 
+          "func_name": "thrower(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 8, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "thrower(int)_0xFFF0000C0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "thrower(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              17
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 15, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000BC", 
+              "int", 
+              34
+            ]
+          }, 
+          "frame_id": "0xFFF0000C0", 
+          "func_name": "thrower(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "thrower(int)_0xFFF0000C0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "function(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 16, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              17
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 16, 
+          "ordered_varnames": [
+            "e", 
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "function(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 17, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              17
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              51
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 17, 
+          "ordered_varnames": [
+            "e", 
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "function(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 16, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              17
+            ], 
+            "e": [
+              "C_DATA", 
+              "0xFFF0000EC", 
+              "int", 
+              51
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 16, 
+          "ordered_varnames": [
+            "e", 
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }
+      ], 
+      "stdout": "Caught 51\n"
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "function(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 19, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              17
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 19, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }
+      ], 
+      "stdout": "Caught 51\n"
+    }, 
+    {
+      "event": "return", 
+      "func_name": "function(int)", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 19, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_DATA", 
+              "0xFFF0000DC", 
+              "int", 
+              17
+            ]
+          }, 
+          "frame_id": "0xFFF000100", 
+          "func_name": "function(int)", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 19, 
+          "ordered_varnames": [
+            "a"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "function(int)_0xFFF000100"
+        }
+      ], 
+      "stdout": "Caught 51\n"
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 25, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 25, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": "Caught 51\n"
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 26, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {}, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 26, 
+          "ordered_varnames": [], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": "Caught 51\n"
+    }
+  ]
+}
+

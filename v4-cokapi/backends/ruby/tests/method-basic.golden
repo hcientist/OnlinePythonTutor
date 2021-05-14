@@ -1,0 +1,577 @@
+{
+  "code": "# Adapted from Learning Ruby by Michael Fitzgerald, O'Reilly\n\ndef repeat(word, times)\n  puts (word + ' ') * times\nend\n\nrepeat 'hello', 5\nrepeat 'goodbye', 3\nundef repeat\n# 'repeat' should no longer be in scope\nrepeat 'broken', 5\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
+      },
+      "globals": {
+        "repeat": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "repeat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "repeat:3",
+          "frame_id": 2,
+          "unique_hash": "repeat:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "word",
+            "times"
+          ],
+          "encoded_locals": {
+            "word": "hello",
+            "times": 5
+          }
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
+      },
+      "globals": {
+        "repeat": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "repeat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "repeat:4",
+          "frame_id": 2,
+          "unique_hash": "repeat:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "word",
+            "times"
+          ],
+          "encoded_locals": {
+            "word": "hello",
+            "times": 5
+          }
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
+      },
+      "globals": {
+        "repeat": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "repeat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "return",
+      "stdout": "hello hello hello hello hello \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "repeat:5",
+          "frame_id": 2,
+          "unique_hash": "repeat:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "word",
+            "times",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "word": "hello",
+            "times": 5,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "4": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
+      },
+      "globals": {
+        "repeat": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "repeat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "hello hello hello hello hello \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "5": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
+      },
+      "globals": {
+        "repeat": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "repeat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "hello hello hello hello hello \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "repeat:3",
+          "frame_id": 2,
+          "unique_hash": "repeat:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "word",
+            "times"
+          ],
+          "encoded_locals": {
+            "word": "goodbye",
+            "times": 3
+          }
+        }
+      ],
+      "heap": {
+        "6": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
+      },
+      "globals": {
+        "repeat": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "repeat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "hello hello hello hello hello \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "repeat:4",
+          "frame_id": 2,
+          "unique_hash": "repeat:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "word",
+            "times"
+          ],
+          "encoded_locals": {
+            "word": "goodbye",
+            "times": 3
+          }
+        }
+      ],
+      "heap": {
+        "7": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
+      },
+      "globals": {
+        "repeat": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "repeat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "return",
+      "stdout": "hello hello hello hello hello \ngoodbye goodbye goodbye \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "repeat:5",
+          "frame_id": 2,
+          "unique_hash": "repeat:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "word",
+            "times",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "word": "goodbye",
+            "times": 3,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "8": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
+      },
+      "globals": {
+        "repeat": [
+          "REF",
+          8
+        ]
+      },
+      "ordered_globals": [
+        "repeat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "hello hello hello hello hello \ngoodbye goodbye goodbye \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "9": [
+          "FUNCTION",
+          "repeat",
+          ""
+        ]
+      },
+      "globals": {
+        "repeat": [
+          "REF",
+          9
+        ]
+      },
+      "ordered_globals": [
+        "repeat"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "hello hello hello hello hello \ngoodbye goodbye goodbye \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "exception",
+      "stdout": "hello hello hello hello hello \ngoodbye goodbye goodbye \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ],
+      "exception_msg": "undefined method `repeat' for main:Object"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ -->
+
+<head>
+  <title>Online Python Tutor - Composing Programs - Python 3</title>
+
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+<!-- requirements for pytutor.js -->
+<script type="text/javascript" src="js/d3.v2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
+<script type="text/javascript" src="js/jquery.ba-dotimeout.min.js"></script> <!-- for event debouncing -->
+<script type="text/javascript" src="js/jquery.jsPlumb-1.3.10-all-min.js "></script> <!-- for rendering SVG connectors
+                                                                                         DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR -->
+<script type="text/javascript" src="js/diff_match_patch.js"></script>
+
+<script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script> <!-- for sliders and other UI elements -->
+<link type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/pytutor.js"></script>
+<link rel="stylesheet" href="css/pytutor.css"/>
+<link rel="stylesheet" href="css/composingprograms.css"/> <!-- include AFTER pytutor.css -->
+
+
+<!-- requirements for opt-frontend.js -->
+
+<!-- Ace online code editor -->
+<script type="text/javascript" src="js/ace/src-min-noconflict/ace.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="js/opt-frontend-common.js"></script>
+<script type="text/javascript" src="js/composingprograms.js"></script>
+<link rel="stylesheet" href="css/opt-frontend.css"/>
+
+<!-- include this AFTER opt-frontend.js so that configuration
+     global variables are already defined at load time -->
+<script type="text/javascript" src="js/togetherjs/togetherjs-min.js"></script>
+
+<!-- insert google-analytics.txt contents here -->
+
+</head>
+
+<body>
+
+
+<table id="experimentalHeader">
+
+<tr>
+<td valign="top">
+
+<div id="signinButton" style="font-size: 8pt;">
+  <div style="width: 200px; margin-bottom: 8px;">
+  [Optional] Sign in with either a Berkeley email or Google account
+  </div>
+
+  <span
+    class="g-signin"
+    data-callback="signinCallback"
+    data-clientid="639826413051-n4c566bfu9jnee6893qolvbt8od9kiaf.apps.googleusercontent.com"
+    data-cookiepolicy="single_host_origin"
+    data-requestvisibleactions="http://schemas.google.com/AddActivity"
+    data-scope="https://www.googleapis.com/auth/plus.profile.emails.read">
+  </span>
+</div>
+
+<div id="loggedInDiv" style="display: none; margin-bottom: 8px;">
+<div id="loggedInNameDisplay"></div>
+<button id="signoutButton" style="font-size: 8pt; margin-top: 5px;">Sign out to chat anonymously</button>
+</div>
+
+<div id="ssDiv">
+  <button id="sharedSessionBtn" type="button" class="togetherjsBtn">
+  Start shared session
+  </button>
+  <div style="font-size: 8pt; margin-left: 2px; margin-top: 3px;">
+  <a href="https://www.youtube.com/watch?v=Z2TIjNArOK4" target="_blank">What are shared sessions?</a>
+  </div>
+</div>
+
+<div id="sharedSessionDisplayDiv" style="display: none;">
+  <button id="stopTogetherJSBtn" type="button" class="togetherjsBtn">
+  End shared session
+  </button>
+
+  <div style="width: 200px; font-size: 8pt; color: #666; margin-top: 5px;">
+  Your chat logs and code may be recorded, anonymized, and analyzed for research.
+  </div>
+</div>
+
+</td>
+
+<td valign="top" style="padding-left: 20px;">
+  <div id="togetherjsStatus"></div>
+  <div id="surveyHeader" style="display: none;"></div>
+</td>
+</tr>
+</table>
+
+
+<div id="pyInputPane">
+
+<div id="codeInputWarnings">Write Python code here:</div>
+<div id="someoneIsTypingDiv" style="color: #e93f34; font-weight: bold; display: none;">Someone is typing ...</div>
+
+<div id="codeInputPane"></div> <!-- populate with a CodeMirror instance -->
+<div id="frontendErrorOutput"></div>
+<div id="surveyPane"></div>
+
+<p>
+<button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
+</p>
+
+<p style="margin-top: 20px; line-height: 200%;">
+Execute code using
+  <select id="pythonVersionSelector">
+    <option value="3">Python 3.3</option>
+  </select>
+and
+  <select id="cumulativeModeSelector">
+    <option value="true">display frames of exited functions.</option>
+    <option value="false">don't display exited functions.</option>
+  </select>
+</p>
+
+</div>
+
+
+<div id="pyOutputPane">
+</div>
+
+<div id="footer">
+
+<p>
+  <button id="genUrlBtn" class="smallBtn" type="button">Generate permanent link</button> <input type="text" id="urlOutput" size="70"/>
+</p>
+
+<p>Click the button above to create a permanent link to your
+visualization. To report a bug, paste the link along with a brief error
+description in an email addressed to philip@pgbovine.net</p>
+
+<p>
+This version of <a href="http://pythontutor.com/">Online Python Tutor</a> supports
+<a href="http://www.python.org/doc/3.3.0/">Python 3.3</a> with limited module
+imports and no file I/O. 
+The following modules may be imported: 
+bisect,
+collections,
+copy,
+datetime,
+functools,
+hashlib,
+heapq,
+itertools,
+json,
+math,
+operator,
+random,
+re,
+string,
+time,
+io.
+</p>
+
+<p>Have a question? Maybe the <a
+href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/user-FAQ.md">FAQ</a>
+or other <a
+href="https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/">documentation</a>
+can help. Or check out its code at <a
+href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>.</p>
+
+<p>By using Online Python Tutor, your visualized code, options, and IP
+address are logged on our server and may be analyzed for research
+purposes. Nearly all Web services collect this basic information from
+users. However, Online Python Tutor does not collect any personal
+information, cookies, or session state from users.</p>
+
+<p style="margin-top: 8px;">
+Copyright &copy; <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+</p>
+
+</div>
+
+
+<!-- Place this asynchronous JavaScript just before your </body> tag -->
+<script type="text/javascript">
+  (function() {
+   var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+   po.src = 'https://apis.google.com/js/client:plusone.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+ })();
+</script>
+
+</body>
+</html>

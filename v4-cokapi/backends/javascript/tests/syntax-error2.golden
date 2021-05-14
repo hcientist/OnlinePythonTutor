@@ -1,0 +1,5 @@
+{ code: 'function Vector(x, y) {\n  this.x = x;\n  this.y = y;\n}\n\nVector.prototype.plus = xxxfunction(other) {\n  return new Vector(this.x + other.x, this.y + other.y);\n};\n\nVector.prototype.minus = function(other) {\n  return new Vector(this.x - other.x, this.y - other.y);\n};\n\nObject.defineProperty(Vector.prototype, "length", {\n  get: function() {\n    return Math.sqrt(this.x * this.x + this.y * this.y);\n  }\n});\n\nconsole.log(new Vector(1, 2).plus(new Vector(2, 3)));\n// → Vector{x: 3, y: 5}\nconsole.log(new Vector(1, 2).minus(new Vector(2, 3)));\n// → Vector{x: -1, y: -1}\nconsole.log(new Vector(3, 4).length);\n// → 5',
+  trace: 
+   [ { event: 'uncaught_exception',
+       exception_msg: 'SyntaxError: Unexpected token {',
+       line: 6 } ] }

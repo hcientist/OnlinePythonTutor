@@ -1,0 +1,123 @@
+{
+  "code": "# test to make sure nothing crashes when tracing code in pure-Python\n# function calls imported from modules\nimport random\nrandom.randint(10, 100)\n\nfrom re import compile\nx = compile('foo')\n",
+  "trace": [
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "random": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "random"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "random": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "random"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "random": [
+          "REF",
+          1
+        ],
+        "compile": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
+        ]
+      },
+      "ordered_globals": [
+        "random",
+        "compile"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "random": [
+          "REF",
+          1
+        ],
+        "compile": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
+        ],
+        "x": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "random",
+        "compile",
+        "x"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ],
+        "2": [
+          "INSTANCE_PPRINT",
+          "SRE_Pattern",
+          "re.compile('foo')"
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

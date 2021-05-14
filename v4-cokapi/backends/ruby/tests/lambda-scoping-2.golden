@@ -1,0 +1,1418 @@
+{
+  "code": "# how does lexical scoping work for lambdas?\n\nx = 5\n\np = lambda {\n  puts x\n  x += 100 # can modify x in enclosing scope\n  puts x\n  puts 'end of p'\n}\n\ndef gimme\n  x = 10\n  print 'In gimme, x is '\n  puts x\n  yield\n  puts \"You're welcome.\"\n  print 'In gimme, x is '\n  puts x\nend\n\ngimme &p # use '&' to turn a lambda into a block\nprint 'In main, x is '\nputs x\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": null,
+            "p": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:5",
+          "frame_id": 1,
+          "unique_hash": "<main>:5_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:12",
+          "frame_id": 1,
+          "unique_hash": "<main>:12_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 22,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gimme:12",
+          "frame_id": 2,
+          "unique_hash": "gimme:12_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": null
+          }
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gimme:13",
+          "frame_id": 2,
+          "unique_hash": "gimme:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": null
+          }
+        }
+      ],
+      "heap": {
+        "4": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gimme:14",
+          "frame_id": 2,
+          "unique_hash": "gimme:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        }
+      ],
+      "heap": {
+        "5": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "step_line",
+      "stdout": "In gimme, x is ",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gimme:15",
+          "frame_id": 2,
+          "unique_hash": "gimme:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        }
+      ],
+      "heap": {
+        "6": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gimme:16",
+          "frame_id": 2,
+          "unique_hash": "gimme:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        }
+      ],
+      "heap": {
+        "7": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "call",
+      "stdout": "In gimme, x is 10\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "gimme:16",
+          "frame_id": 2,
+          "unique_hash": "gimme:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:5",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:5_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "8": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          8
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "gimme:16",
+          "frame_id": 2,
+          "unique_hash": "gimme:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:6",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "9": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          9
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 5,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "gimme:16",
+          "frame_id": 2,
+          "unique_hash": "gimme:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:7",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:7_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "10": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n5\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "gimme:16",
+          "frame_id": 2,
+          "unique_hash": "gimme:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:8",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:8_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "11": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          11
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n5\n105\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "gimme:16",
+          "frame_id": 2,
+          "unique_hash": "gimme:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:9",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "12": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          12
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "return",
+      "stdout": "In gimme, x is 10\n5\n105\nend of p\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "gimme:16",
+          "frame_id": 2,
+          "unique_hash": "gimme:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:10",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:10_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "encoded_locals": {
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "13": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 17,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n5\n105\nend of p\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gimme:17",
+          "frame_id": 2,
+          "unique_hash": "gimme:17_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        }
+      ],
+      "heap": {
+        "14": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          14
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n5\n105\nend of p\nYou're welcome.\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gimme:18",
+          "frame_id": 2,
+          "unique_hash": "gimme:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        }
+      ],
+      "heap": {
+        "15": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          15
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n5\n105\nend of p\nYou're welcome.\nIn gimme, x is ",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gimme:19",
+          "frame_id": 2,
+          "unique_hash": "gimme:19_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x"
+          ],
+          "encoded_locals": {
+            "x": 10
+          }
+        }
+      ],
+      "heap": {
+        "16": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          16
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 20,
+      "event": "return",
+      "stdout": "In gimme, x is 10\n5\n105\nend of p\nYou're welcome.\nIn gimme, x is 10\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gimme:20",
+          "frame_id": 2,
+          "unique_hash": "gimme:20_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": 10,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "17": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          17
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 23,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n5\n105\nend of p\nYou're welcome.\nIn gimme, x is 10\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:23",
+          "frame_id": 1,
+          "unique_hash": "<main>:23_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "18": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          18
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 24,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n5\n105\nend of p\nYou're welcome.\nIn gimme, x is 10\nIn main, x is ",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:24",
+          "frame_id": 1,
+          "unique_hash": "<main>:24_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "19": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          19
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 24,
+      "event": "step_line",
+      "stdout": "In gimme, x is 10\n5\n105\nend of p\nYou're welcome.\nIn gimme, x is 10\nIn main, x is 105\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:25",
+          "frame_id": 1,
+          "unique_hash": "<main>:25_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "p"
+          ],
+          "encoded_locals": {
+            "x": 105,
+            "p": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "20": [
+          "FUNCTION",
+          "gimme",
+          ""
+        ],
+        "1": [
+          "Proc",
+          "Lambda on line 5"
+        ]
+      },
+      "globals": {
+        "gimme": [
+          "REF",
+          20
+        ]
+      },
+      "ordered_globals": [
+        "gimme"
+      ]
+    }
+  ]
+}

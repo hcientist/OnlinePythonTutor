@@ -1,0 +1,1384 @@
+{
+  "code": "// From the test suite of https://github.com/codespecs/daikon\n//   daikon/tests/kvasir-tests/\n\n// Tests the use of typedefs to access unnamed struct variables\n\n#include <stdio.h>\n#include <stdlib.h>\n\n// On x86-64 (AMD64) small struct arguments are pass by value in registers.\n// However, DynComp (by design) only allocates a single tag per register.\n// This causes 'a' and 'b' below to be marked with a false interaction.\n// I'm making 'a' a long for now; but if we ever change this implementation\n// (i.e., allocate byte tags for registers like we do for memory) then we\n// should change it back to int. (markro)\n\ntypedef struct {\n//int a;\n  long a;\n  char b;\n  double c;\n} anonymousStruct;\n\nenum {MON, TUES, WED} unnamedGlobalEnum;\n\ntypedef unsigned int ROUTEBAGA;\n\nstatic anonymousStruct* createCopy(anonymousStruct a, ROUTEBAGA x) {\n  anonymousStruct* copy = (anonymousStruct*)(malloc(sizeof(*copy)));\n  *copy = a;\n  return copy;\n}\n\nanonymousStruct globalStruct;\n\nint main()\n{\n  anonymousStruct* myCopy;\n\n  globalStruct.a = 5;\n  globalStruct.b = 'b';\n  globalStruct.c = 3.14159;\n\n  myCopy = createCopy(globalStruct, 102);\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              0
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "\\0"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              0.0
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {}, 
+      "line": 36, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 36, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              0
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "\\0"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              0.0
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {}, 
+      "line": 39, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 39, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "\\0"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              0.0
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {}, 
+      "line": 40, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 40, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "b"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              0.0
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {}, 
+      "line": 41, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 40, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "b"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              3.14159
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {}, 
+      "line": 43, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 43, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "createCopy", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "b"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              3.14159
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {}, 
+      "line": 27, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 43, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "anonymousStruct", 
+              [
+                "a", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "long int", 
+                  5
+                ]
+              ], 
+              [
+                "b", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E8", 
+                  "char", 
+                  "b"
+                ]
+              ], 
+              [
+                "c", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000F0", 
+                  "double", 
+                  3.14159
+                ]
+              ]
+            ], 
+            "copy": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "x": [
+              "C_DATA", 
+              "0xFFF0000BC", 
+              "ROUTEBAGA", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "createCopy", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [
+            "a", 
+            "x", 
+            "copy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "createCopy_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "createCopy", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "b"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              3.14159
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {}, 
+      "line": 28, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 43, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "anonymousStruct", 
+              [
+                "a", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "long int", 
+                  5
+                ]
+              ], 
+              [
+                "b", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E8", 
+                  "char", 
+                  "b"
+                ]
+              ], 
+              [
+                "c", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000F0", 
+                  "double", 
+                  3.14159
+                ]
+              ]
+            ], 
+            "copy": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "x": [
+              "C_DATA", 
+              "0xFFF0000BC", 
+              "ROUTEBAGA", 
+              102
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "createCopy", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [
+            "a", 
+            "x", 
+            "copy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "createCopy_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "createCopy", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "b"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              3.14159
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "anonymousStruct", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "long int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "b", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "char", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "c", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 29, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 43, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "anonymousStruct", 
+              [
+                "a", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "long int", 
+                  5
+                ]
+              ], 
+              [
+                "b", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E8", 
+                  "char", 
+                  "b"
+                ]
+              ], 
+              [
+                "c", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000F0", 
+                  "double", 
+                  3.14159
+                ]
+              ]
+            ], 
+            "copy": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0x53FE040"
+            ], 
+            "x": [
+              "C_DATA", 
+              "0xFFF0000BC", 
+              "ROUTEBAGA", 
+              102
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "createCopy", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 29, 
+          "ordered_varnames": [
+            "a", 
+            "x", 
+            "copy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "createCopy_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "createCopy", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "b"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              3.14159
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "anonymousStruct", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "long int", 
+                5
+              ]
+            ], 
+            [
+              "b", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "char", 
+                "b"
+              ]
+            ], 
+            [
+              "c", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "double", 
+                3.14159
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 30, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 43, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "anonymousStruct", 
+              [
+                "a", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "long int", 
+                  5
+                ]
+              ], 
+              [
+                "b", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E8", 
+                  "char", 
+                  "b"
+                ]
+              ], 
+              [
+                "c", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000F0", 
+                  "double", 
+                  3.14159
+                ]
+              ]
+            ], 
+            "copy": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0x53FE040"
+            ], 
+            "x": [
+              "C_DATA", 
+              "0xFFF0000BC", 
+              "ROUTEBAGA", 
+              102
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "createCopy", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 30, 
+          "ordered_varnames": [
+            "a", 
+            "x", 
+            "copy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "createCopy_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "createCopy", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "b"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              3.14159
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "anonymousStruct", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "long int", 
+                5
+              ]
+            ], 
+            [
+              "b", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "char", 
+                "b"
+              ]
+            ], 
+            [
+              "c", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "double", 
+                3.14159
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 31, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 43, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "a": [
+              "C_STRUCT", 
+              "0xFFF0000E0", 
+              "anonymousStruct", 
+              [
+                "a", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E0", 
+                  "long int", 
+                  5
+                ]
+              ], 
+              [
+                "b", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000E8", 
+                  "char", 
+                  "b"
+                ]
+              ], 
+              [
+                "c", 
+                [
+                  "C_DATA", 
+                  "0xFFF0000F0", 
+                  "double", 
+                  3.14159
+                ]
+              ]
+            ], 
+            "copy": [
+              "C_DATA", 
+              "0xFFF0000C8", 
+              "pointer", 
+              "0x53FE040"
+            ], 
+            "x": [
+              "C_DATA", 
+              "0xFFF0000BC", 
+              "ROUTEBAGA", 
+              102
+            ]
+          }, 
+          "frame_id": "0xFFF0000D0", 
+          "func_name": "createCopy", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 31, 
+          "ordered_varnames": [
+            "a", 
+            "x", 
+            "copy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "createCopy_0xFFF0000D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "b"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              3.14159
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "anonymousStruct", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "long int", 
+                5
+              ]
+            ], 
+            [
+              "b", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "char", 
+                "b"
+              ]
+            ], 
+            [
+              "c", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "double", 
+                3.14159
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 44, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "0x53FE040"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 43, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {
+        "globalStruct": [
+          "C_STRUCT", 
+          "0x601060", 
+          "anonymousStruct", 
+          [
+            "a", 
+            [
+              "C_DATA", 
+              "0x601060", 
+              "long int", 
+              5
+            ]
+          ], 
+          [
+            "b", 
+            [
+              "C_DATA", 
+              "0x601068", 
+              "char", 
+              "b"
+            ]
+          ], 
+          [
+            "c", 
+            [
+              "C_DATA", 
+              "0x601070", 
+              "double", 
+              3.14159
+            ]
+          ]
+        ], 
+        "unnamedGlobalEnum": [
+          "C_DATA", 
+          "0x601050", 
+          "<anon_enum_type>", 
+          0
+        ]
+      }, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "anonymousStruct", 
+            [
+              "a", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "long int", 
+                5
+              ]
+            ], 
+            [
+              "b", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "char", 
+                "b"
+              ]
+            ], 
+            [
+              "c", 
+              [
+                "C_DATA", 
+                "0x53FE050", 
+                "double", 
+                3.14159
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 45, 
+      "ordered_globals": [
+        "unnamedGlobalEnum", 
+        "globalStruct"
+      ], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "myCopy": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "pointer", 
+              "0x53FE040"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 45, 
+          "ordered_varnames": [
+            "myCopy"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

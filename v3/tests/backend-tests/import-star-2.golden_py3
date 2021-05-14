@@ -1,0 +1,2404 @@
+{
+  "code": "from io import *\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "RawIOBase", 
+        "UnsupportedOperation", 
+        "IOBase", 
+        "BufferedRWPair", 
+        "StringIO", 
+        "open", 
+        "SEEK_SET", 
+        "BufferedRandom", 
+        "TextIOBase", 
+        "BlockingIOError", 
+        "TextIOWrapper", 
+        "SEEK_END", 
+        "BufferedReader", 
+        "BufferedWriter", 
+        "FileIO", 
+        "SEEK_CUR", 
+        "BufferedIOBase", 
+        "BytesIO"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "RawIOBase": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "UnsupportedOperation": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "IOBase": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "BufferedRWPair": [
+          "REF", 
+          1
+        ], 
+        "StringIO": [
+          "REF", 
+          16
+        ], 
+        "SEEK_SET": 0, 
+        "BufferedRandom": [
+          "REF", 
+          36
+        ], 
+        "TextIOBase": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "BufferedReader": [
+          "REF", 
+          96
+        ], 
+        "TextIOWrapper": [
+          "REF", 
+          68
+        ], 
+        "SEEK_END": 2, 
+        "BlockingIOError": [
+          "REF", 
+          65
+        ], 
+        "BufferedIOBase": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported class"
+        ], 
+        "FileIO": [
+          "REF", 
+          146
+        ], 
+        "BytesIO": [
+          "REF", 
+          169
+        ], 
+        "BufferedWriter": [
+          "REF", 
+          123
+        ], 
+        "open": [
+          "IMPORTED_FAUX_PRIMITIVE", 
+          "imported object"
+        ], 
+        "SEEK_CUR": 1
+      }, 
+      "heap": {
+        "1": [
+          "CLASS", 
+          "BufferedRWPair", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              2
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              3
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              4
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              5
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              6
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              7
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              8
+            ]
+          ], 
+          [
+            "peek", 
+            [
+              "REF", 
+              9
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              10
+            ]
+          ], 
+          [
+            "read1", 
+            [
+              "REF", 
+              11
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              12
+            ]
+          ], 
+          [
+            "readinto", 
+            [
+              "REF", 
+              13
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              14
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              15
+            ]
+          ]
+        ], 
+        "2": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BufferedRWPair' objects>"
+        ], 
+        "3": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedRWPair' objects>"
+        ], 
+        "4": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "5": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedRWPair' objects>"
+        ], 
+        "6": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedRWPair' objects>"
+        ], 
+        "7": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedRWPair' objects>"
+        ], 
+        "8": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedRWPair' objects>"
+        ], 
+        "9": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'peek' of '_io.BufferedRWPair' objects>"
+        ], 
+        "10": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.BufferedRWPair' objects>"
+        ], 
+        "11": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read1' of '_io.BufferedRWPair' objects>"
+        ], 
+        "12": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedRWPair' objects>"
+        ], 
+        "13": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readinto' of '_io.BufferedRWPair' objects>"
+        ], 
+        "14": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedRWPair' objects>"
+        ], 
+        "15": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.BufferedRWPair' objects>"
+        ], 
+        "16": [
+          "CLASS", 
+          "StringIO", 
+          [
+            "_TextIOBase"
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              17
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              18
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              19
+            ]
+          ], 
+          [
+            "__next__", 
+            [
+              "REF", 
+              20
+            ]
+          ], 
+          [
+            "__setstate__", 
+            [
+              "REF", 
+              21
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              22
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              23
+            ]
+          ], 
+          [
+            "getvalue", 
+            [
+              "REF", 
+              24
+            ]
+          ], 
+          [
+            "line_buffering", 
+            [
+              "REF", 
+              25
+            ]
+          ], 
+          [
+            "newlines", 
+            [
+              "REF", 
+              26
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              27
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              28
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              29
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              30
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              31
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              32
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              33
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              34
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              35
+            ]
+          ]
+        ], 
+        "17": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.StringIO' objects>"
+        ], 
+        "18": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.StringIO' objects>"
+        ], 
+        "19": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "20": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.StringIO' objects>"
+        ], 
+        "21": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__setstate__' of '_io.StringIO' objects>"
+        ], 
+        "22": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.StringIO' objects>"
+        ], 
+        "23": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.StringIO' objects>"
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'getvalue' of '_io.StringIO' objects>"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'line_buffering' of '_io.StringIO' objects>"
+        ], 
+        "26": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'newlines' of '_io.StringIO' objects>"
+        ], 
+        "27": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.StringIO' objects>"
+        ], 
+        "28": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.StringIO' objects>"
+        ], 
+        "29": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.StringIO' objects>"
+        ], 
+        "30": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.StringIO' objects>"
+        ], 
+        "31": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.StringIO' objects>"
+        ], 
+        "32": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.StringIO' objects>"
+        ], 
+        "33": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.StringIO' objects>"
+        ], 
+        "34": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.StringIO' objects>"
+        ], 
+        "35": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.StringIO' objects>"
+        ], 
+        "36": [
+          "CLASS", 
+          "BufferedRandom", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              37
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              38
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              39
+            ]
+          ], 
+          [
+            "__next__", 
+            [
+              "REF", 
+              40
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              41
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              42
+            ]
+          ], 
+          [
+            "_dealloc_warn", 
+            [
+              "REF", 
+              43
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              44
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              45
+            ]
+          ], 
+          [
+            "detach", 
+            [
+              "REF", 
+              46
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              47
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              48
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              49
+            ]
+          ], 
+          [
+            "mode", 
+            [
+              "REF", 
+              50
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              51
+            ]
+          ], 
+          [
+            "peek", 
+            [
+              "REF", 
+              52
+            ]
+          ], 
+          [
+            "raw", 
+            [
+              "REF", 
+              53
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              54
+            ]
+          ], 
+          [
+            "read1", 
+            [
+              "REF", 
+              55
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              56
+            ]
+          ], 
+          [
+            "readinto", 
+            [
+              "REF", 
+              57
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              58
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              59
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              60
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              61
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              62
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              63
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              64
+            ]
+          ]
+        ], 
+        "37": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BufferedRandom' objects>"
+        ], 
+        "38": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedRandom' objects>"
+        ], 
+        "39": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "40": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.BufferedRandom' objects>"
+        ], 
+        "41": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.BufferedRandom' objects>"
+        ], 
+        "42": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BufferedRandom' objects>"
+        ], 
+        "43": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '_dealloc_warn' of '_io.BufferedRandom' objects>"
+        ], 
+        "44": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedRandom' objects>"
+        ], 
+        "45": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedRandom' objects>"
+        ], 
+        "46": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'detach' of '_io.BufferedRandom' objects>"
+        ], 
+        "47": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.BufferedRandom' objects>"
+        ], 
+        "48": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedRandom' objects>"
+        ], 
+        "49": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedRandom' objects>"
+        ], 
+        "50": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.BufferedRandom' objects>"
+        ], 
+        "51": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.BufferedRandom' objects>"
+        ], 
+        "52": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'peek' of '_io.BufferedRandom' objects>"
+        ], 
+        "53": [
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'raw' of '_io.BufferedRandom' objects>"
+        ], 
+        "54": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.BufferedRandom' objects>"
+        ], 
+        "55": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read1' of '_io.BufferedRandom' objects>"
+        ], 
+        "56": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedRandom' objects>"
+        ], 
+        "57": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readinto' of '_io.BufferedRandom' objects>"
+        ], 
+        "58": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.BufferedRandom' objects>"
+        ], 
+        "59": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.BufferedRandom' objects>"
+        ], 
+        "60": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BufferedRandom' objects>"
+        ], 
+        "61": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.BufferedRandom' objects>"
+        ], 
+        "62": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BufferedRandom' objects>"
+        ], 
+        "63": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedRandom' objects>"
+        ], 
+        "64": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.BufferedRandom' objects>"
+        ], 
+        "65": [
+          "CLASS", 
+          "BlockingIOError", 
+          [
+            "IOError"
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              66
+            ]
+          ], 
+          [
+            "characters_written", 
+            [
+              "REF", 
+              67
+            ]
+          ]
+        ], 
+        "66": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of 'BlockingIOError' objects>"
+        ], 
+        "67": [
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'characters_written' of 'BlockingIOError' objects>"
+        ], 
+        "68": [
+          "CLASS", 
+          "TextIOWrapper", 
+          [
+            "_TextIOBase"
+          ], 
+          [
+            "_CHUNK_SIZE", 
+            [
+              "REF", 
+              69
+            ]
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              70
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              71
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              72
+            ]
+          ], 
+          [
+            "__next__", 
+            [
+              "REF", 
+              73
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              74
+            ]
+          ], 
+          [
+            "buffer", 
+            [
+              "REF", 
+              75
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              76
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              77
+            ]
+          ], 
+          [
+            "detach", 
+            [
+              "REF", 
+              78
+            ]
+          ], 
+          [
+            "encoding", 
+            [
+              "REF", 
+              79
+            ]
+          ], 
+          [
+            "errors", 
+            [
+              "REF", 
+              80
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              81
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              82
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              83
+            ]
+          ], 
+          [
+            "line_buffering", 
+            [
+              "REF", 
+              84
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              85
+            ]
+          ], 
+          [
+            "newlines", 
+            [
+              "REF", 
+              86
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              87
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              88
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              89
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              90
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              91
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              92
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              93
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              94
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              95
+            ]
+          ]
+        ], 
+        "69": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute '_CHUNK_SIZE' of '_io.TextIOWrapper' objects>"
+        ], 
+        "70": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.TextIOWrapper' objects>"
+        ], 
+        "71": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.TextIOWrapper' objects>"
+        ], 
+        "72": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "73": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.TextIOWrapper' objects>"
+        ], 
+        "74": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.TextIOWrapper' objects>"
+        ], 
+        "75": [
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'buffer' of '_io.TextIOWrapper' objects>"
+        ], 
+        "76": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.TextIOWrapper' objects>"
+        ], 
+        "77": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.TextIOWrapper' objects>"
+        ], 
+        "78": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'detach' of '_io.TextIOWrapper' objects>"
+        ], 
+        "79": [
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'encoding' of '_io.TextIOWrapper' objects>"
+        ], 
+        "80": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'errors' of '_io.TextIOWrapper' objects>"
+        ], 
+        "81": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.TextIOWrapper' objects>"
+        ], 
+        "82": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.TextIOWrapper' objects>"
+        ], 
+        "83": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.TextIOWrapper' objects>"
+        ], 
+        "84": [
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'line_buffering' of '_io.TextIOWrapper' objects>"
+        ], 
+        "85": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.TextIOWrapper' objects>"
+        ], 
+        "86": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'newlines' of '_io.TextIOWrapper' objects>"
+        ], 
+        "87": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.TextIOWrapper' objects>"
+        ], 
+        "88": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.TextIOWrapper' objects>"
+        ], 
+        "89": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.TextIOWrapper' objects>"
+        ], 
+        "90": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.TextIOWrapper' objects>"
+        ], 
+        "91": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.TextIOWrapper' objects>"
+        ], 
+        "92": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.TextIOWrapper' objects>"
+        ], 
+        "93": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.TextIOWrapper' objects>"
+        ], 
+        "94": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.TextIOWrapper' objects>"
+        ], 
+        "95": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.TextIOWrapper' objects>"
+        ], 
+        "96": [
+          "CLASS", 
+          "BufferedReader", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              97
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              98
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              99
+            ]
+          ], 
+          [
+            "__next__", 
+            [
+              "REF", 
+              100
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              101
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              102
+            ]
+          ], 
+          [
+            "_dealloc_warn", 
+            [
+              "REF", 
+              103
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              104
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              105
+            ]
+          ], 
+          [
+            "detach", 
+            [
+              "REF", 
+              106
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              107
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              108
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              109
+            ]
+          ], 
+          [
+            "mode", 
+            [
+              "REF", 
+              110
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              111
+            ]
+          ], 
+          [
+            "peek", 
+            [
+              "REF", 
+              112
+            ]
+          ], 
+          [
+            "raw", 
+            [
+              "REF", 
+              113
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              114
+            ]
+          ], 
+          [
+            "read1", 
+            [
+              "REF", 
+              115
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              116
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              117
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              118
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              119
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              120
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              121
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              122
+            ]
+          ]
+        ], 
+        "97": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BufferedReader' objects>"
+        ], 
+        "98": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedReader' objects>"
+        ], 
+        "99": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "100": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.BufferedReader' objects>"
+        ], 
+        "101": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.BufferedReader' objects>"
+        ], 
+        "102": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BufferedReader' objects>"
+        ], 
+        "103": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '_dealloc_warn' of '_io.BufferedReader' objects>"
+        ], 
+        "104": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedReader' objects>"
+        ], 
+        "105": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedReader' objects>"
+        ], 
+        "106": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'detach' of '_io.BufferedReader' objects>"
+        ], 
+        "107": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.BufferedReader' objects>"
+        ], 
+        "108": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedReader' objects>"
+        ], 
+        "109": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedReader' objects>"
+        ], 
+        "110": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.BufferedReader' objects>"
+        ], 
+        "111": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.BufferedReader' objects>"
+        ], 
+        "112": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'peek' of '_io.BufferedReader' objects>"
+        ], 
+        "113": [
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'raw' of '_io.BufferedReader' objects>"
+        ], 
+        "114": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.BufferedReader' objects>"
+        ], 
+        "115": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read1' of '_io.BufferedReader' objects>"
+        ], 
+        "116": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedReader' objects>"
+        ], 
+        "117": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.BufferedReader' objects>"
+        ], 
+        "118": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.BufferedReader' objects>"
+        ], 
+        "119": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BufferedReader' objects>"
+        ], 
+        "120": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.BufferedReader' objects>"
+        ], 
+        "121": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BufferedReader' objects>"
+        ], 
+        "122": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedReader' objects>"
+        ], 
+        "123": [
+          "CLASS", 
+          "BufferedWriter", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              124
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              125
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              126
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              127
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              128
+            ]
+          ], 
+          [
+            "_dealloc_warn", 
+            [
+              "REF", 
+              129
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              130
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              131
+            ]
+          ], 
+          [
+            "detach", 
+            [
+              "REF", 
+              132
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              133
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              134
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              135
+            ]
+          ], 
+          [
+            "mode", 
+            [
+              "REF", 
+              136
+            ]
+          ], 
+          [
+            "name", 
+            [
+              "REF", 
+              137
+            ]
+          ], 
+          [
+            "raw", 
+            [
+              "REF", 
+              138
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              139
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              140
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              141
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              142
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              143
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              144
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              145
+            ]
+          ]
+        ], 
+        "124": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BufferedWriter' objects>"
+        ], 
+        "125": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BufferedWriter' objects>"
+        ], 
+        "126": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "127": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.BufferedWriter' objects>"
+        ], 
+        "128": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BufferedWriter' objects>"
+        ], 
+        "129": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '_dealloc_warn' of '_io.BufferedWriter' objects>"
+        ], 
+        "130": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BufferedWriter' objects>"
+        ], 
+        "131": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BufferedWriter' objects>"
+        ], 
+        "132": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'detach' of '_io.BufferedWriter' objects>"
+        ], 
+        "133": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.BufferedWriter' objects>"
+        ], 
+        "134": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BufferedWriter' objects>"
+        ], 
+        "135": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BufferedWriter' objects>"
+        ], 
+        "136": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.BufferedWriter' objects>"
+        ], 
+        "137": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'name' of '_io.BufferedWriter' objects>"
+        ], 
+        "138": [
+          "INSTANCE_PPRINT", 
+          "member_descriptor", 
+          "<member 'raw' of '_io.BufferedWriter' objects>"
+        ], 
+        "139": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BufferedWriter' objects>"
+        ], 
+        "140": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.BufferedWriter' objects>"
+        ], 
+        "141": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BufferedWriter' objects>"
+        ], 
+        "142": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.BufferedWriter' objects>"
+        ], 
+        "143": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BufferedWriter' objects>"
+        ], 
+        "144": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BufferedWriter' objects>"
+        ], 
+        "145": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.BufferedWriter' objects>"
+        ], 
+        "146": [
+          "CLASS", 
+          "FileIO", 
+          [
+            "_RawIOBase"
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              147
+            ]
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              148
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              149
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              150
+            ]
+          ], 
+          [
+            "__repr__", 
+            [
+              "REF", 
+              151
+            ]
+          ], 
+          [
+            "_dealloc_warn", 
+            [
+              "REF", 
+              152
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              153
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              154
+            ]
+          ], 
+          [
+            "closefd", 
+            [
+              "REF", 
+              155
+            ]
+          ], 
+          [
+            "fileno", 
+            [
+              "REF", 
+              156
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              157
+            ]
+          ], 
+          [
+            "mode", 
+            [
+              "REF", 
+              158
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              159
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              160
+            ]
+          ], 
+          [
+            "readall", 
+            [
+              "REF", 
+              161
+            ]
+          ], 
+          [
+            "readinto", 
+            [
+              "REF", 
+              162
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              163
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              164
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              165
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              166
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              167
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              168
+            ]
+          ]
+        ], 
+        "147": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of '_io.FileIO' objects>"
+        ], 
+        "148": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.FileIO' objects>"
+        ], 
+        "149": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.FileIO' objects>"
+        ], 
+        "150": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "151": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__repr__' of '_io.FileIO' objects>"
+        ], 
+        "152": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '_dealloc_warn' of '_io.FileIO' objects>"
+        ], 
+        "153": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.FileIO' objects>"
+        ], 
+        "154": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.FileIO' objects>"
+        ], 
+        "155": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closefd' of '_io.FileIO' objects>"
+        ], 
+        "156": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'fileno' of '_io.FileIO' objects>"
+        ], 
+        "157": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.FileIO' objects>"
+        ], 
+        "158": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'mode' of '_io.FileIO' objects>"
+        ], 
+        "159": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.FileIO' objects>"
+        ], 
+        "160": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.FileIO' objects>"
+        ], 
+        "161": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readall' of '_io.FileIO' objects>"
+        ], 
+        "162": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readinto' of '_io.FileIO' objects>"
+        ], 
+        "163": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.FileIO' objects>"
+        ], 
+        "164": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.FileIO' objects>"
+        ], 
+        "165": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.FileIO' objects>"
+        ], 
+        "166": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.FileIO' objects>"
+        ], 
+        "167": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.FileIO' objects>"
+        ], 
+        "168": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.FileIO' objects>"
+        ], 
+        "169": [
+          "CLASS", 
+          "BytesIO", 
+          [
+            "_BufferedIOBase"
+          ], 
+          [
+            "__getstate__", 
+            [
+              "REF", 
+              170
+            ]
+          ], 
+          [
+            "__init__", 
+            [
+              "REF", 
+              171
+            ]
+          ], 
+          [
+            "__iter__", 
+            [
+              "REF", 
+              172
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              173
+            ]
+          ], 
+          [
+            "__next__", 
+            [
+              "REF", 
+              174
+            ]
+          ], 
+          [
+            "__setstate__", 
+            [
+              "REF", 
+              175
+            ]
+          ], 
+          [
+            "__sizeof__", 
+            [
+              "REF", 
+              176
+            ]
+          ], 
+          [
+            "close", 
+            [
+              "REF", 
+              177
+            ]
+          ], 
+          [
+            "closed", 
+            [
+              "REF", 
+              178
+            ]
+          ], 
+          [
+            "flush", 
+            [
+              "REF", 
+              179
+            ]
+          ], 
+          [
+            "getbuffer", 
+            [
+              "REF", 
+              180
+            ]
+          ], 
+          [
+            "getvalue", 
+            [
+              "REF", 
+              181
+            ]
+          ], 
+          [
+            "isatty", 
+            [
+              "REF", 
+              182
+            ]
+          ], 
+          [
+            "read", 
+            [
+              "REF", 
+              183
+            ]
+          ], 
+          [
+            "read1", 
+            [
+              "REF", 
+              184
+            ]
+          ], 
+          [
+            "readable", 
+            [
+              "REF", 
+              185
+            ]
+          ], 
+          [
+            "readinto", 
+            [
+              "REF", 
+              186
+            ]
+          ], 
+          [
+            "readline", 
+            [
+              "REF", 
+              187
+            ]
+          ], 
+          [
+            "readlines", 
+            [
+              "REF", 
+              188
+            ]
+          ], 
+          [
+            "seek", 
+            [
+              "REF", 
+              189
+            ]
+          ], 
+          [
+            "seekable", 
+            [
+              "REF", 
+              190
+            ]
+          ], 
+          [
+            "tell", 
+            [
+              "REF", 
+              191
+            ]
+          ], 
+          [
+            "truncate", 
+            [
+              "REF", 
+              192
+            ]
+          ], 
+          [
+            "writable", 
+            [
+              "REF", 
+              193
+            ]
+          ], 
+          [
+            "write", 
+            [
+              "REF", 
+              194
+            ]
+          ], 
+          [
+            "writelines", 
+            [
+              "REF", 
+              195
+            ]
+          ]
+        ], 
+        "170": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__getstate__' of '_io.BytesIO' objects>"
+        ], 
+        "171": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__init__' of '_io.BytesIO' objects>"
+        ], 
+        "172": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__iter__' of '_io.BytesIO' objects>"
+        ], 
+        "173": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "174": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__next__' of '_io.BytesIO' objects>"
+        ], 
+        "175": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__setstate__' of '_io.BytesIO' objects>"
+        ], 
+        "176": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method '__sizeof__' of '_io.BytesIO' objects>"
+        ], 
+        "177": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'close' of '_io.BytesIO' objects>"
+        ], 
+        "178": [
+          "INSTANCE_PPRINT", 
+          "getset_descriptor", 
+          "<attribute 'closed' of '_io.BytesIO' objects>"
+        ], 
+        "179": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'flush' of '_io.BytesIO' objects>"
+        ], 
+        "180": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'getbuffer' of '_io.BytesIO' objects>"
+        ], 
+        "181": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'getvalue' of '_io.BytesIO' objects>"
+        ], 
+        "182": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'isatty' of '_io.BytesIO' objects>"
+        ], 
+        "183": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read' of '_io.BytesIO' objects>"
+        ], 
+        "184": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'read1' of '_io.BytesIO' objects>"
+        ], 
+        "185": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readable' of '_io.BytesIO' objects>"
+        ], 
+        "186": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readinto' of '_io.BytesIO' objects>"
+        ], 
+        "187": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readline' of '_io.BytesIO' objects>"
+        ], 
+        "188": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'readlines' of '_io.BytesIO' objects>"
+        ], 
+        "189": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seek' of '_io.BytesIO' objects>"
+        ], 
+        "190": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'seekable' of '_io.BytesIO' objects>"
+        ], 
+        "191": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'tell' of '_io.BytesIO' objects>"
+        ], 
+        "192": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'truncate' of '_io.BytesIO' objects>"
+        ], 
+        "193": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writable' of '_io.BytesIO' objects>"
+        ], 
+        "194": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'write' of '_io.BytesIO' objects>"
+        ], 
+        "195": [
+          "INSTANCE_PPRINT", 
+          "method_descriptor", 
+          "<method 'writelines' of '_io.BytesIO' objects>"
+        ]
+      }, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+to deal with docker memory and resource leaks that are really hard to
+debug, periodically kill docker processes and even reboot the entire
+machine ...
+
+---
+Example root crontab:
+
+$ sudo crontab -l
+0 9 * * * /sbin/shutdown -r now
+0 21 * * * /sbin/shutdown -r now
+0 4 15 */2 * /home/pgbovine/letsencrypt/certbot-auto renew
+
+
+Example user crontab to periodically flush away docker containers:
+
+$ crontab -l
+@reboot /home/pgbovine/linode-forever-processes.sh
+*/5 * * * * docker rm -f $(docker ps -aq)
+
+# apparently this command removes only *stopped* containers:
+*/5 * * * * docker rm $(docker ps -a -q)
+
+# very aggressively remove long-running containers ...
+@reboot /home/pgbovine/linode-forever-processes.sh
+*/1 * * * * /home/pgbovine/OnlinePythonTutor/v4-cokapi/docker-rm-long-processes.py >> /home/pgbovine/docker-rm.out 2>> /home/pgbovine/docker-rm.err

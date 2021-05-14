@@ -1,0 +1,51 @@
+#   o p t M i n p a t h . p y
+#
+#  Chris Meyers. 09/25/2013
+#
+from htmlFrame import HtmlFrame
+from matrix import Matrix
+
+from random     import randint
+import random
+random.seed(0) # for determinism
+
+htmlPage = HtmlFrame()
+htmlPage.banner = "Minimum Path from top to bottom"
+
+def renderTriangle(t) :
+    t.dftFormat = "<pre>%03s</pre>"
+    t.tableAttr='border="0" cellspacing="0" cellpadding="4"'
+    return t.renderHtml()
+
+def minpath(nrows) :
+  mat = Matrix(1,2)
+  tri = Matrix(nrows,nrows)
+  org = Matrix(nrows,nrows)
+  for r in range(nrows) :
+    vals = [randint(1,9) for c in range(r+1)]
+    tri.setrowVals(r,vals)
+    org.setrowVals(r,vals)
+
+  org.title = "Original Values"
+  mat[0,0] = renderTriangle(org)
+  mat.tableAttr='border="1" cellspacing="0" cellpadding="4"'
+
+  tri.style.setrowVal(nrows-1,"background-color:lightgreen")
+  for row in range(nrows-2,-1,-1) :
+    for col in range(row+1) :
+      left = tri[row+1,col]
+      right= tri[row+1,col+1]
+      this = tri[row,col]
+      tri.style[row,col] = "background-color:pink"
+      tri.title = "Set to min(%s+%s, %s+%s)" % (this,left,this,right)
+      mat[0,1] = renderTriangle(tri)
+      htmlPage.item1 = mat.renderHtml()
+      htmlPage.makeFrame()  #break
+      tri[row,col] = best = min(this+left,this+right)
+      tri.style[row,col] = "background-color:lightgreen"
+  mat[0,1] = renderTriangle(tri)
+  htmlPage.item1 = mat.renderHtml()
+  htmlPage.banner = "Miniumum cost is %s" % best
+  htmlPage.makeFrame()  #break
+
+minpath(4)

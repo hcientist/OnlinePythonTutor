@@ -1,0 +1,1 @@
+{"code": "#include <stdlib.h>\n\nint main() {\n  int* x = malloc(2*sizeof(*x));\n}", "trace": [{"exception_msg": "error: invalid conversion from \u2018void*\u2019 to \u2018int*\u2019 [-fpermissive]", "line": 4, "event": "uncaught_exception"}]}

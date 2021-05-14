@@ -1,0 +1,25 @@
+{
+  "name": "jslogger",
+  "version": "1.0.0",
+  "description": "JavaScript backend for Python Tutor",
+  "main": "jslogger.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/pgbovine/OnlinePythonTutor"
+  },
+  "author": "Philip Guo",
+  "license": "MIT",
+  "dependencies": {
+    "eval": "0.1.0",
+    "minimist": "^1.2.0",
+    "source-map": "^0.5.6",
+    "typescript": "1.4",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "code": "int main() {\n  char *string = \"The quick brown fox\";\n  memcpy(&string[4], \"slow \", 5); // <-- not allowed!\n  printf(\"%s\\n\", string);\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "string": [
+              "C_DATA", 
+              "0xFFF0001C0", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0001D0", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 1, 
+          "ordered_varnames": [
+            "string"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF0001D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "string": [
+              "C_DATA", 
+              "0xFFF0001C8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0001D0", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 2, 
+          "ordered_varnames": [
+            "string"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF0001D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x400664": [
+          "C_ARRAY", 
+          "0x400664", 
+          [
+            "C_DATA", 
+            "0x400664", 
+            "char", 
+            "T"
+          ], 
+          [
+            "C_DATA", 
+            "0x400665", 
+            "char", 
+            "h"
+          ], 
+          [
+            "C_DATA", 
+            "0x400666", 
+            "char", 
+            "e"
+          ], 
+          [
+            "C_DATA", 
+            "0x400667", 
+            "char", 
+            " "
+          ], 
+          [
+            "C_DATA", 
+            "0x400668", 
+            "char", 
+            "q"
+          ], 
+          [
+            "C_DATA", 
+            "0x400669", 
+            "char", 
+            "u"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066A", 
+            "char", 
+            "i"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066B", 
+            "char", 
+            "c"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066C", 
+            "char", 
+            "k"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066D", 
+            "char", 
+            " "
+          ], 
+          [
+            "C_DATA", 
+            "0x40066E", 
+            "char", 
+            "b"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066F", 
+            "char", 
+            "r"
+          ], 
+          [
+            "C_DATA", 
+            "0x400670", 
+            "char", 
+            "o"
+          ], 
+          [
+            "C_DATA", 
+            "0x400671", 
+            "char", 
+            "w"
+          ], 
+          [
+            "C_DATA", 
+            "0x400672", 
+            "char", 
+            "n"
+          ], 
+          [
+            "C_DATA", 
+            "0x400673", 
+            "char", 
+            " "
+          ], 
+          [
+            "C_DATA", 
+            "0x400674", 
+            "char", 
+            "f"
+          ], 
+          [
+            "C_DATA", 
+            "0x400675", 
+            "char", 
+            "o"
+          ], 
+          [
+            "C_DATA", 
+            "0x400676", 
+            "char", 
+            "x"
+          ], 
+          [
+            "C_DATA", 
+            "0x400677", 
+            "char", 
+            "\\0"
+          ]
+        ]
+      }, 
+      "line": 3, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "string": [
+              "C_DATA", 
+              "0xFFF0001C8", 
+              "pointer", 
+              "0x400664"
+            ]
+          }, 
+          "frame_id": "0xFFF0001D0", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 3, 
+          "ordered_varnames": [
+            "string"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF0001D0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "exception", 
+      "exception_msg": "Process terminating with default action of signal 11 (SIGSEGV)\n Bad permissions for mapped region at address 0x400668\n   at 0x4C2F313: memcpy@@GLIBC_2.14 (vg_replace_strmem.c:1018)\n   by 0x4005C6: main (usercode.c:3)", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x400664": [
+          "C_ARRAY", 
+          "0x400664", 
+          [
+            "C_DATA", 
+            "0x400664", 
+            "char", 
+            "T"
+          ], 
+          [
+            "C_DATA", 
+            "0x400665", 
+            "char", 
+            "h"
+          ], 
+          [
+            "C_DATA", 
+            "0x400666", 
+            "char", 
+            "e"
+          ], 
+          [
+            "C_DATA", 
+            "0x400667", 
+            "char", 
+            " "
+          ], 
+          [
+            "C_DATA", 
+            "0x400668", 
+            "char", 
+            "q"
+          ], 
+          [
+            "C_DATA", 
+            "0x400669", 
+            "char", 
+            "u"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066A", 
+            "char", 
+            "i"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066B", 
+            "char", 
+            "c"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066C", 
+            "char", 
+            "k"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066D", 
+            "char", 
+            " "
+          ], 
+          [
+            "C_DATA", 
+            "0x40066E", 
+            "char", 
+            "b"
+          ], 
+          [
+            "C_DATA", 
+            "0x40066F", 
+            "char", 
+            "r"
+          ], 
+          [
+            "C_DATA", 
+            "0x400670", 
+            "char", 
+            "o"
+          ], 
+          [
+            "C_DATA", 
+            "0x400671", 
+            "char", 
+            "w"
+          ], 
+          [
+            "C_DATA", 
+            "0x400672", 
+            "char", 
+            "n"
+          ], 
+          [
+            "C_DATA", 
+            "0x400673", 
+            "char", 
+            " "
+          ], 
+          [
+            "C_DATA", 
+            "0x400674", 
+            "char", 
+            "f"
+          ], 
+          [
+            "C_DATA", 
+            "0x400675", 
+            "char", 
+            "o"
+          ], 
+          [
+            "C_DATA", 
+            "0x400676", 
+            "char", 
+            "x"
+          ], 
+          [
+            "C_DATA", 
+            "0x400677", 
+            "char", 
+            "\\0"
+          ]
+        ]
+      }, 
+      "line": 3, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "string": [
+              "C_DATA", 
+              "0xFFF0001C8", 
+              "pointer", 
+              "0x400664"
+            ]
+          }, 
+          "frame_id": "0xFFF0001D0", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 3, 
+          "ordered_varnames": [
+            "string"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF0001D0"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

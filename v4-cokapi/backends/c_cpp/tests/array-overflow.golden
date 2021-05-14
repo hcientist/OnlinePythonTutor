@@ -1,0 +1,565 @@
+{
+  "code": "#include <stdio.h>\n\nvoid foo(int* x) {\n  printf(\"%d\\n\", x[3]);\n}\n\nint main() {\n  int arr[3];\n  int overflow = 1000;\n  arr[0] = 10;\n  arr[1] = 20;\n  arr[2] = 30;\n  foo(arr);\n  return 0;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 7, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_ARRAY", 
+              "0xFFF0000F8", 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            "overflow": [
+              "C_DATA", 
+              "0xFFF0000F4", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 7, 
+          "ordered_varnames": [
+            "arr", 
+            "overflow"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_ARRAY", 
+              "0xFFF000100", 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            "overflow": [
+              "C_DATA", 
+              "0xFFF0000FC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "arr", 
+            "overflow"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 10, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_ARRAY", 
+              "0xFFF000100", 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            "overflow": [
+              "C_DATA", 
+              "0xFFF0000FC", 
+              "int", 
+              1000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 10, 
+          "ordered_varnames": [
+            "arr", 
+            "overflow"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_ARRAY", 
+              "0xFFF000100", 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            "overflow": [
+              "C_DATA", 
+              "0xFFF0000FC", 
+              "int", 
+              1000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "arr", 
+            "overflow"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 12, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_ARRAY", 
+              "0xFFF000100", 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            "overflow": [
+              "C_DATA", 
+              "0xFFF0000FC", 
+              "int", 
+              1000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 12, 
+          "ordered_varnames": [
+            "arr", 
+            "overflow"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 13, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_ARRAY", 
+              "0xFFF000100", 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                30
+              ]
+            ], 
+            "overflow": [
+              "C_DATA", 
+              "0xFFF0000FC", 
+              "int", 
+              1000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 12, 
+          "ordered_varnames": [
+            "arr", 
+            "overflow"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "call", 
+      "func_name": "foo", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 3, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_ARRAY", 
+              "0xFFF000100", 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                30
+              ]
+            ], 
+            "overflow": [
+              "C_DATA", 
+              "0xFFF0000FC", 
+              "int", 
+              1000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "arr", 
+            "overflow"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "foo", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 3, 
+          "ordered_varnames": [
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "foo_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "foo", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 4, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_ARRAY", 
+              "0xFFF000100", 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                30
+              ]
+            ], 
+            "overflow": [
+              "C_DATA", 
+              "0xFFF0000FC", 
+              "int", 
+              1000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "arr", 
+            "overflow"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "pointer", 
+              "0xFFF000100"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "foo", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 4, 
+          "ordered_varnames": [
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "foo_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "exception", 
+      "exception_msg": "ERROR: Conditional jump or move depends on uninitialised value(s)\n(Stopped running after the first error. Please fix your code.)", 
+      "func_name": "foo", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 4, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "arr": [
+              "C_ARRAY", 
+              "0xFFF000100", 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                10
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                20
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                30
+              ]
+            ], 
+            "overflow": [
+              "C_DATA", 
+              "0xFFF0000FC", 
+              "int", 
+              1000
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": false, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "arr", 
+            "overflow"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }, 
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF0000D8", 
+              "pointer", 
+              "0xFFF000100"
+            ]
+          }, 
+          "frame_id": "0xFFF0000E0", 
+          "func_name": "foo", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 4, 
+          "ordered_varnames": [
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "foo_0xFFF0000E0"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

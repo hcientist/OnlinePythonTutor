@@ -1,0 +1,11 @@
+{
+  "code": "# The ultimate Unicode test for Python 2\n\nx = '\u263a' # this is a REGULAR str with some funky bytes, NOT a smiley\ny = u'\u263a' # this is a unicode string U+263A representing a smiley\nprint x\nprint y\nassert x != y\n\nx_lst = [x]\nx_lst *= 3\n\nz = '\\x8e' # this string isn't valid unicode\nprint z\n\nprint x, y, z\n\nxyz_lst = [x, y, z]\nxyz_lst *= 3\ntypes_lst = [repr(type(e)) for e in xyz_lst]\nprint xyz_lst\n",
+  "trace": [
+    {
+      "event": "uncaught_exception",
+      "line": 5,
+      "offset": 7,
+      "exception_msg": "SyntaxError: Missing parentheses in call to 'print'. Did you mean print(x)? (<string>, line 5)"
+    }
+  ]
+}

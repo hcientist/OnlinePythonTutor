@@ -1,0 +1,4056 @@
+{
+  "code": "# Tutorial code from Prof. Peter Wentworth\n# Rhodes University, South Africa (http://www.ru.ac.za/)\n\ndef gcd(x, y, depth=1):\n    '''\n    Find the greatest common divisor of x, y\n    Pre:  x >= y,  y >= 0, both x and y are int\n    '''\n    result = x       # set provisional return value\n    if y != 0:\n        indent = \"**\" * depth\n        print((\"%s About to recursively call gcd(%d, %d)\" % (indent, y, x%y)))\n        result = gcd(y, x % y, depth+1)\n        print((\"%s result is %d\" % (indent, result)))\n    return result\n\ndef main():\n    m = 77\n    n = 28\n    print((\"Finding gcd(%d, %d)\" % (m,n)))\n    g = gcd(m, n)\n    print(('Greatest common divisor of %d, %d = %d'\n          % (m, n, g)))\n\nmain()\n\n",
+  "trace": [
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 17,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "gcd"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 25,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 17,
+      "event": "call",
+      "func_name": "main",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "main_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 18,
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "main_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 19,
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77
+          },
+          "ordered_varnames": [
+            "m"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "main_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 20,
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "main_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 21,
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "main_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n"
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n"
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n"
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n"
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n"
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n"
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n"
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 21
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n"
+    },
+    {
+      "line": 11,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 21
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n"
+    },
+    {
+      "line": 12,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 21,
+            "indent": "******"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n"
+    },
+    {
+      "line": 13,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 21,
+            "indent": "******"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n"
+    },
+    {
+      "line": 4,
+      "event": "call",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 21,
+            "indent": "******"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f4"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 4,
+            "y": 0,
+            "x": 7
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n"
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 21,
+            "indent": "******"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f4"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 4,
+            "y": 0,
+            "x": 7
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n"
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 21,
+            "indent": "******"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f4"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 4,
+            "y": 0,
+            "x": 7,
+            "result": 7
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n"
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 21,
+            "indent": "******"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f4"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 4,
+            "y": 0,
+            "x": 7,
+            "result": 7
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n"
+    },
+    {
+      "line": 15,
+      "event": "return",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 21,
+            "indent": "******"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f4"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 4,
+            "y": 0,
+            "x": 7,
+            "result": 7,
+            "__return__": 7
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f5"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n"
+    },
+    {
+      "line": 14,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 7,
+            "indent": "******"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n"
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 7,
+            "indent": "******"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n"
+    },
+    {
+      "line": 15,
+      "event": "return",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 28,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f3"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 3,
+            "y": 7,
+            "x": 21,
+            "result": 7,
+            "indent": "******",
+            "__return__": 7
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f4"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n"
+    },
+    {
+      "line": 14,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 7,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n"
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 7,
+            "indent": "****"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n**** result is 7\n"
+    },
+    {
+      "line": 15,
+      "event": "return",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 77,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "gcd_f2"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 2,
+            "y": 21,
+            "x": 28,
+            "result": 7,
+            "indent": "****",
+            "__return__": 7
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f3"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n**** result is 7\n"
+    },
+    {
+      "line": 14,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 7,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n**** result is 7\n"
+    },
+    {
+      "line": 15,
+      "event": "step_line",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 7,
+            "indent": "**"
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n**** result is 7\n** result is 7\n"
+    },
+    {
+      "line": 15,
+      "event": "return",
+      "func_name": "gcd",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28
+          },
+          "ordered_varnames": [
+            "m",
+            "n"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "main_f1"
+        },
+        {
+          "func_name": "gcd",
+          "is_parent": false,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "depth": 1,
+            "y": 28,
+            "x": 77,
+            "result": 7,
+            "indent": "**",
+            "__return__": 7
+          },
+          "ordered_varnames": [
+            "x",
+            "y",
+            "depth",
+            "result",
+            "indent",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "gcd_f2"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n**** result is 7\n** result is 7\n"
+    },
+    {
+      "line": 22,
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28,
+            "g": 7
+          },
+          "ordered_varnames": [
+            "m",
+            "n",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "main_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n**** result is 7\n** result is 7\n"
+    },
+    {
+      "line": 23,
+      "event": "step_line",
+      "func_name": "main",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28,
+            "g": 7
+          },
+          "ordered_varnames": [
+            "m",
+            "n",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "main_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n**** result is 7\n** result is 7\n"
+    },
+    {
+      "line": 23,
+      "event": "return",
+      "func_name": "main",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "main",
+          "is_parent": false,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "m": 77,
+            "n": 28,
+            "g": 7,
+            "__return__": null
+          },
+          "ordered_varnames": [
+            "m",
+            "n",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "main_f1"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n**** result is 7\n** result is 7\nGreatest common divisor of 77, 28 = 7\n"
+    },
+    {
+      "line": 25,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "gcd": [
+          "REF",
+          1
+        ],
+        "main": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gcd",
+        "main"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gcd(x, y, depth)",
+          null,
+          [
+            [
+              "depth",
+              1
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "main()",
+          null
+        ]
+      },
+      "stdout": "Finding gcd(77, 28)\n** About to recursively call gcd(28, 21)\n**** About to recursively call gcd(21, 7)\n****** About to recursively call gcd(7, 0)\n****** result is 7\n**** result is 7\n** result is 7\nGreatest common divisor of 77, 28 = 7\n"
+    }
+  ]
+}

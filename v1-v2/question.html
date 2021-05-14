@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) 2010-2012 Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ -->
+
+
+<head>
+  <title>Online Python Tutor: Practice Questions</title>
+
+<!-- jQuery 1.6.0 -->
+
+<!-- local version for offline testing -->
+<script type="text/javascript" src="jquery.min.js"></script>
+
+<!-- online version hosted by Google -->
+<!--
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+ -->
+
+<script type="text/javascript" src="hunt-mcilroy.js"></script>
+
+<script type="text/javascript" src="jquery.ba-bbq.min.js"></script>
+
+<!-- jsPlumb library for rendering connectors -->
+<script type="text/javascript" src="jquery.jsPlumb-1.3.3-all-min.js "></script>
+
+<!-- my own code -->
+<script type="text/javascript" src="edu-python.js"></script>
+<script type="text/javascript" src="edu-python-questions.js"></script>
+
+<link rel="stylesheet" href="edu-python.css" type="text/css"/>
+
+</head>
+
+<body>
+
+
+<center>
+
+<div id="questionsHeaderPane">
+
+<div class="questionsHeaderTitle" id="ProblemName">Please load a question ...</div>
+
+<div class="questionsHeaderStmt" id="ProblemStatement"></div>
+
+<div class="questionsHeaderStmt" id="HintStatement"><a href="#" id="showHintHref">Show hint</a></div>
+<div class="questionsHeaderStmt" id="SolutionStatement"><a href="#" id="showSolutionHref">Show solution</a></div>
+
+</div>
+
+</center>
+
+
+<div id="pyInputPane">
+
+<p/>Write your solution code here:<br/>
+<textarea class="codeInputPane" id="actualCodeInput" cols="60" rows="15" wrap="off">
+</textarea>
+
+<p/>Write your test code here:<br/>
+<textarea class="codeInputPane" id="testCodeInput" cols="60" rows="3" wrap="off">
+</textarea>
+
+<p>
+
+<button id="executeBtn" class="bigBtn" type="button">Visualize execution</button>
+
+</div>
+
+
+<table border="0" id="pyOutputPane">
+<tr>
+<td valign="top">
+
+<center>
+
+<div id="pyCodeOutputDiv">
+
+Use <b>left</b> and <b>right</b> arrow keys to step through this code:
+<table id="pyCodeOutput"></table>
+
+</div>
+
+<div id="editCodeLinkDiv">
+
+<button id="editBtn" class="medBtn" type="button">Edit code</button>
+<span style="margin-left: 7px;"/>
+<button id="submitBtn" class="medBtn" type="button">Submit answer</button>
+
+</div>
+
+<div id="vcrControls">
+  <button id="jmpFirstInstr", type="button">&lt;&lt; First</button>
+  <button id="jmpStepBack", type="button">&lt; Back</button>
+  <span id="curInstr">Step ? of ?</span>
+  <button id="jmpStepFwd", type="button">Forward &gt;</button>
+  <button id="jmpLastInstr", type="button">Last &gt;&gt;</button>
+</div>
+
+<div id="errorOutput"></div>
+
+
+</center>
+
+Program output:
+<br/>
+<textarea id="pyStdout" cols="50" rows="13" wrap="off" readonly></textarea>
+
+
+</td>
+<td valign="top">
+
+<div id="dataViz"></div>
+
+</td>
+</tr>
+</table>
+
+
+<div id="pyGradingPane">
+
+
+<center>
+
+<div id="submittedSolutionDisplay">
+  <pre id="submittedCodePRE"></pre>
+  <div id="gradeSummary"></div>
+</div>
+
+<table id="gradeMatrix">
+<thead>
+<tr>
+<td>Input</td>
+<td>Result</td>
+<td class="statusCell">Status</td>
+<td></td>
+</tr>
+</thead>
+<tbody id="gradeMatrixTbody">
+</tbody>
+</table>
+
+</center>
+
+</div>
+
+
+<center>
+
+<div id="footer">
+
+<input type="checkbox" id="classicModeCheckbox"/> Use low-bandwidth mode (for older browsers)
+
+<p><a href="tutor.html">Write Python code and visualize execution</a></p>
+
+<p>
+Solve:
+<a href="question.html?two-sum">Two-sum</a> |
+<a href="question.html?reverse">Reverse list</a> |
+<a href="question.html?remove-dups">Remove duplicate chars</a>
+
+<br/>Debug:
+<a href="question.html?debug-ireverse">In-place reverse</a> |
+<a href="question.html?debug-bsearch">Binary search</a> |
+<a href="question.html?debug-mergesort">Mergesort</a>
+
+<br/>Optimize:
+
+<a href="question.html?optimize-sum">Greatest sum</a> |
+<a href="question.html?optimize-find-dups">Find duplicates</a> |
+<a href="question.html?optimize-search">List search</a>
+
+</p>
+
+<p/>
+This application supports the core <a
+href="http://docs.python.org/release/2.6/">Python 2.6</a> language, with no
+module imports or file I/O.  It's meant to be used as a platform for
+creating programming tutorials, not for running or debugging
+production code.
+
+<p style="margin-top: 8px;"/> 
+Check out the <a
+href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub</a>
+repository and send bug reports, feedback, and suggestions to philip@pgbovine.net
+
+<p style="margin-top: 8px;"/>
+Copyright &copy; 2010-2012 <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+</div>
+
+</center>
+
+</body>
+</html>

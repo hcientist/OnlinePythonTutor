@@ -1,0 +1,7684 @@
+{
+  "code": "def f(x):\n    def g(y, z):\n        if z == 0:\n            return y\n        return g(x+y+z, z-1)\n    return lambda: g(0, x)\n\nfoo = f(3)\nbar = f(4)\nbaz = foo() + bar()\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 8,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "call",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1_p"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1_p"
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1_p"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "f"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f1_p"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 9,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "call",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2_p"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4
+          },
+          "ordered_varnames": [
+            "x"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2_p"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2_p"
+        }
+      ],
+      "heap": {
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "f",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "f_f2_p"
+        }
+      ],
+      "heap": {
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "call",
+      "func_name": "<lambda>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 6>_f3"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<lambda>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 6>_f3"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f4"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f4"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f4"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f5"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f5"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f5"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f5"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 6,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 11
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f6"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f5"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 6,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 11
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f6"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f5"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 6,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 11
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f6"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f5"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 6,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 11
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f6"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 7,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 0,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f7"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f5"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 6,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 11
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f6"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 7,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 0,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f7"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f5"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 6,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 11
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f6"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 7,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 0,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f7"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f5"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 6,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 11
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f6"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 7,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 0,
+            "y": 15,
+            "__return__": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f7"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f5"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 6,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 11,
+            "__return__": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f6"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f4"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 5,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 6,
+            "__return__": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f5"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f3"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 4,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 0,
+            "__return__": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f4"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "<lambda>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 3,
+          "parent_frame_id_list": [
+            1
+          ],
+          "encoded_locals": {
+            "__return__": 15
+          },
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 6>_f3"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "call",
+      "func_name": "<lambda>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 6>_f8"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<lambda>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 6>_f8"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f9"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f9"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f9"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f10"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f10"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f10"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f11"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f11"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f11"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f11"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 12,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 21
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f12"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f11"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 12,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 21
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f12"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f11"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 12,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 21
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f12"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "call",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f11"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 12,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 21
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f12"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 13,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 0,
+            "y": 26
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f13"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f11"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 12,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 21
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f12"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 13,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 0,
+            "y": 26
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f13"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f11"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 12,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 21
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f12"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 13,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 0,
+            "y": 26
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f13"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f11"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 12,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 21
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f12"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 13,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 0,
+            "y": 26,
+            "__return__": 26
+          },
+          "ordered_varnames": [
+            "y",
+            "z",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f13"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f11"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 12,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 1,
+            "y": 21,
+            "__return__": 26
+          },
+          "ordered_varnames": [
+            "y",
+            "z",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f12"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f10"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 11,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 2,
+            "y": 15,
+            "__return__": 26
+          },
+          "ordered_varnames": [
+            "y",
+            "z",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f11"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0
+          },
+          "ordered_varnames": [
+            "y",
+            "z"
+          ],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "g_f9"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 10,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 3,
+            "y": 8,
+            "__return__": 26
+          },
+          "ordered_varnames": [
+            "y",
+            "z",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f10"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "return",
+      "func_name": "g",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {},
+          "ordered_varnames": [],
+          "is_zombie": false,
+          "is_highlighted": false,
+          "unique_hash": "<lambda> <line 6>_f8"
+        },
+        {
+          "func_name": "g",
+          "is_parent": false,
+          "frame_id": 9,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "z": 4,
+            "y": 0,
+            "__return__": 26
+          },
+          "ordered_varnames": [
+            "y",
+            "z",
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "g_f9"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "<lambda>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        },
+        {
+          "func_name": "<lambda> <line 6>",
+          "is_parent": false,
+          "frame_id": 8,
+          "parent_frame_id_list": [
+            2
+          ],
+          "encoded_locals": {
+            "__return__": 26
+          },
+          "ordered_varnames": [
+            "__return__"
+          ],
+          "is_zombie": false,
+          "is_highlighted": true,
+          "unique_hash": "<lambda> <line 6>_f8"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 10,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "f": [
+          "REF",
+          1
+        ],
+        "foo": [
+          "REF",
+          3
+        ],
+        "bar": [
+          "REF",
+          5
+        ],
+        "baz": 41
+      },
+      "ordered_globals": [
+        "f",
+        "foo",
+        "bar",
+        "baz"
+      ],
+      "stack_to_render": [
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 1,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 3,
+            "g": [
+              "REF",
+              2
+            ],
+            "__return__": [
+              "REF",
+              3
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f1_p_z"
+        },
+        {
+          "func_name": "f",
+          "is_parent": true,
+          "frame_id": 2,
+          "parent_frame_id_list": [],
+          "encoded_locals": {
+            "x": 4,
+            "g": [
+              "REF",
+              4
+            ],
+            "__return__": [
+              "REF",
+              5
+            ]
+          },
+          "ordered_varnames": [
+            "x",
+            "g",
+            "__return__"
+          ],
+          "is_zombie": true,
+          "is_highlighted": false,
+          "unique_hash": "f_f2_p_z"
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "g(y, z)",
+          1
+        ],
+        "3": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          1
+        ],
+        "4": [
+          "FUNCTION",
+          "g(y, z)",
+          2
+        ],
+        "5": [
+          "FUNCTION",
+          "<lambda>() <line 6>",
+          2
+        ],
+        "1": [
+          "FUNCTION",
+          "f(x)",
+          null
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

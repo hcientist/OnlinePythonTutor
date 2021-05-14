@@ -1,0 +1,33 @@
+{
+  "code": "# In Python 3, raw_input is called input\nprefix = \"Hello \"\n\nn1 = input(\"Enter your name\")\n\nn2 = input(\"Enter another name\")\n\nres = prefix + n1 + \" and \" + n2\nprint(res)\n",
+  "trace": [
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "prefix": "Hello "
+      },
+      "ordered_globals": [
+        "prefix"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "event": "raw_input",
+      "prompt": "Enter your name"
+    }
+  ]
+}

@@ -1,0 +1,1771 @@
+{
+  "code": "=begin\nAdapted from Learning Ruby by Michael Fitzgerald, O'Reilly\n\nlalala\n=end\n\nclass Hello\n  def howdy\n    greeting = \"Hello, Matz!\"\n    puts greeting\n  end\nend\n\nclass Goodbye < Hello\n  def solong\n    farewell = \"Goodbye, Matz.\"\n    puts farewell\n  end\nend\n\nfriendly = Goodbye.new\nfriendly.howdy\nfriendly.solong\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Hello>:7",
+          "frame_id": 2,
+          "unique_hash": "<class:Hello>:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Hello"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Hello>:8",
+          "frame_id": 2,
+          "unique_hash": "<class:Hello>:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Hello"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 12,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Hello>:12",
+          "frame_id": 2,
+          "unique_hash": "<class:Hello>:12_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Hello"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Hello"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Goodbye>:14",
+          "frame_id": 2,
+          "unique_hash": "<class:Goodbye>:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ]
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Goodbye>:15",
+          "frame_id": 2,
+          "unique_hash": "<class:Goodbye>:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              6
+            ]
+          ]
+        ],
+        "6": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ]
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:14",
+          "frame_id": 1,
+          "unique_hash": "<main>:14_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:Goodbye>:19",
+          "frame_id": 2,
+          "unique_hash": "<class:Goodbye>:19_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              5
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "7": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              8
+            ]
+          ]
+        ],
+        "8": [
+          "FUNCTION",
+          "solong",
+          ""
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 21,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:21",
+          "frame_id": 1,
+          "unique_hash": "<main>:21_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              9
+            ]
+          ]
+        ],
+        "9": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              10
+            ]
+          ]
+        ],
+        "10": [
+          "FUNCTION",
+          "solong",
+          ""
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 22,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              11
+            ]
+          ]
+        ],
+        "11": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              12
+            ]
+          ]
+        ],
+        "12": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "howdy:8",
+          "frame_id": 2,
+          "unique_hash": "howdy:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "greeting"
+          ],
+          "encoded_locals": {
+            "greeting": null,
+            "self": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              14
+            ]
+          ]
+        ],
+        "14": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              15
+            ]
+          ]
+        ],
+        "15": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "howdy:9",
+          "frame_id": 2,
+          "unique_hash": "howdy:9_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "greeting"
+          ],
+          "encoded_locals": {
+            "greeting": null,
+            "self": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              16
+            ]
+          ]
+        ],
+        "16": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              17
+            ]
+          ]
+        ],
+        "17": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "howdy:10",
+          "frame_id": 2,
+          "unique_hash": "howdy:10_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "greeting"
+          ],
+          "encoded_locals": {
+            "greeting": "Hello, Matz!",
+            "self": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              18
+            ]
+          ]
+        ],
+        "18": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              19
+            ]
+          ]
+        ],
+        "19": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "Hello, Matz!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:22",
+          "frame_id": 1,
+          "unique_hash": "<main>:22_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "howdy:11",
+          "frame_id": 2,
+          "unique_hash": "howdy:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "greeting",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "greeting": "Hello, Matz!",
+            "self": [
+              "REF",
+              13
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              20
+            ]
+          ]
+        ],
+        "20": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              21
+            ]
+          ]
+        ],
+        "21": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 23,
+      "event": "step_line",
+      "stdout": "Hello, Matz!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:23",
+          "frame_id": 1,
+          "unique_hash": "<main>:23_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              22
+            ]
+          ]
+        ],
+        "22": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              23
+            ]
+          ]
+        ],
+        "23": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "call",
+      "stdout": "Hello, Matz!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:23",
+          "frame_id": 1,
+          "unique_hash": "<main>:23_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "solong:15",
+          "frame_id": 2,
+          "unique_hash": "solong:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "farewell"
+          ],
+          "encoded_locals": {
+            "farewell": null,
+            "self": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              24
+            ]
+          ]
+        ],
+        "24": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              25
+            ]
+          ]
+        ],
+        "25": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "Hello, Matz!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:23",
+          "frame_id": 1,
+          "unique_hash": "<main>:23_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "solong:16",
+          "frame_id": 2,
+          "unique_hash": "solong:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "farewell"
+          ],
+          "encoded_locals": {
+            "farewell": null,
+            "self": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              26
+            ]
+          ]
+        ],
+        "26": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              27
+            ]
+          ]
+        ],
+        "27": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 17,
+      "event": "step_line",
+      "stdout": "Hello, Matz!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:23",
+          "frame_id": 1,
+          "unique_hash": "<main>:23_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "solong:17",
+          "frame_id": 2,
+          "unique_hash": "solong:17_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "farewell"
+          ],
+          "encoded_locals": {
+            "farewell": "Goodbye, Matz.",
+            "self": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              28
+            ]
+          ]
+        ],
+        "28": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              29
+            ]
+          ]
+        ],
+        "29": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "return",
+      "stdout": "Hello, Matz!\nGoodbye, Matz.\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:23",
+          "frame_id": 1,
+          "unique_hash": "<main>:23_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "solong:18",
+          "frame_id": 2,
+          "unique_hash": "solong:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "farewell",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "farewell": "Goodbye, Matz.",
+            "self": [
+              "REF",
+              13
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              30
+            ]
+          ]
+        ],
+        "30": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              31
+            ]
+          ]
+        ],
+        "31": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 23,
+      "event": "step_line",
+      "stdout": "Hello, Matz!\nGoodbye, Matz.\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:24",
+          "frame_id": 1,
+          "unique_hash": "<main>:24_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "friendly"
+          ],
+          "encoded_locals": {
+            "friendly": [
+              "REF",
+              13
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "Hello",
+          [
+
+          ],
+          [
+            "howdy",
+            [
+              "REF",
+              32
+            ]
+          ]
+        ],
+        "32": [
+          "FUNCTION",
+          "howdy",
+          ""
+        ],
+        "5": [
+          "CLASS",
+          "Goodbye",
+          [
+            "Hello"
+          ],
+          [
+            "solong",
+            [
+              "REF",
+              33
+            ]
+          ]
+        ],
+        "33": [
+          "FUNCTION",
+          "solong",
+          ""
+        ],
+        "13": [
+          "INSTANCE",
+          "Goodbye"
+        ]
+      },
+      "globals": {
+        "Hello": [
+          "REF",
+          1
+        ],
+        "Goodbye": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "Hello",
+        "Goodbye"
+      ]
+    }
+  ]
+}

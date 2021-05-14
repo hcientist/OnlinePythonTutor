@@ -1,0 +1,91 @@
+{
+  "code": "import operator\nfrom math import pi, e\npie = operator.add(pi, e)\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "operator": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "operator"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "operator": [
+          "REF",
+          1
+        ],
+        "pi": 3.1416,
+        "e": 2.7183
+      },
+      "ordered_globals": [
+        "operator",
+        "pi",
+        "e"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "operator": [
+          "REF",
+          1
+        ],
+        "pi": 3.1416,
+        "e": 2.7183,
+        "pie": 5.8599
+      },
+      "ordered_globals": [
+        "operator",
+        "pi",
+        "e",
+        "pie"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

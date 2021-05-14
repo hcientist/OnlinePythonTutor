@@ -1,0 +1,5 @@
+{ code: 'var x = 5;\nif (x) {\n  console.log(x);\nelse {\n  console.log(\'crapo\');\n}',
+  trace: 
+   [ { event: 'uncaught_exception',
+       exception_msg: 'SyntaxError: Unexpected token else',
+       line: 4 } ] }

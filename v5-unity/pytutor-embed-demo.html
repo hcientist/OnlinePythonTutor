@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+  Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+  Copyright (C) Philip Guo (philip@pgbovine.net)
+  LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
+
+demo of direct embedding (not iframe embedding)
+https://github.com/pgbovine/OnlinePythonTutor/blob/master/v3/docs/embedding-HOWTO.md
+
+-->
+
+<head>
+  <title>Online Python Tutor v5 embedding demo</title>
+
+  <script type="text/javascript" src="build/pytutor-embed.bundle.js?dfffdf0c98" charset="utf-8"></script>
+
+</head>
+
+<body style="background-color: white;">
+<!-- Step 1: create 3 JSON trace files (listSum.json, hanoi.json, happy.json)
+     by running generate_json_trace.py
+
+python generate_json_trace.py --compact ../v3/tests/backend-tests/list_sum.txt > pytutor-embed-demo/listSum.json
+python generate_json_trace.py --compact example-code/python/towers_of_hanoi.txt > pytutor-embed-demo/hanoi.json
+python generate_json_trace.py --compact example-code/python/happy.txt > pytutor-embed-demo/happy.json
+
+-->
+
+
+<!-- Step 2: add proper attributes to divs to embed the respective visualizers within those divs -->
+  <p>Recursive list sum (from <a href="http://pythontutor.com">pythontutor.com</a> home page):</p>
+  <div class="pytutorVisualizer" id="listSumDiv"
+       data-tracefile="pytutor-embed-demo/listSum.json">
+  </div>
+
+  <p>Towers of Hanoi:</p>
+  <!-- The "startingInstruction: 15" optional parameter means to jump to
+       step 15 in the visualization when it loads. (The webpage will
+       actually display "Step 16 of 79" since indices are zero-indexed.)
+
+       verticalStack means to stack the code and visualizations
+       vertically atop one another (rather than side-by-side) -->
+  <div class="pytutorVisualizer" id="hanoiDiv"
+       data-tracefile="pytutor-embed-demo/hanoi.json"
+       data-params ='{"startingInstruction": 15, "verticalStack": true}'>
+  </div>
+
+  <p>Happy Birthday:</p>
+  <!-- "embeddedMode: false" displays the full visualizer widget with the
+       "Program Output" pane; "jumpToEnd: true" means to jump to the end of
+       execution upon loading. -->
+  <div class="pytutorVisualizer" id="happyDiv"
+       data-tracefile="pytutor-embed-demo/happy.json"
+       data-params='{"embeddedMode": false, "jumpToEnd": true, "codeDivWidth": 450, "codeDivHeight": 150}'>
+  </div>
+
+<!-- Step 3: Finally, put this one JS call at the very bottom so it will load after all divs appear -->
+  <script type="text/javascript">
+  createAllVisualizersFromHtmlAttrs();
+  </script>
+</body>
+</html>

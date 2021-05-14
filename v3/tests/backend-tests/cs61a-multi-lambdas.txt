@@ -1,0 +1,10 @@
+# from Berkeley cs61a
+def f(x):
+    return lambda x: lambda x: x+x+x
+
+h = lambda x: x+x+x # identical code to line 3
+
+g = f(3)
+g(4)(6)
+
+f(1)(2)(5)

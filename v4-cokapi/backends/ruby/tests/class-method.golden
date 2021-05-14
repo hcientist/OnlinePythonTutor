@@ -1,0 +1,566 @@
+{
+  "code": "# from https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Classes\nclass MyClass\n  def self.some_method\n    puts 'something'\n  end\nend\nMyClass.some_method\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:2",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:2_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:3",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MyClass>:6",
+          "frame_id": 2,
+          "unique_hash": "<class:MyClass>:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "some_method",
+          ""
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "some_method",
+          ""
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "some_method:3",
+          "frame_id": 2,
+          "unique_hash": "some_method:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "some_method",
+          ""
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "some_method:4",
+          "frame_id": 2,
+          "unique_hash": "some_method:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              5
+            ]
+          ]
+        ],
+        "5": [
+          "FUNCTION",
+          "some_method",
+          ""
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "return",
+      "stdout": "something\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "some_method:5",
+          "frame_id": 2,
+          "unique_hash": "some_method:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              6
+            ]
+          ]
+        ],
+        "6": [
+          "FUNCTION",
+          "some_method",
+          ""
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "something\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MyClass",
+          [
+
+          ],
+          [
+            "self.some_method",
+            [
+              "REF",
+              7
+            ]
+          ]
+        ],
+        "7": [
+          "FUNCTION",
+          "some_method",
+          ""
+        ]
+      },
+      "globals": {
+        "MyClass": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MyClass"
+      ]
+    }
+  ]
+}

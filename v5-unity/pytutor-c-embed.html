@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+  Python Tutor: https://github.com/pgbovine/OnlinePythonTutor/
+  Copyright (C) Philip Guo (philip@pgbovine.net)
+  LICENSE: https://github.com/pgbovine/OnlinePythonTutor/blob/master/LICENSE.txt
+-->
+
+<head>
+  <title>Online Python Tutor v5 embedding demo</title>
+
+  <script type="text/javascript" src="build/pytutor-embed.bundle.js?dfffdf0c98" charset="utf-8"></script>
+
+</head>
+
+<body style="background-color: white;">
+
+  <div class="pytutorVisualizer" id="listSumDiv"
+       data-tracefile="pytutor-embed-demo/cse12-c-test.json"
+       data-params='{"embeddedMode": false, "lang": "c", "jumpToEnd": true}'>
+  </div>
+
+<!-- Step 3: Finally, put this one JS call at the very bottom so it will load after all divs appear -->
+  <script type="text/javascript">
+  createAllVisualizersFromHtmlAttrs();
+  </script>
+</body>
+</html>

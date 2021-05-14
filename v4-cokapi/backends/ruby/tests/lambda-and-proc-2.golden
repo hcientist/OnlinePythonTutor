@@ -1,0 +1,2772 @@
+{
+  "code": "# Adapted from http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/\n\ndef generic_return(code)\n  one, two    = 1, 2\n  three, four = code.call(one, two)\n  return \"Give me a #{three} and a #{four}\"\nend\n\nputs generic_return(lambda { |x, y| return x + 2, y + 2 })\n\nputs generic_return(Proc.new { |x, y| x + 2; y + 2 })\n\nputs generic_return(Proc.new { |x, y| [x + 2, y + 2] })\n\n# runtime error -- cannot have 'return' in here ...\nputs generic_return(Proc.new { |x, y| return x + 2, y + 2 })\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:3",
+          "frame_id": 2,
+          "unique_hash": "generic_return:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:4",
+          "frame_id": 2,
+          "unique_hash": "generic_return:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "4": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "5": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:9",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2
+          }
+        }
+      ],
+      "heap": {
+        "6": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:9",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2
+          }
+        }
+      ],
+      "heap": {
+        "7": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:9",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "8": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          8
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:6",
+          "frame_id": 2,
+          "unique_hash": "generic_return:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 3,
+            "four": 4
+          }
+        }
+      ],
+      "heap": {
+        "9": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          9
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:7",
+          "frame_id": 2,
+          "unique_hash": "generic_return:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 3,
+            "four": 4,
+            "__return__": "Give me a 3 and a 4"
+          }
+        }
+      ],
+      "heap": {
+        "10": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Lambda on line 9"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "11": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          11
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:3",
+          "frame_id": 2,
+          "unique_hash": "generic_return:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              13
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "12": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          12
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:4",
+          "frame_id": 2,
+          "unique_hash": "generic_return:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              13
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "14": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          14
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "15": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          15
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2
+          }
+        }
+      ],
+      "heap": {
+        "16": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          16
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2
+          }
+        }
+      ],
+      "heap": {
+        "17": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          17
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:11",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:11_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2,
+            "__return__": 4
+          }
+        }
+      ],
+      "heap": {
+        "18": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          18
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:6",
+          "frame_id": 2,
+          "unique_hash": "generic_return:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 4,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "19": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          19
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:7",
+          "frame_id": 2,
+          "unique_hash": "generic_return:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              13
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 4,
+            "four": null,
+            "__return__": "Give me a 4 and a "
+          }
+        }
+      ],
+      "heap": {
+        "20": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "13": [
+          "Proc",
+          "Proc on line 11"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          20
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "21": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          21
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:3",
+          "frame_id": 2,
+          "unique_hash": "generic_return:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              23
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "22": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          22
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:4",
+          "frame_id": 2,
+          "unique_hash": "generic_return:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              23
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "24": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          24
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "25": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          25
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:13",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:13_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2
+          }
+        }
+      ],
+      "heap": {
+        "26": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          26
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:13",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:13_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2
+          }
+        }
+      ],
+      "heap": {
+        "27": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          27
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:13",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:13_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2,
+            "__return__": [
+              "REF",
+              28
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "28": [
+          "LIST",
+          3,
+          4
+        ],
+        "29": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          29
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:6",
+          "frame_id": 2,
+          "unique_hash": "generic_return:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 3,
+            "four": 4
+          }
+        }
+      ],
+      "heap": {
+        "30": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          30
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:13",
+          "frame_id": 1,
+          "unique_hash": "<main>:13_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:7",
+          "frame_id": 2,
+          "unique_hash": "generic_return:7_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              23
+            ],
+            "one": 1,
+            "two": 2,
+            "three": 3,
+            "four": 4,
+            "__return__": "Give me a 3 and a 4"
+          }
+        }
+      ],
+      "heap": {
+        "31": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "23": [
+          "Proc",
+          "Proc on line 13"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          31
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "32": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          32
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:3",
+          "frame_id": 2,
+          "unique_hash": "generic_return:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              34
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "33": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          33
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:4",
+          "frame_id": 2,
+          "unique_hash": "generic_return:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              34
+            ],
+            "one": null,
+            "two": null,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "35": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          35
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        }
+      ],
+      "heap": {
+        "36": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          36
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "call",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:16",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:16_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2
+          }
+        }
+      ],
+      "heap": {
+        "37": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          37
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:16",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:16_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2
+          }
+        }
+      ],
+      "heap": {
+        "38": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          38
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "exception",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:16",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:16_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2
+          }
+        }
+      ],
+      "heap": {
+        "39": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          39
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ],
+      "exception_msg": "unexpected return"
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:16",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:16_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "x",
+            "y",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "x": 1,
+            "y": 2,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "40": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          40
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "return",
+      "stdout": "Give me a 3 and a 4\nGive me a 4 and a \nGive me a 3 and a 4\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:16",
+          "frame_id": 1,
+          "unique_hash": "<main>:16_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "generic_return:5",
+          "frame_id": 2,
+          "unique_hash": "generic_return:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "three",
+            "four",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              34
+            ],
+            "one": 1,
+            "two": 2,
+            "three": null,
+            "four": null,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "41": [
+          "FUNCTION",
+          "generic_return",
+          ""
+        ],
+        "34": [
+          "Proc",
+          "Proc on line 16"
+        ]
+      },
+      "globals": {
+        "generic_return": [
+          "REF",
+          41
+        ]
+      },
+      "ordered_globals": [
+        "generic_return"
+      ]
+    }
+  ]
+}

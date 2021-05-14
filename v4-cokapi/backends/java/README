@@ -1,0 +1,25 @@
+Checked out my own copy of https://github.com/daveagp/java_jail in early
+Feb 2014 into here as java_jail/, then made some local tweaks. (I didn't
+use git submodules since I couldn't figure out how to check in my local
+tweaks in a sensible way, ugh.)
+
+---
+Create a Docker container using "make" and then test it using "make test"
+
+Use ../../cokapi.js as the webserver to invoke the Docker container
+
+
+March 2018: VERY IMPORTANT: the java visualizer relies on this specific
+version of the JDK since that's what Dave Pritchard tested it on circa
+2013, so it's packaged in this directory: jdk1.8.0_20/
+
+Note that this directory originally came from this zip file:
+
+  jdk-8u20-linux-x64.tar.gz
+
+... which can still be found on the Oracle website (Google for it), but
+it just doesn't fit into the repo since GitHub has a 100MB size limit
+for files.
+
+Running with newer version of the JDK will lead to intermittent failures
+that I'm not quite sure how to debug.

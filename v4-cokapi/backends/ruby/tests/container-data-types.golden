@@ -1,0 +1,456 @@
+{
+  "code": "require 'set'\n\nmy_array = [1, 2, 3, 'hello', false, true, nil]\nmy_hash = {'John' => 26, 'Jane' => 21, 'Jack' => 30}\nmy_set = my_array.to_set\n\nmy_hash['nested array'] = my_array\nmy_array[1] = ['a', 'b', 'c']\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 1,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:1",
+          "frame_id": 1,
+          "unique_hash": "<main>:1_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "my_array",
+            "my_hash",
+            "my_set"
+          ],
+          "encoded_locals": {
+            "my_array": null,
+            "my_hash": null,
+            "my_set": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "my_array",
+            "my_hash",
+            "my_set"
+          ],
+          "encoded_locals": {
+            "my_array": null,
+            "my_hash": null,
+            "my_set": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "my_array",
+            "my_hash",
+            "my_set"
+          ],
+          "encoded_locals": {
+            "my_array": [
+              "REF",
+              1
+            ],
+            "my_hash": null,
+            "my_set": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          "hello",
+          false,
+          true,
+          null
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:5",
+          "frame_id": 1,
+          "unique_hash": "<main>:5_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "my_array",
+            "my_hash",
+            "my_set"
+          ],
+          "encoded_locals": {
+            "my_array": [
+              "REF",
+              1
+            ],
+            "my_hash": [
+              "REF",
+              2
+            ],
+            "my_set": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          "hello",
+          false,
+          true,
+          null
+        ],
+        "2": [
+          "DICT",
+          [
+            "John",
+            26
+          ],
+          [
+            "Jane",
+            21
+          ],
+          [
+            "Jack",
+            30
+          ]
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "my_array",
+            "my_hash",
+            "my_set"
+          ],
+          "encoded_locals": {
+            "my_array": [
+              "REF",
+              1
+            ],
+            "my_hash": [
+              "REF",
+              2
+            ],
+            "my_set": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          "hello",
+          false,
+          true,
+          null
+        ],
+        "2": [
+          "DICT",
+          [
+            "John",
+            26
+          ],
+          [
+            "Jane",
+            21
+          ],
+          [
+            "Jack",
+            30
+          ]
+        ],
+        "3": [
+          "SET",
+          1,
+          2,
+          3,
+          "hello",
+          false,
+          true,
+          null
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "my_array",
+            "my_hash",
+            "my_set"
+          ],
+          "encoded_locals": {
+            "my_array": [
+              "REF",
+              1
+            ],
+            "my_hash": [
+              "REF",
+              2
+            ],
+            "my_set": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "LIST",
+          1,
+          2,
+          3,
+          "hello",
+          false,
+          true,
+          null
+        ],
+        "2": [
+          "DICT",
+          [
+            "John",
+            26
+          ],
+          [
+            "Jane",
+            21
+          ],
+          [
+            "Jack",
+            30
+          ],
+          [
+            "nested array",
+            [
+              "REF",
+              1
+            ]
+          ]
+        ],
+        "3": [
+          "SET",
+          1,
+          2,
+          3,
+          "hello",
+          false,
+          true,
+          null
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "my_array",
+            "my_hash",
+            "my_set"
+          ],
+          "encoded_locals": {
+            "my_array": [
+              "REF",
+              1
+            ],
+            "my_hash": [
+              "REF",
+              2
+            ],
+            "my_set": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "LIST",
+          1,
+          [
+            "REF",
+            4
+          ],
+          3,
+          "hello",
+          false,
+          true,
+          null
+        ],
+        "4": [
+          "LIST",
+          "a",
+          "b",
+          "c"
+        ],
+        "2": [
+          "DICT",
+          [
+            "John",
+            26
+          ],
+          [
+            "Jane",
+            21
+          ],
+          [
+            "Jack",
+            30
+          ],
+          [
+            "nested array",
+            [
+              "REF",
+              1
+            ]
+          ]
+        ],
+        "3": [
+          "SET",
+          1,
+          2,
+          3,
+          "hello",
+          false,
+          true,
+          null
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    }
+  ]
+}

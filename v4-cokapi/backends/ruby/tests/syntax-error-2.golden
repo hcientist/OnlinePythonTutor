@@ -1,0 +1,10 @@
+{
+  "code": "def say_hi\n  if @names.nil?\n    puts \"...\"\n  else if @names.respond_to?(\"each\") # 'else if' is wrong\n    @names.each do |name|\n      puts \"Hello #{name}!\"\n    end\n  end\nend\n",
+  "trace": [
+    {
+      "event": "uncaught_exception",
+      "line": 10,
+      "exception_msg": "syntax error, unexpected end-of-input, expecting keyword_end"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "code": "from collections import Counter\nc = Counter()\nc['foo'] += 1\nc['foo'] += 1\nc['foo'] += 1\nc['bar'] += 10\nc['baz'] = 100\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ]
+      },
+      "ordered_globals": [
+        "Counter"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "c": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Counter",
+        "c"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "Counter",
+          "Counter()"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "c": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Counter",
+        "c"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "Counter",
+          "Counter({'foo': 1})"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "c": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Counter",
+        "c"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "Counter",
+          "Counter({'foo': 2})"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "c": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Counter",
+        "c"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "Counter",
+          "Counter({'foo': 3})"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "c": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Counter",
+        "c"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "Counter",
+          "Counter({'bar': 10, 'foo': 3})"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 7,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "Counter": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "c": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Counter",
+        "c"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE_PPRINT",
+          "Counter",
+          "Counter({'baz': 100, 'bar': 10, 'foo': 3})"
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

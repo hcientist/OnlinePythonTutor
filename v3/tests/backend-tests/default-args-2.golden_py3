@@ -1,0 +1,336 @@
+{
+  "code": "def foo(x, y=2, z=3, a=[]):\n    pass\n\ndef bar(x=set('a'), y='b', z='c', *my_rest, **my_kwargs):\n    pass\n\ndef baz(x, y='b', z='c', *my_rest, **my_kwargs):\n    pass\n\ndef baz2(x, y, z='c', *my_rest, **my_kwargs):\n    pass\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "foo"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "foo": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "foo(x, y, z, a)", 
+          null, 
+          [
+            [
+              "y", 
+              2
+            ], 
+            [
+              "z", 
+              3
+            ], 
+            [
+              "a", 
+              [
+                "REF", 
+                2
+              ]
+            ]
+          ]
+        ], 
+        "2": [
+          "LIST"
+        ]
+      }, 
+      "line": 4, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "foo", 
+        "bar"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "foo": [
+          "REF", 
+          1
+        ], 
+        "bar": [
+          "REF", 
+          3
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "foo(x, y, z, a)", 
+          null, 
+          [
+            [
+              "y", 
+              2
+            ], 
+            [
+              "z", 
+              3
+            ], 
+            [
+              "a", 
+              [
+                "REF", 
+                2
+              ]
+            ]
+          ]
+        ], 
+        "2": [
+          "LIST"
+        ], 
+        "3": [
+          "FUNCTION", 
+          "bar(x, y, z, *my_rest, **my_kwargs)", 
+          null, 
+          [
+            [
+              "x", 
+              [
+                "REF", 
+                4
+              ]
+            ], 
+            [
+              "y", 
+              "b"
+            ], 
+            [
+              "z", 
+              "c"
+            ]
+          ]
+        ], 
+        "4": [
+          "SET", 
+          "a"
+        ]
+      }, 
+      "line": 7, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "foo", 
+        "bar", 
+        "baz"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "bar": [
+          "REF", 
+          3
+        ], 
+        "foo": [
+          "REF", 
+          1
+        ], 
+        "baz": [
+          "REF", 
+          5
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "foo(x, y, z, a)", 
+          null, 
+          [
+            [
+              "y", 
+              2
+            ], 
+            [
+              "z", 
+              3
+            ], 
+            [
+              "a", 
+              [
+                "REF", 
+                2
+              ]
+            ]
+          ]
+        ], 
+        "2": [
+          "LIST"
+        ], 
+        "3": [
+          "FUNCTION", 
+          "bar(x, y, z, *my_rest, **my_kwargs)", 
+          null, 
+          [
+            [
+              "x", 
+              [
+                "REF", 
+                4
+              ]
+            ], 
+            [
+              "y", 
+              "b"
+            ], 
+            [
+              "z", 
+              "c"
+            ]
+          ]
+        ], 
+        "4": [
+          "SET", 
+          "a"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "baz(x, y, z, *my_rest, **my_kwargs)", 
+          null, 
+          [
+            [
+              "y", 
+              "b"
+            ], 
+            [
+              "z", 
+              "c"
+            ]
+          ]
+        ]
+      }, 
+      "line": 10, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "foo", 
+        "bar", 
+        "baz", 
+        "baz2"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "bar": [
+          "REF", 
+          3
+        ], 
+        "baz2": [
+          "REF", 
+          6
+        ], 
+        "baz": [
+          "REF", 
+          5
+        ], 
+        "foo": [
+          "REF", 
+          1
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "foo(x, y, z, a)", 
+          null, 
+          [
+            [
+              "y", 
+              2
+            ], 
+            [
+              "z", 
+              3
+            ], 
+            [
+              "a", 
+              [
+                "REF", 
+                2
+              ]
+            ]
+          ]
+        ], 
+        "2": [
+          "LIST"
+        ], 
+        "3": [
+          "FUNCTION", 
+          "bar(x, y, z, *my_rest, **my_kwargs)", 
+          null, 
+          [
+            [
+              "x", 
+              [
+                "REF", 
+                4
+              ]
+            ], 
+            [
+              "y", 
+              "b"
+            ], 
+            [
+              "z", 
+              "c"
+            ]
+          ]
+        ], 
+        "4": [
+          "SET", 
+          "a"
+        ], 
+        "5": [
+          "FUNCTION", 
+          "baz(x, y, z, *my_rest, **my_kwargs)", 
+          null, 
+          [
+            [
+              "y", 
+              "b"
+            ], 
+            [
+              "z", 
+              "c"
+            ]
+          ]
+        ], 
+        "6": [
+          "FUNCTION", 
+          "baz2(x, y, z, *my_rest, **my_kwargs)", 
+          null, 
+          [
+            [
+              "z", 
+              "c"
+            ]
+          ]
+        ]
+      }, 
+      "line": 10, 
+      "event": "return"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+# The ultimate Unicode test for Python 2
+
+x = '☺' # this is a REGULAR str with some funky bytes, NOT a smiley
+y = u'☺' # this is a unicode string U+263A representing a smiley
+print x
+print y
+assert x != y
+
+x_lst = [x]
+x_lst *= 3
+
+z = '\x8e' # this string isn't valid unicode
+print z
+
+print x, y, z
+
+xyz_lst = [x, y, z]
+xyz_lst *= 3
+types_lst = [repr(type(e)) for e in xyz_lst]
+print xyz_lst

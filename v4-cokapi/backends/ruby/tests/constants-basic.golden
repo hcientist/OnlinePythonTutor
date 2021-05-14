@@ -1,0 +1,174 @@
+{
+  "code": "localX = \"local hello\"\n$globalX = \"global hello\"\nCONSTANT_X = \"constant hello\"\nputs CONSTANT_X\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 1,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:1",
+          "frame_id": 1,
+          "unique_hash": "<main>:1_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "localX"
+          ],
+          "encoded_locals": {
+            "localX": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$globalX": null
+      },
+      "ordered_globals": [
+        "$globalX"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "localX"
+          ],
+          "encoded_locals": {
+            "localX": "local hello"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$globalX": null
+      },
+      "ordered_globals": [
+        "$globalX"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "localX"
+          ],
+          "encoded_locals": {
+            "localX": "local hello"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$globalX": "global hello"
+      },
+      "ordered_globals": [
+        "$globalX"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "localX"
+          ],
+          "encoded_locals": {
+            "localX": "local hello"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$globalX": "global hello",
+        "CONSTANT_X": "constant hello"
+      },
+      "ordered_globals": [
+        "$globalX",
+        "CONSTANT_X"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "constant hello\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:5",
+          "frame_id": 1,
+          "unique_hash": "<main>:5_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "localX"
+          ],
+          "encoded_locals": {
+            "localX": "local hello"
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+        "$globalX": "global hello",
+        "CONSTANT_X": "constant hello"
+      },
+      "ordered_globals": [
+        "$globalX",
+        "CONSTANT_X"
+      ]
+    }
+  ]
+}

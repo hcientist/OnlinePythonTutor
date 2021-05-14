@@ -1,0 +1,23 @@
+# set a VERY short cache time on html and pdf files to force reloads
+# of the latest content. test using curl:
+#   curl -I pgbovine.net/publications.htm
+#<IfModule mod_expires.c>
+#  ExpiresActive on
+#  ExpiresByType application/pdf "access 2 seconds"
+#  ExpiresByType text/html "access 2 seconds"
+#  ExpiresDefault "access 3 hours"
+#</IfModule>
+
+
+# set everything to be cached for 1 hour by default
+ExpiresActive On
+ExpiresDefault A3600
+
+# BUT don't cache html or pdf files to force them to reload from scratch
+<FilesMatch "\.(pdf|htm|html)$">
+ExpiresActive Off
+Header set Cache-Control "no-store"
+</FilesMatch>
+
+# no-cache will use ETags for a 304 check, but no-store will re-fetch from scratch on each load
+#Header set Cache-Control "no-cache"

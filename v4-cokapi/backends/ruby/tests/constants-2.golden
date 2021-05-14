@@ -1,0 +1,1410 @@
+{
+  "code": "# adapted from http://cirw.in/blog/constant-lookup.html\n\nmodule A\n  module B; end\n  module C\n    module D\n      puts B\n      puts A::B\n    end\n  end\nend\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:A>:3",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:A>:4",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:A>:4",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:B>:4",
+          "frame_id": 3,
+          "unique_hash": "<module:B>:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              2
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:A>:4",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:B>:4",
+          "frame_id": 3,
+          "unique_hash": "<module:B>:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              2
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:A>:5",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:A>:5",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:C>:5",
+          "frame_id": 3,
+          "unique_hash": "<module:C>:5_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:A>:5",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:C>:6",
+          "frame_id": 3,
+          "unique_hash": "<module:C>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:A>:5",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:C>:6",
+          "frame_id": 3,
+          "unique_hash": "<module:C>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:D>:6",
+          "frame_id": 4,
+          "unique_hash": "<module:D>:6_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              4
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:A>:5",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:C>:6",
+          "frame_id": 3,
+          "unique_hash": "<module:C>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:D>:7",
+          "frame_id": 4,
+          "unique_hash": "<module:D>:7_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              4
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "A::B\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:A>:5",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:C>:6",
+          "frame_id": 3,
+          "unique_hash": "<module:C>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:D>:8",
+          "frame_id": 4,
+          "unique_hash": "<module:D>:8_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              4
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "return",
+      "stdout": "A::B\nA::B\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:A>:5",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:C>:6",
+          "frame_id": 3,
+          "unique_hash": "<module:C>:6_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              3
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:D>:9",
+          "frame_id": 4,
+          "unique_hash": "<module:D>:9_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              4
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "return",
+      "stdout": "A::B\nA::B\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "<module:A>:5",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:C>:10",
+          "frame_id": 3,
+          "unique_hash": "<module:C>:10_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              3
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "return",
+      "stdout": "A::B\nA::B\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:A>:11",
+          "frame_id": 2,
+          "unique_hash": "<module:A>:11_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "A::B\nA::B\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:12",
+          "frame_id": 1,
+          "unique_hash": "<main>:12_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "B",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "C",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "INSTANCE",
+          "Module"
+        ],
+        "3": [
+          "INSTANCE",
+          "Module",
+          [
+            "D",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "4": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "A": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "A"
+      ]
+    }
+  ]
+}

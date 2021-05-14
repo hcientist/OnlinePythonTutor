@@ -1,0 +1,6601 @@
+{
+  "code": "#include <stdlib.h>\n\ntypedef struct {\n   int account_number;\n   double balance;\n   unsigned long moneys[5];\n} Account;\n\nint main() {\n  Account my_account;\n  my_account.account_number = 42;\n  my_account.balance = 3.141592653589793238462643383279502884197169399375105820974944592307816406286;\n  my_account.moneys[1] = 123;\n  my_account.moneys[3] = 456;\n\n  Account stack_accounts_array[4];\n  stack_accounts_array[1].account_number = 1;\n  stack_accounts_array[1].moneys[1] = 111111;\n  stack_accounts_array[3].account_number = 3;\n  stack_accounts_array[3].moneys[3] = 333333;\n\n  Account* heap_accounts_array = malloc(5 * sizeof(*heap_accounts_array));\n  heap_accounts_array[1].account_number = 1;\n  heap_accounts_array[1].moneys[1] = 111111;\n  heap_accounts_array[3].account_number = 3;\n  heap_accounts_array[3].moneys[3] = 333333;\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 9, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE0", 
+              "pointer", 
+              "<UNALLOCATED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFE8", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFE8", 
+                  "int", 
+                  "<UNALLOCATED>"
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "double", 
+                  "<UNALLOCATED>"
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFEFFFFF8", 
+                  [
+                    "C_DATA", 
+                    "0xFFEFFFFF8", 
+                    "long unsigned int", 
+                    "<UNALLOCATED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNALLOCATED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    "<UNALLOCATED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNALLOCATED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    "<UNALLOCATED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000028", 
+              [
+                "C_STRUCT", 
+                "0xFFF000028", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000028", 
+                    "int", 
+                    "<UNALLOCATED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "double", 
+                    "<UNALLOCATED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000038", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000038", 
+                      "long unsigned int", 
+                      "<UNALLOCATED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNALLOCATED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNALLOCATED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNALLOCATED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNALLOCATED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000060", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000060", 
+                    "int", 
+                    "<UNALLOCATED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "double", 
+                    "<UNALLOCATED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000070", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000070", 
+                      "long unsigned int", 
+                      "<UNALLOCATED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNALLOCATED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      "<UNALLOCATED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNALLOCATED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000098", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000098", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000A8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000A8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 9, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 11, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  "<UNINITIALIZED>"
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  "<UNINITIALIZED>"
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 12, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  "<UNINITIALIZED>"
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 11, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 13, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 13, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 14, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 14, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 17, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 17, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 18, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    1
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 18, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 19, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    1
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      111111
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 19, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 20, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    1
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      111111
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    3
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 20, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 22, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "<UNINITIALIZED>"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    1
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      111111
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    3
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      333333
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 20, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE050", 
+                [
+                  "C_DATA", 
+                  "0x53FE050", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE058", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE060", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE068", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE070", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE078", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE078", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE080", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE088", 
+                [
+                  "C_DATA", 
+                  "0x53FE088", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE090", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE098", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0B0", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0B0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0B8", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0C0", 
+                [
+                  "C_DATA", 
+                  "0x53FE0C0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0C8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0E0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0E8", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0E8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0F0", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0F8", 
+                [
+                  "C_DATA", 
+                  "0x53FE0F8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE100", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE108", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE110", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE118", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE120", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE120", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE128", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE130", 
+                [
+                  "C_DATA", 
+                  "0x53FE130", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE138", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE140", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE148", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE150", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 23, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "0x53FE040"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    1
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      111111
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    3
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      333333
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 23, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE050", 
+                [
+                  "C_DATA", 
+                  "0x53FE050", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE058", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE060", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE068", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE070", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE078", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE078", 
+                "int", 
+                1
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE080", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE088", 
+                [
+                  "C_DATA", 
+                  "0x53FE088", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE090", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE098", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0B0", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0B0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0B8", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0C0", 
+                [
+                  "C_DATA", 
+                  "0x53FE0C0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0C8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0E0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0E8", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0E8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0F0", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0F8", 
+                [
+                  "C_DATA", 
+                  "0x53FE0F8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE100", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE108", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE110", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE118", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE120", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE120", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE128", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE130", 
+                [
+                  "C_DATA", 
+                  "0x53FE130", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE138", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE140", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE148", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE150", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 24, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "0x53FE040"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    1
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      111111
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    3
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      333333
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 24, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE050", 
+                [
+                  "C_DATA", 
+                  "0x53FE050", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE058", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE060", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE068", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE070", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE078", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE078", 
+                "int", 
+                1
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE080", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE088", 
+                [
+                  "C_DATA", 
+                  "0x53FE088", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE090", 
+                  "long unsigned int", 
+                  111111
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE098", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0B0", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0B0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0B8", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0C0", 
+                [
+                  "C_DATA", 
+                  "0x53FE0C0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0C8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0E0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0E8", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0E8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0F0", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0F8", 
+                [
+                  "C_DATA", 
+                  "0x53FE0F8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE100", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE108", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE110", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE118", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE120", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE120", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE128", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE130", 
+                [
+                  "C_DATA", 
+                  "0x53FE130", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE138", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE140", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE148", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE150", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 25, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "0x53FE040"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    1
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      111111
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    3
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      333333
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 25, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE050", 
+                [
+                  "C_DATA", 
+                  "0x53FE050", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE058", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE060", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE068", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE070", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE078", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE078", 
+                "int", 
+                1
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE080", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE088", 
+                [
+                  "C_DATA", 
+                  "0x53FE088", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE090", 
+                  "long unsigned int", 
+                  111111
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE098", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0B0", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0B0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0B8", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0C0", 
+                [
+                  "C_DATA", 
+                  "0x53FE0C0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0C8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0E0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0E8", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0E8", 
+                "int", 
+                3
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0F0", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0F8", 
+                [
+                  "C_DATA", 
+                  "0x53FE0F8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE100", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE108", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE110", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE118", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE120", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE120", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE128", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE130", 
+                [
+                  "C_DATA", 
+                  "0x53FE130", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE138", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE140", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE148", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE150", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 26, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "0x53FE040"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    1
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      111111
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    3
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      333333
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 26, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {
+        "0x53FE040": [
+          "C_ARRAY", 
+          "0x53FE040", 
+          [
+            "C_STRUCT", 
+            "0x53FE040", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE040", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE048", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE050", 
+                [
+                  "C_DATA", 
+                  "0x53FE050", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE058", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE060", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE068", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE070", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE078", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE078", 
+                "int", 
+                1
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE080", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE088", 
+                [
+                  "C_DATA", 
+                  "0x53FE088", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE090", 
+                  "long unsigned int", 
+                  111111
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE098", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0A8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0B0", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0B0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0B8", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0C0", 
+                [
+                  "C_DATA", 
+                  "0x53FE0C0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0C8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0D8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE0E0", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE0E8", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE0E8", 
+                "int", 
+                3
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE0F0", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE0F8", 
+                [
+                  "C_DATA", 
+                  "0x53FE0F8", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE100", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE108", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE110", 
+                  "long unsigned int", 
+                  333333
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE118", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ], 
+          [
+            "C_STRUCT", 
+            "0x53FE120", 
+            "Account", 
+            [
+              "account_number", 
+              [
+                "C_DATA", 
+                "0x53FE120", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "balance", 
+              [
+                "C_DATA", 
+                "0x53FE128", 
+                "double", 
+                "<UNINITIALIZED>"
+              ]
+            ], 
+            [
+              "moneys", 
+              [
+                "C_ARRAY", 
+                "0x53FE130", 
+                [
+                  "C_DATA", 
+                  "0x53FE130", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE138", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE140", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE148", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ], 
+                [
+                  "C_DATA", 
+                  "0x53FE150", 
+                  "long unsigned int", 
+                  "<UNINITIALIZED>"
+                ]
+              ]
+            ]
+          ]
+        ]
+      }, 
+      "line": 27, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "heap_accounts_array": [
+              "C_DATA", 
+              "0xFFEFFFFE8", 
+              "pointer", 
+              "0x53FE040"
+            ], 
+            "my_account": [
+              "C_STRUCT", 
+              "0xFFEFFFFF0", 
+              "Account", 
+              [
+                "account_number", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF0", 
+                  "int", 
+                  42
+                ]
+              ], 
+              [
+                "balance", 
+                [
+                  "C_DATA", 
+                  "0xFFEFFFFF8", 
+                  "double", 
+                  3.141593
+                ]
+              ], 
+              [
+                "moneys", 
+                [
+                  "C_ARRAY", 
+                  "0xFFF000000", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000000", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000008", 
+                    "long unsigned int", 
+                    123
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000010", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000018", 
+                    "long unsigned int", 
+                    456
+                  ], 
+                  [
+                    "C_DATA", 
+                    "0xFFF000020", 
+                    "long unsigned int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ]
+              ]
+            ], 
+            "stack_accounts_array": [
+              "C_ARRAY", 
+              "0xFFF000030", 
+              [
+                "C_STRUCT", 
+                "0xFFF000030", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000030", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000038", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000040", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000040", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000048", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000050", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000058", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000060", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF000068", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000068", 
+                    "int", 
+                    1
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF000070", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF000078", 
+                    [
+                      "C_DATA", 
+                      "0xFFF000078", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000080", 
+                      "long unsigned int", 
+                      111111
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000088", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000090", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000098", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000A0", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A0", 
+                    "int", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000A8", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000B0", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000B8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000C8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000D0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ], 
+              [
+                "C_STRUCT", 
+                "0xFFF0000D8", 
+                "Account", 
+                [
+                  "account_number", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000D8", 
+                    "int", 
+                    3
+                  ]
+                ], 
+                [
+                  "balance", 
+                  [
+                    "C_DATA", 
+                    "0xFFF0000E0", 
+                    "double", 
+                    "<UNINITIALIZED>"
+                  ]
+                ], 
+                [
+                  "moneys", 
+                  [
+                    "C_ARRAY", 
+                    "0xFFF0000E8", 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000E8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F0", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF0000F8", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000100", 
+                      "long unsigned int", 
+                      333333
+                    ], 
+                    [
+                      "C_DATA", 
+                      "0xFFF000108", 
+                      "long unsigned int", 
+                      "<UNINITIALIZED>"
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 27, 
+          "ordered_varnames": [
+            "my_account", 
+            "stack_accounts_array", 
+            "heap_accounts_array"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

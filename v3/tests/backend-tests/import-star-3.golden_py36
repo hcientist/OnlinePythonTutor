@@ -1,0 +1,62 @@
+{
+  "code": "from json import *\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 1,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "dump": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
+        ],
+        "dumps": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
+        ],
+        "load": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
+        ],
+        "loads": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported object"
+        ],
+        "JSONDecoder": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "JSONDecodeError": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ],
+        "JSONEncoder": [
+          "IMPORTED_FAUX_PRIMITIVE",
+          "imported class"
+        ]
+      },
+      "ordered_globals": [
+        "dump",
+        "dumps",
+        "load",
+        "loads",
+        "JSONDecoder",
+        "JSONDecodeError",
+        "JSONEncoder"
+      ],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    }
+  ]
+}

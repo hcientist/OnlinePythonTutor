@@ -1,0 +1,6 @@
+# minimized test cases from Berkeley cs61a staff, summer 2016
+def x(y):
+    k = 42
+    (lambda z: lambda w: z + k)(y)
+
+x(1)

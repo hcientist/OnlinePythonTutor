@@ -1,0 +1,646 @@
+{
+  "code": "from operator import *\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "iand", 
+        "countOf", 
+        "gt", 
+        "ixor", 
+        "abs", 
+        "pow", 
+        "not_", 
+        "imul", 
+        "ge", 
+        "lshift", 
+        "rshift", 
+        "eq", 
+        "iadd", 
+        "index", 
+        "le", 
+        "xor", 
+        "sub", 
+        "imod", 
+        "neg", 
+        "invert", 
+        "contains", 
+        "ne", 
+        "attrgetter", 
+        "lt", 
+        "irshift", 
+        "methodcaller", 
+        "truediv", 
+        "mul", 
+        "inv", 
+        "is_", 
+        "truth", 
+        "isub", 
+        "indexOf", 
+        "ior", 
+        "pos", 
+        "add", 
+        "delitem", 
+        "iconcat", 
+        "ipow", 
+        "concat", 
+        "mod", 
+        "or_", 
+        "is_not", 
+        "and_", 
+        "itruediv", 
+        "setitem", 
+        "floordiv", 
+        "getitem", 
+        "ilshift", 
+        "itemgetter", 
+        "ifloordiv"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "iand": [
+          "REF", 
+          1
+        ], 
+        "countOf": [
+          "REF", 
+          2
+        ], 
+        "gt": [
+          "REF", 
+          3
+        ], 
+        "ixor": [
+          "REF", 
+          4
+        ], 
+        "pow": [
+          "REF", 
+          6
+        ], 
+        "not_": [
+          "REF", 
+          7
+        ], 
+        "imul": [
+          "REF", 
+          8
+        ], 
+        "ge": [
+          "REF", 
+          9
+        ], 
+        "lshift": [
+          "REF", 
+          10
+        ], 
+        "is_": [
+          "REF", 
+          36
+        ], 
+        "eq": [
+          "REF", 
+          12
+        ], 
+        "iadd": [
+          "REF", 
+          13
+        ], 
+        "index": [
+          "REF", 
+          14
+        ], 
+        "le": [
+          "REF", 
+          15
+        ], 
+        "xor": [
+          "REF", 
+          16
+        ], 
+        "sub": [
+          "REF", 
+          17
+        ], 
+        "imod": [
+          "REF", 
+          18
+        ], 
+        "neg": [
+          "REF", 
+          19
+        ], 
+        "invert": [
+          "REF", 
+          20
+        ], 
+        "contains": [
+          "REF", 
+          21
+        ], 
+        "ne": [
+          "REF", 
+          22
+        ], 
+        "attrgetter": [
+          "REF", 
+          23
+        ], 
+        "abs": [
+          "REF", 
+          5
+        ], 
+        "irshift": [
+          "REF", 
+          28
+        ], 
+        "methodcaller": [
+          "REF", 
+          29
+        ], 
+        "lt": [
+          "REF", 
+          27
+        ], 
+        "mul": [
+          "REF", 
+          34
+        ], 
+        "inv": [
+          "REF", 
+          35
+        ], 
+        "rshift": [
+          "REF", 
+          11
+        ], 
+        "truediv": [
+          "REF", 
+          33
+        ], 
+        "or_": [
+          "REF", 
+          48
+        ], 
+        "indexOf": [
+          "REF", 
+          39
+        ], 
+        "ior": [
+          "REF", 
+          40
+        ], 
+        "pos": [
+          "REF", 
+          41
+        ], 
+        "add": [
+          "REF", 
+          42
+        ], 
+        "delitem": [
+          "REF", 
+          43
+        ], 
+        "iconcat": [
+          "REF", 
+          44
+        ], 
+        "ipow": [
+          "REF", 
+          45
+        ], 
+        "concat": [
+          "REF", 
+          46
+        ], 
+        "mod": [
+          "REF", 
+          47
+        ], 
+        "isub": [
+          "REF", 
+          38
+        ], 
+        "is_not": [
+          "REF", 
+          49
+        ], 
+        "and_": [
+          "REF", 
+          50
+        ], 
+        "itruediv": [
+          "REF", 
+          51
+        ], 
+        "setitem": [
+          "REF", 
+          52
+        ], 
+        "floordiv": [
+          "REF", 
+          53
+        ], 
+        "getitem": [
+          "REF", 
+          54
+        ], 
+        "truth": [
+          "REF", 
+          37
+        ], 
+        "ilshift": [
+          "REF", 
+          55
+        ], 
+        "itemgetter": [
+          "REF", 
+          56
+        ], 
+        "ifloordiv": [
+          "REF", 
+          60
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "FUNCTION", 
+          "iand(...)", 
+          null
+        ], 
+        "2": [
+          "FUNCTION", 
+          "countOf(...)", 
+          null
+        ], 
+        "3": [
+          "FUNCTION", 
+          "gt(...)", 
+          null
+        ], 
+        "4": [
+          "FUNCTION", 
+          "ixor(...)", 
+          null
+        ], 
+        "5": [
+          "FUNCTION", 
+          "abs(...)", 
+          null
+        ], 
+        "6": [
+          "FUNCTION", 
+          "pow(...)", 
+          null
+        ], 
+        "7": [
+          "FUNCTION", 
+          "not_(...)", 
+          null
+        ], 
+        "8": [
+          "FUNCTION", 
+          "imul(...)", 
+          null
+        ], 
+        "9": [
+          "FUNCTION", 
+          "ge(...)", 
+          null
+        ], 
+        "10": [
+          "FUNCTION", 
+          "lshift(...)", 
+          null
+        ], 
+        "11": [
+          "FUNCTION", 
+          "rshift(...)", 
+          null
+        ], 
+        "12": [
+          "FUNCTION", 
+          "eq(...)", 
+          null
+        ], 
+        "13": [
+          "FUNCTION", 
+          "iadd(...)", 
+          null
+        ], 
+        "14": [
+          "FUNCTION", 
+          "index(...)", 
+          null
+        ], 
+        "15": [
+          "FUNCTION", 
+          "le(...)", 
+          null
+        ], 
+        "16": [
+          "FUNCTION", 
+          "xor(...)", 
+          null
+        ], 
+        "17": [
+          "FUNCTION", 
+          "sub(...)", 
+          null
+        ], 
+        "18": [
+          "FUNCTION", 
+          "imod(...)", 
+          null
+        ], 
+        "19": [
+          "FUNCTION", 
+          "neg(...)", 
+          null
+        ], 
+        "20": [
+          "FUNCTION", 
+          "invert(...)", 
+          null
+        ], 
+        "21": [
+          "FUNCTION", 
+          "contains(...)", 
+          null
+        ], 
+        "22": [
+          "FUNCTION", 
+          "ne(...)", 
+          null
+        ], 
+        "23": [
+          "CLASS", 
+          "attrgetter", 
+          [], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              24
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              25
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              26
+            ]
+          ]
+        ], 
+        "24": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__call__' of 'operator.attrgetter' objects>"
+        ], 
+        "25": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'operator.attrgetter' objects>"
+        ], 
+        "26": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "27": [
+          "FUNCTION", 
+          "lt(...)", 
+          null
+        ], 
+        "28": [
+          "FUNCTION", 
+          "irshift(...)", 
+          null
+        ], 
+        "29": [
+          "CLASS", 
+          "methodcaller", 
+          [], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              30
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              31
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              32
+            ]
+          ]
+        ], 
+        "30": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__call__' of 'operator.methodcaller' objects>"
+        ], 
+        "31": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'operator.methodcaller' objects>"
+        ], 
+        "32": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "33": [
+          "FUNCTION", 
+          "truediv(...)", 
+          null
+        ], 
+        "34": [
+          "FUNCTION", 
+          "mul(...)", 
+          null
+        ], 
+        "35": [
+          "FUNCTION", 
+          "inv(...)", 
+          null
+        ], 
+        "36": [
+          "FUNCTION", 
+          "is_(...)", 
+          null
+        ], 
+        "37": [
+          "FUNCTION", 
+          "truth(...)", 
+          null
+        ], 
+        "38": [
+          "FUNCTION", 
+          "isub(...)", 
+          null
+        ], 
+        "39": [
+          "FUNCTION", 
+          "indexOf(...)", 
+          null
+        ], 
+        "40": [
+          "FUNCTION", 
+          "ior(...)", 
+          null
+        ], 
+        "41": [
+          "FUNCTION", 
+          "pos(...)", 
+          null
+        ], 
+        "42": [
+          "FUNCTION", 
+          "add(...)", 
+          null
+        ], 
+        "43": [
+          "FUNCTION", 
+          "delitem(...)", 
+          null
+        ], 
+        "44": [
+          "FUNCTION", 
+          "iconcat(...)", 
+          null
+        ], 
+        "45": [
+          "FUNCTION", 
+          "ipow(...)", 
+          null
+        ], 
+        "46": [
+          "FUNCTION", 
+          "concat(...)", 
+          null
+        ], 
+        "47": [
+          "FUNCTION", 
+          "mod(...)", 
+          null
+        ], 
+        "48": [
+          "FUNCTION", 
+          "or_(...)", 
+          null
+        ], 
+        "49": [
+          "FUNCTION", 
+          "is_not(...)", 
+          null
+        ], 
+        "50": [
+          "FUNCTION", 
+          "and_(...)", 
+          null
+        ], 
+        "51": [
+          "FUNCTION", 
+          "itruediv(...)", 
+          null
+        ], 
+        "52": [
+          "FUNCTION", 
+          "setitem(...)", 
+          null
+        ], 
+        "53": [
+          "FUNCTION", 
+          "floordiv(...)", 
+          null
+        ], 
+        "54": [
+          "FUNCTION", 
+          "getitem(...)", 
+          null
+        ], 
+        "55": [
+          "FUNCTION", 
+          "ilshift(...)", 
+          null
+        ], 
+        "56": [
+          "CLASS", 
+          "itemgetter", 
+          [], 
+          [
+            "__call__", 
+            [
+              "REF", 
+              57
+            ]
+          ], 
+          [
+            "__getattribute__", 
+            [
+              "REF", 
+              58
+            ]
+          ], 
+          [
+            "__new__", 
+            [
+              "REF", 
+              59
+            ]
+          ]
+        ], 
+        "57": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__call__' of 'operator.itemgetter' objects>"
+        ], 
+        "58": [
+          "INSTANCE_PPRINT", 
+          "wrapper_descriptor", 
+          "<slot wrapper '__getattribute__' of 'operator.itemgetter' objects>"
+        ], 
+        "59": [
+          "FUNCTION", 
+          "__new__(...)", 
+          null
+        ], 
+        "60": [
+          "FUNCTION", 
+          "ifloordiv(...)", 
+          null
+        ]
+      }, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

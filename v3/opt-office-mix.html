@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ -->
+
+<head>
+  <title>Online Python Tutor - Visualize Python, Java, JavaScript, and TypeScript code execution</title>
+
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+<!-- requirements for pytutor.js -->
+<script type="text/javascript" src="js/d3.v2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.ba-bbq.min.js"></script> <!-- for handling back button and URL hashes -->
+<script type="text/javascript" src="js/jquery.ba-dotimeout.min.js"></script> <!-- for event debouncing -->
+<script type="text/javascript" src="js/jquery.jsPlumb-1.3.10-all-min.js "></script> <!-- for rendering SVG connectors
+                                                                                         DO NOT UPGRADE ABOVE 1.3.10 OR ELSE BREAKAGE WILL OCCUR -->
+<script type="text/javascript" src="js/diff_match_patch.js"></script>
+
+<script type="text/javascript" src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script> <!-- for sliders and other UI elements -->
+<link type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet" />
+
+<script type="text/javascript" src="js/pytutor.js"></script>
+<link rel="stylesheet" href="css/pytutor.css"/>
+
+<!-- requirements for opt-frontend.js -->
+
+<!-- test cases -->
+<script type="text/javascript" src="js/opt-testcases.js"></script>
+<link rel="stylesheet" href="css/opt-testcases.css"/>
+
+
+<!-- Ace online code editor -->
+<script type="text/javascript" src="js/ace/src-min-noconflict/ace.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="js/opt-frontend-common.js"></script>
+<script type="text/javascript" src="js/opt-office-mix.js"></script>
+<link rel="stylesheet" href="css/opt-frontend.css"/>
+
+
+<!-- for Office Mix Labs.js -->
+
+<!-- let's see if jQuery 1.8.2 works instead of their recommended version of 1.9.1 -->
+<!-- <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"></script> -->
+
+<script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js" type="text/javascript"></script>
+<!-- From: https://labsjs.blob.core.windows.net/sdk/LabsJS-1.0.4/labs.html
+     "For publishing your app you must link to the file on the CDN." -->
+<script src="https://az592748.vo.msecnd.net/sdk/LabsJS-1.0.4/labs-1.0.4.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="loadingPane" style="display: none; font-size: 18px; color: #e93f34;">
+</div>
+
+<div id="pyInputPane">
+
+<div id="codeInputWarnings">Write code in
+
+  <select id="pythonVersionSelector">
+    <option value="2">Python 2.7</option>
+    <option value="3">Python 3.3</option>
+    <!--<option value="2crazy">Py 2.crazy</option>-->
+    <option value="java">Java</option>
+    <option value="js">JavaScript</option>
+    <option value="ts">TypeScript</option>
+    <option value="ruby">Ruby</option>
+  </select>
+
+</div>
+
+<div id="codeInputPane"></div> <!-- populate with a CodeMirror or Ace code editor instance -->
+<div id="frontendErrorOutput"></div>
+
+<button style="margin-top: 10px;" id="executeBtn" class="bigBtn">???</button>
+
+<p style="margin-top: 20px;">
+  <a href="#" id="createTestsLink">Create test cases</a>
+</p>
+
+<div id="testCasesPane"></div>
+
+</div>
+
+
+<div id="pyOutputPane">
+</div>
+
+<div id="footer">
+
+<p>
+<a href="http://pythontutor.com/" target="_blank">Online Python Tutor</a> supports
+Python 2.7 and 3.3, Java 7, JavaScript ES5 strict, TypeScript 1.4.1, and Ruby 2.2.2
+with limited module imports and no file I/O.
+<a href="support-and-privacy.html" target="_blank">Privacy and Terms of Use</a>.
+</p>
+
+<p style="margin-top: 8px;">
+Copyright &copy; <a href="http://www.pgbovine.net/" target="_blank">Philip Guo</a>.  All rights reserved.
+</p>
+
+</div>
+
+</body>
+</html>

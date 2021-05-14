@@ -1,0 +1,6465 @@
+{
+  "code": "# Adapted from Ruby in Twenty Minutes\n# https://www.ruby-lang.org/en/documentation/quickstart/3/\n\nclass MegaGreeter\n  attr_accessor :names\n\n  # Create the object\n  def initialize(names = \"World\")\n    @names = names\n  end\n\n  # Say hi to everybody\n  def say_hi\n    if @names.nil?\n      puts \"...\"\n    elsif @names.respond_to?(\"each\")\n      # @names is a list of some kind, iterate!\n      @names.each do |name|\n        puts \"Hello #{name}!\"\n      end\n    else\n      puts \"Hello #{@names}!\"\n    end\n  end\nend\n\n\nmg = MegaGreeter.new\nmg.say_hi\n\n# Change name to be \"Zeke\"\nmg.names = \"Zeke\"\nmg.say_hi\n\n# Change the name to an array of names\nmg.names = [\"Albert\", \"Brenda\", \"Charles\",\n  \"Dave\", \"Engelbert\"]\nmg.say_hi\n\n# Change to nil\nmg.names = nil\nmg.say_hi\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MegaGreeter>:4",
+          "frame_id": 2,
+          "unique_hash": "<class:MegaGreeter>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MegaGreeter>:5",
+          "frame_id": 2,
+          "unique_hash": "<class:MegaGreeter>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MegaGreeter>:8",
+          "frame_id": 2,
+          "unique_hash": "<class:MegaGreeter>:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "3": [
+          "FUNCTION",
+          "names=",
+          ""
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MegaGreeter>:13",
+          "frame_id": 2,
+          "unique_hash": "<class:MegaGreeter>:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              4
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              5
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              6
+            ]
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "5": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "6": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 25,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<class:MegaGreeter>:25",
+          "frame_id": 2,
+          "unique_hash": "<class:MegaGreeter>:25_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              7
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              8
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              9
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              10
+            ]
+          ]
+        ],
+        "7": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "8": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "9": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "10": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 28,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              11
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              12
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              13
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              14
+            ]
+          ]
+        ],
+        "11": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "12": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "13": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "14": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:8",
+          "frame_id": 3,
+          "unique_hash": "initialize:8_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "names"
+          ],
+          "encoded_locals": {
+            "names": "World",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              15
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              16
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              17
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              18
+            ]
+          ]
+        ],
+        "15": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "16": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "17": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "18": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:9",
+          "frame_id": 3,
+          "unique_hash": "initialize:9_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "names"
+          ],
+          "encoded_locals": {
+            "names": "World",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              20
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              21
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              22
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              23
+            ]
+          ]
+        ],
+        "20": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "21": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "22": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "23": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:28",
+          "frame_id": 1,
+          "unique_hash": "<main>:28_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "initialize:10",
+          "frame_id": 3,
+          "unique_hash": "initialize:10_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "names",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "names": "World",
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": "World"
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              24
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              25
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              26
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              27
+            ]
+          ]
+        ],
+        "24": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "25": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "26": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "27": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 29,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:29",
+          "frame_id": 1,
+          "unique_hash": "<main>:29_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              28
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              29
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              30
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              31
+            ]
+          ]
+        ],
+        "28": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "29": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "30": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "31": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:29",
+          "frame_id": 1,
+          "unique_hash": "<main>:29_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:13",
+          "frame_id": 2,
+          "unique_hash": "say_hi:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              32
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              33
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              34
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              35
+            ]
+          ]
+        ],
+        "32": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "33": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "34": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "35": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:29",
+          "frame_id": 1,
+          "unique_hash": "<main>:29_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:14",
+          "frame_id": 2,
+          "unique_hash": "say_hi:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              36
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              37
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              38
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              39
+            ]
+          ]
+        ],
+        "36": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "37": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "38": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "39": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:29",
+          "frame_id": 1,
+          "unique_hash": "<main>:29_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:16",
+          "frame_id": 2,
+          "unique_hash": "say_hi:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              40
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              41
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              42
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              43
+            ]
+          ]
+        ],
+        "40": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "41": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "42": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "43": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 22,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:29",
+          "frame_id": 1,
+          "unique_hash": "<main>:29_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:22",
+          "frame_id": 2,
+          "unique_hash": "say_hi:22_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              44
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              45
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              46
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              47
+            ]
+          ]
+        ],
+        "44": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "45": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "46": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "47": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 24,
+      "event": "return",
+      "stdout": "Hello World!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:29",
+          "frame_id": 1,
+          "unique_hash": "<main>:29_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:24",
+          "frame_id": 2,
+          "unique_hash": "say_hi:24_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              48
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              49
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              50
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              51
+            ]
+          ]
+        ],
+        "48": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "49": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "50": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "51": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 32,
+      "event": "step_line",
+      "stdout": "Hello World!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:32",
+          "frame_id": 1,
+          "unique_hash": "<main>:32_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              52
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              53
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              54
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              55
+            ]
+          ]
+        ],
+        "52": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "53": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "54": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "55": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "World"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 33,
+      "event": "step_line",
+      "stdout": "Hello World!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              56
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              57
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              58
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              59
+            ]
+          ]
+        ],
+        "56": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "57": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "58": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "59": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "call",
+      "stdout": "Hello World!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:13",
+          "frame_id": 2,
+          "unique_hash": "say_hi:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              60
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              61
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              62
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              63
+            ]
+          ]
+        ],
+        "60": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "61": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "62": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "63": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "Hello World!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:14",
+          "frame_id": 2,
+          "unique_hash": "say_hi:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              64
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              65
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              66
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              67
+            ]
+          ]
+        ],
+        "64": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "65": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "66": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "67": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "Hello World!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:16",
+          "frame_id": 2,
+          "unique_hash": "say_hi:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              68
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              69
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              70
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              71
+            ]
+          ]
+        ],
+        "68": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "69": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "70": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "71": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 22,
+      "event": "step_line",
+      "stdout": "Hello World!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:22",
+          "frame_id": 2,
+          "unique_hash": "say_hi:22_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              72
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              73
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              74
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              75
+            ]
+          ]
+        ],
+        "72": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "73": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "74": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "75": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 24,
+      "event": "return",
+      "stdout": "Hello World!\nHello Zeke!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:33",
+          "frame_id": 1,
+          "unique_hash": "<main>:33_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:24",
+          "frame_id": 2,
+          "unique_hash": "say_hi:24_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              76
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              77
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              78
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              79
+            ]
+          ]
+        ],
+        "76": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "77": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "78": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "79": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 36,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:36",
+          "frame_id": 1,
+          "unique_hash": "<main>:36_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              80
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              81
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              82
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              83
+            ]
+          ]
+        ],
+        "80": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "81": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "82": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "83": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            "Zeke"
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 38,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              84
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              85
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              86
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              87
+            ]
+          ]
+        ],
+        "84": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "85": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "86": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "87": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "call",
+      "stdout": "Hello World!\nHello Zeke!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:13",
+          "frame_id": 2,
+          "unique_hash": "say_hi:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              89
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              90
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              91
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              92
+            ]
+          ]
+        ],
+        "89": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "90": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "91": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "92": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:14",
+          "frame_id": 2,
+          "unique_hash": "say_hi:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              93
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              94
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              95
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              96
+            ]
+          ]
+        ],
+        "93": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "94": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "95": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "96": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 16,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:16",
+          "frame_id": 2,
+          "unique_hash": "say_hi:16_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              97
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              98
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              99
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              100
+            ]
+          ]
+        ],
+        "97": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "98": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "99": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "100": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              101
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              102
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              103
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              104
+            ]
+          ]
+        ],
+        "101": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "102": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "103": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "104": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "call",
+      "stdout": "Hello World!\nHello Zeke!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:18",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:18_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Albert",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              105
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              106
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              107
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              108
+            ]
+          ]
+        ],
+        "105": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "106": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "107": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "108": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:19",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:19_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Albert",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              109
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              110
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              111
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              112
+            ]
+          ]
+        ],
+        "109": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "110": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "111": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "112": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 20,
+      "event": "return",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:20",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:20_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "name": "Albert",
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              113
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              114
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              115
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              116
+            ]
+          ]
+        ],
+        "113": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "114": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "115": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "116": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "call",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:18",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:18_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Brenda",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              117
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              118
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              119
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              120
+            ]
+          ]
+        ],
+        "117": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "118": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "119": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "120": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:19",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:19_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Brenda",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              121
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              122
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              123
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              124
+            ]
+          ]
+        ],
+        "121": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "122": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "123": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "124": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 20,
+      "event": "return",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:20",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:20_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "name": "Brenda",
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              125
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              126
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              127
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              128
+            ]
+          ]
+        ],
+        "125": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "126": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "127": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "128": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "call",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:18",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:18_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Charles",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              129
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              130
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              131
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              132
+            ]
+          ]
+        ],
+        "129": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "130": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "131": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "132": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:19",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:19_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Charles",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              133
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              134
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              135
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              136
+            ]
+          ]
+        ],
+        "133": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "134": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "135": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "136": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 20,
+      "event": "return",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:20",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:20_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "name": "Charles",
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              137
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              138
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              139
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              140
+            ]
+          ]
+        ],
+        "137": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "138": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "139": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "140": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "call",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:18",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:18_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Dave",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              141
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              142
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              143
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              144
+            ]
+          ]
+        ],
+        "141": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "142": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "143": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "144": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:19",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:19_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Dave",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              145
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              146
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              147
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              148
+            ]
+          ]
+        ],
+        "145": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "146": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "147": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "148": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 20,
+      "event": "return",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:20",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:20_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "name": "Dave",
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              149
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              150
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              151
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              152
+            ]
+          ]
+        ],
+        "149": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "150": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "151": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "152": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 18,
+      "event": "call",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:18",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:18_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Engelbert",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              153
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              154
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              155
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              156
+            ]
+          ]
+        ],
+        "153": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "154": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "155": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "156": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 19,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:19",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:19_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name"
+          ],
+          "encoded_locals": {
+            "name": "Engelbert",
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              157
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              158
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              159
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              160
+            ]
+          ]
+        ],
+        "157": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "158": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "159": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "160": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 20,
+      "event": "return",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\nHello Engelbert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "say_hi:18",
+          "frame_id": 2,
+          "unique_hash": "say_hi:18_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in say_hi:20",
+          "frame_id": 4,
+          "unique_hash": "block in say_hi:20_f4",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "name",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "name": "Engelbert",
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              161
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              162
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              163
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              164
+            ]
+          ]
+        ],
+        "161": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "162": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "163": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "164": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 24,
+      "event": "return",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\nHello Engelbert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:38",
+          "frame_id": 1,
+          "unique_hash": "<main>:38_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:24",
+          "frame_id": 2,
+          "unique_hash": "say_hi:24_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": [
+              "REF",
+              88
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ],
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              165
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              166
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              167
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              168
+            ]
+          ]
+        ],
+        "165": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "166": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "167": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "168": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 41,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\nHello Engelbert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:41",
+          "frame_id": 1,
+          "unique_hash": "<main>:41_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              169
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              170
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              171
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              172
+            ]
+          ]
+        ],
+        "169": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "170": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "171": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "172": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            [
+              "REF",
+              88
+            ]
+          ]
+        ],
+        "88": [
+          "LIST",
+          "Albert",
+          "Brenda",
+          "Charles",
+          "Dave",
+          "Engelbert"
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 42,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\nHello Engelbert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:42",
+          "frame_id": 1,
+          "unique_hash": "<main>:42_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              173
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              174
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              175
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              176
+            ]
+          ]
+        ],
+        "173": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "174": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "175": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "176": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 13,
+      "event": "call",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\nHello Engelbert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:42",
+          "frame_id": 1,
+          "unique_hash": "<main>:42_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:13",
+          "frame_id": 2,
+          "unique_hash": "say_hi:13_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              177
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              178
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              179
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              180
+            ]
+          ]
+        ],
+        "177": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "178": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "179": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "180": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 14,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\nHello Engelbert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:42",
+          "frame_id": 1,
+          "unique_hash": "<main>:42_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:14",
+          "frame_id": 2,
+          "unique_hash": "say_hi:14_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              181
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              182
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              183
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              184
+            ]
+          ]
+        ],
+        "181": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "182": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "183": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "184": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 15,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\nHello Engelbert!\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:42",
+          "frame_id": 1,
+          "unique_hash": "<main>:42_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:15",
+          "frame_id": 2,
+          "unique_hash": "say_hi:15_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              185
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              186
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              187
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              188
+            ]
+          ]
+        ],
+        "185": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "186": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "187": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "188": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 24,
+      "event": "return",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\nHello Engelbert!\n...\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:42",
+          "frame_id": 1,
+          "unique_hash": "<main>:42_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "say_hi:24",
+          "frame_id": 2,
+          "unique_hash": "say_hi:24_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              19
+            ],
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              189
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              190
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              191
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              192
+            ]
+          ]
+        ],
+        "189": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "190": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "191": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "192": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 42,
+      "event": "step_line",
+      "stdout": "Hello World!\nHello Zeke!\nHello Albert!\nHello Brenda!\nHello Charles!\nHello Dave!\nHello Engelbert!\n...\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:43",
+          "frame_id": 1,
+          "unique_hash": "<main>:43_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "mg"
+          ],
+          "encoded_locals": {
+            "mg": [
+              "REF",
+              19
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "CLASS",
+          "MegaGreeter",
+          [
+
+          ],
+          [
+            "names",
+            [
+              "REF",
+              193
+            ]
+          ],
+          [
+            "names=",
+            [
+              "REF",
+              194
+            ]
+          ],
+          [
+            "say_hi",
+            [
+              "REF",
+              195
+            ]
+          ],
+          [
+            "initialize [private]",
+            [
+              "REF",
+              196
+            ]
+          ]
+        ],
+        "193": [
+          "FUNCTION",
+          "names",
+          ""
+        ],
+        "194": [
+          "FUNCTION",
+          "names=",
+          ""
+        ],
+        "195": [
+          "FUNCTION",
+          "say_hi",
+          ""
+        ],
+        "196": [
+          "FUNCTION",
+          "initialize",
+          ""
+        ],
+        "19": [
+          "INSTANCE",
+          "MegaGreeter",
+          [
+            "@names",
+            null
+          ]
+        ]
+      },
+      "globals": {
+        "MegaGreeter": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "MegaGreeter"
+      ]
+    }
+  ]
+}

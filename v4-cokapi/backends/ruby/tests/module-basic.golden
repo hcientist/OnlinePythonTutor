@@ -1,0 +1,494 @@
+{
+  "code": "# adapted from http://ruby-doc.org/core-2.2.0/Module.html\nmodule Mod\n  include Math\n  CONST = 42\n  def meth\n    puts \"hello world\"\n  end\nend\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 2,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:Mod>:2",
+          "frame_id": 2,
+          "unique_hash": "<module:Mod>:2_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "Mod": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mod"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:Mod>:3",
+          "frame_id": 2,
+          "unique_hash": "<module:Mod>:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module"
+        ]
+      },
+      "globals": {
+        "Mod": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mod"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:Mod>:4",
+          "frame_id": 2,
+          "unique_hash": "<module:Mod>:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "DomainError",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "PI",
+            3.141592653589793
+          ],
+          [
+            "E",
+            2.718281828459045
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "Math::DomainError",
+          [
+            "StandardError"
+          ]
+        ]
+      },
+      "globals": {
+        "Mod": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mod"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:Mod>:5",
+          "frame_id": 2,
+          "unique_hash": "<module:Mod>:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "CONST",
+            42
+          ],
+          [
+            "DomainError",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "PI",
+            3.141592653589793
+          ],
+          [
+            "E",
+            2.718281828459045
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "Math::DomainError",
+          [
+            "StandardError"
+          ]
+        ]
+      },
+      "globals": {
+        "Mod": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mod"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:2",
+          "frame_id": 1,
+          "unique_hash": "<main>:2_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "<module:Mod>:8",
+          "frame_id": 2,
+          "unique_hash": "<module:Mod>:8_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "self"
+          ],
+          "encoded_locals": {
+            "self": [
+              "REF",
+              1
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "CONST",
+            42
+          ],
+          [
+            "DomainError",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "PI",
+            3.141592653589793
+          ],
+          [
+            "E",
+            2.718281828459045
+          ],
+          [
+            "meth",
+            [
+              "REF",
+              3
+            ]
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "Math::DomainError",
+          [
+            "StandardError"
+          ]
+        ],
+        "3": [
+          "FUNCTION",
+          "meth",
+          ""
+        ]
+      },
+      "globals": {
+        "Mod": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mod"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "Module",
+          [
+            "CONST",
+            42
+          ],
+          [
+            "DomainError",
+            [
+              "REF",
+              2
+            ]
+          ],
+          [
+            "PI",
+            3.141592653589793
+          ],
+          [
+            "E",
+            2.718281828459045
+          ],
+          [
+            "meth",
+            [
+              "REF",
+              4
+            ]
+          ]
+        ],
+        "2": [
+          "CLASS",
+          "Math::DomainError",
+          [
+            "StandardError"
+          ]
+        ],
+        "4": [
+          "FUNCTION",
+          "meth",
+          ""
+        ]
+      },
+      "globals": {
+        "Mod": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "Mod"
+      ]
+    }
+  ]
+}

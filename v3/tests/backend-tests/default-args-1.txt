@@ -1,0 +1,10 @@
+test_lst = []
+
+def foo(x, arr=[]):
+    arr.append(x)
+
+foo('a')
+foo('b')
+foo('b', test_lst)
+foo('b', test_lst)
+foo('c')

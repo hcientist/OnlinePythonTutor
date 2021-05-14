@@ -1,0 +1,282 @@
+{
+  "code": "import math\nimport operator\nimport string\nimport collections\nimport re\nimport json\n\n# causes some errors in regression tests, but fine in GAE ...\n#import random\n#import datetime\n#import functools\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "math": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "math"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 3,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "math": [
+          "REF",
+          1
+        ],
+        "operator": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "math",
+        "operator"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ],
+        "2": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 4,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "math": [
+          "REF",
+          1
+        ],
+        "operator": [
+          "REF",
+          2
+        ],
+        "string": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "math",
+        "operator",
+        "string"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ],
+        "2": [
+          "INSTANCE",
+          "module"
+        ],
+        "3": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 5,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "math": [
+          "REF",
+          1
+        ],
+        "operator": [
+          "REF",
+          2
+        ],
+        "string": [
+          "REF",
+          3
+        ],
+        "collections": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "math",
+        "operator",
+        "string",
+        "collections"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ],
+        "2": [
+          "INSTANCE",
+          "module"
+        ],
+        "3": [
+          "INSTANCE",
+          "module"
+        ],
+        "4": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "math": [
+          "REF",
+          1
+        ],
+        "operator": [
+          "REF",
+          2
+        ],
+        "string": [
+          "REF",
+          3
+        ],
+        "collections": [
+          "REF",
+          4
+        ],
+        "re": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "math",
+        "operator",
+        "string",
+        "collections",
+        "re"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ],
+        "2": [
+          "INSTANCE",
+          "module"
+        ],
+        "3": [
+          "INSTANCE",
+          "module"
+        ],
+        "4": [
+          "INSTANCE",
+          "module"
+        ],
+        "5": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 6,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "math": [
+          "REF",
+          1
+        ],
+        "operator": [
+          "REF",
+          2
+        ],
+        "string": [
+          "REF",
+          3
+        ],
+        "collections": [
+          "REF",
+          4
+        ],
+        "re": [
+          "REF",
+          5
+        ],
+        "json": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "math",
+        "operator",
+        "string",
+        "collections",
+        "re",
+        "json"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "INSTANCE",
+          "module"
+        ],
+        "2": [
+          "INSTANCE",
+          "module"
+        ],
+        "3": [
+          "INSTANCE",
+          "module"
+        ],
+        "4": [
+          "INSTANCE",
+          "module"
+        ],
+        "5": [
+          "INSTANCE",
+          "module"
+        ],
+        "6": [
+          "INSTANCE",
+          "module"
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

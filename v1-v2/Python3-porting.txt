@@ -1,0 +1,101 @@
+See cgi-bin/p4_encoder.py for some proposed changes
+
+John DeNero's comments on 2012-07-23
+'''
+Distinguishing whether
+some x is a class or not in Python 3 should be performed via:
+
+isinstance(x, type)
+
+I don't think any sort of hack or repr comparison is required.
+'''
+
+
+Notes from Peter Wentworth about porting to Python 3
+'''
+Hi Philip - a bug in the code I sent you [NB, see: python3_viz.zip]!  I
+really kludged how I tested for classes vs instances in the file
+p3_encoder that I sent you.   At line 77 of that file, I used str(dat)
+to convert the object to a string, and then did some hackish substring
+searching.  But if the user provides a __str__ method in the class, it
+gets called instead, leading to trouble.
+
+My quick hack was to change the str(dat) call to repr(dat) (which won't
+dispatch to user-written methods), but it doesn't solve the key issue
+that I have not taken proper care to cleanly categorize
+types/objects/classes in Python 3.
+
+Peter
+
+-----Original Message-----
+From: George Wells
+Sent: 21 September 2011 03:47 PM
+To: Peter Wentworth
+Subject: Python visualiser
+
+Hi Peter
+
+I just tried a simple example of a class in the visualiser and it is
+generating an error for some reason (the code runs fine in the
+interpreter).  It was working fine until I added the second method
+(__str__).
+
+The code is:
+
+-----8<-----
+class Point:
+    def __init__ (self, x=0, y=0):
+        self.x=x
+        self.y=y
+    def __str__ (self):
+        return '({0}, {1})'.format(self.x, self.y)
+
+pt=Point(3,4)
+print(pt)
+-----8<-----
+
+Cheers,
+George.
+'''
+
+'''
+Hi Philip
+
+And my last bug report was even sloppy.  I use str(dat) at three
+different places in that file, so it needs to be refactored a little
+before changing the str() to repr()
+'''
+
+Regarding how to port to Python 3 ...
+'''
+HI Philip
+ 
+I don't have anything to recommend.   My experience is that there are
+very few (end-user) things that are quite widely talked about in various
+forums.  Key ones for me is that print is now a function;  range is
+inherently lazy (like P2 xrange used to be),  strings are no longer
+ascii – they are all Unicode, input takes on the semantics of P2
+rawinput, and some methods to iterate over dictionaries are different. 
+ 
+In the context of the visualizer, changing Python 2 to Python 3 wasn't
+particularly complicated, except for the class/instance hurdle.   P3 has
+a more unified class-based type system, immediately evident if you ask
+type(123)  -- it now returns <class 'int'>.   Classes are themselves
+instances of some MetaClass, with a thing called 'type' at the top of
+the hierarchy.  ('type' is an instance of 'type')    So there isn't
+really an easy end-user way to ask "is this a class or an instance?" –
+it is both at the same time!    There is some library that can expose
+detailed internal attributes of things, but I chose not to use that.
+Rather, if you ask for repr(obj) it turns it into some external string
+that always has the word 'instance' in it for instances!   So I got repr
+to do the internal inspection and I made the decision with some string
+matching.
+ 
+One of the more interesting new features in Python 3 is a function
+annotation mechanism.   The compiler ignores annotations.  The idea
+seems to be "lets allow annotations and see what creative things the
+third-party tools do with them". See
+http://www.python.org/dev/peps/pep-3107/ where they use annotations for
+type signatures etc.
+'''
+

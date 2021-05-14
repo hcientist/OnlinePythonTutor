@@ -1,0 +1,98 @@
+{
+  "code": "a = (1, (2, (3, None)))\nb = a[1]\n",
+  "trace": [
+    {
+      "line": 1,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {},
+      "ordered_globals": [],
+      "stack_to_render": [],
+      "heap": {},
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "step_line",
+      "func_name": "<module>",
+      "globals": {
+        "a": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "a"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "TUPLE",
+          1,
+          [
+            "REF",
+            2
+          ]
+        ],
+        "2": [
+          "TUPLE",
+          2,
+          [
+            "REF",
+            3
+          ]
+        ],
+        "3": [
+          "TUPLE",
+          3,
+          null
+        ]
+      },
+      "stdout": ""
+    },
+    {
+      "line": 2,
+      "event": "return",
+      "func_name": "<module>",
+      "globals": {
+        "a": [
+          "REF",
+          1
+        ],
+        "b": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "a",
+        "b"
+      ],
+      "stack_to_render": [],
+      "heap": {
+        "1": [
+          "TUPLE",
+          1,
+          [
+            "REF",
+            2
+          ]
+        ],
+        "2": [
+          "TUPLE",
+          2,
+          [
+            "REF",
+            3
+          ]
+        ],
+        "3": [
+          "TUPLE",
+          3,
+          null
+        ]
+      },
+      "stdout": ""
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+*.out
+*.out_py3
+*.out_py36
+*.pyc
+*.pyo
+v4-cokapi/feedback/cokapi-feedback.db
+coding-the-matrix/
+node_modules/
+google-analytics.txt
+webfaction-deploy.sh
+v3/opt_togetherjs/*.json
+# for regression tests
+*.out.png
+*.diff.png
+*.fail.png
+v3/opt_togetherjs/ipstack-geolocation
+
+v4-cokapi/backends/javascript/node-v6.0.0-darwin-x64/
+
+# this .gz file is too big to fit into a github repo
+v4-cokapi/backends/java/jdk-8u20-linux-x64.tar.gz

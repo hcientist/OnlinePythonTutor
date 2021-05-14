@@ -1,0 +1,102 @@
+This directory provides only backends that run on the server for
+*non-Python* languages. Look in ../v5-unity/ for the Python Tutor
+frontend code and the Python execution backend.
+
+---
+Release notes:
+
+2015-01-24 - This is an experimental version of OPT that adds support
+for multiple target languages under one unified app. It relies on
+Node.js for the server and docker for sandboxing.
+
+2018-03-04 - moved the C/C++ backend into this directory; it was
+previously in a separate github repo since it was so big:
+https://github.com/pgbovine/opt-cpp-backend
+... but I decided it's easier if everything is together in one repo
+
+---
+Setup instructions:
+
+This has been tested in the following version of Node.js for Linux:
+node-v6.9.5-linux-x64.tar.xz
+... which comes in this repo. Untar it in your home directory:
+
+untar it and add this to .bashrc to find it:
+export PATH=$HOME/node-v6.9.5-linux-x64/bin:"$PATH"
+
+symlink node to /usr/bin/node so that as soon as the machine restarts,
+the environment knows where to find node before your own .bashrc runs:
+
+e.g.,:
+sudo ln -s /home/pgbovine/node-v6.9.5-linux-x64/bin/node /usr/bin/
+
+
+Let this node.js process bind to privileged ports < 1024 as non-root:
+
+sudo setcap 'cap_net_bind_service=+ep' /home/pgbovine/node-v6.9.5-linux-x64/bin/node
+
+https://gist.github.com/firstdoit/6389682
+
+
+[If you install Node with your OS's package manager, then there's no
+guarantee that it will work!]
+
+
+First install global dependencies:
+
+npm install -g jshint
+npm install -g forever
+
+
+To install cokapi's node dependencies, run 'make deps'
+(this depends on jshint and forever being globally-installed)
+
+
+To start up the backend server, run 'make'
+
+(Note that this is really really really hard-coded for my own server
+setup, so it will likely be hard for you to reproduce that setup.)
+
+---
+Before you can actually run the backends, you'll also need to install
+and configure Docker to run the individual backends in backends/
+
+See Makefile and Dockerfile in each respective directory for details!
+
+---
+I also recommend to clear out all 'created' (but not actively running)
+docker containers every ~10 minutes by putting an entry in your crontab:
+
+*/10 * * * * docker rm -f $(docker ps -a -f status=created)
+
+Check out crontabs.txt for details
+
+
+Once you start up the cokapi.js Node.js server, you can ping it with
+HTTP/HTTPS endpoints such as:
+
+  /exec_java
+  /exec_java_jsonp
+
+to run various language backends, passing arguments in via GET
+parameters. Each set of endpoints comes in a pair that returns either
+regular JSON data (e.g., /exec_java) or JSONP (e.g., /exec_java_jsonp)
+for cross-domain AJAX.
+
+
+How does the OPT web frontend call this backend? Look at variables such
+as langSettingToJsonpEndpoint in ../v5-unity/js/opt-frontend-common.ts
+to see how the frontend calls the backends via JSONP using jQuery code
+such as:
+
+        // the REAL call uses JSONP
+        // http://learn.jquery.com/ajax/working-with-jsonp/
+        $.ajax({
+          url: jsonp_endpoint,
+          // The name of the callback parameter, as specified by the YQL service
+          jsonp: "callback",
+          dataType: "jsonp",
+          data: {user_script : codeToExec,
+                 options_json: JSON.stringify(backendOptionsObj)},
+          success: callbackWrapper,
+        });

@@ -1,0 +1,423 @@
+{
+  "code": "# Adapted from Learning Ruby by Michael Fitzgerald, O'Reilly\n\nname = \"Matz\"\nname = name.to_sym\nname2 = :Matz.id2name\nputs name\nputs name2\n\nx = :\"Matz with spaces and !?!\"\nx2 = :\"Matz with spaces and !?!\"\nputs x.object_id == x2.object_id\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "name",
+            "name2",
+            "x",
+            "x2"
+          ],
+          "encoded_locals": {
+            "name": null,
+            "name2": null,
+            "x": null,
+            "x2": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:4",
+          "frame_id": 1,
+          "unique_hash": "<main>:4_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "name",
+            "name2",
+            "x",
+            "x2"
+          ],
+          "encoded_locals": {
+            "name": "Matz",
+            "name2": null,
+            "x": null,
+            "x2": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:5",
+          "frame_id": 1,
+          "unique_hash": "<main>:5_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "name",
+            "name2",
+            "x",
+            "x2"
+          ],
+          "encoded_locals": {
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": null,
+            "x": null,
+            "x2": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:6",
+          "frame_id": 1,
+          "unique_hash": "<main>:6_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "name",
+            "name2",
+            "x",
+            "x2"
+          ],
+          "encoded_locals": {
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": null,
+            "x2": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "Matz\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "name",
+            "name2",
+            "x",
+            "x2"
+          ],
+          "encoded_locals": {
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": null,
+            "x2": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 9,
+      "event": "step_line",
+      "stdout": "Matz\nMatz\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:9",
+          "frame_id": 1,
+          "unique_hash": "<main>:9_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "name",
+            "name2",
+            "x",
+            "x2"
+          ],
+          "encoded_locals": {
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": null,
+            "x2": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "Matz\nMatz\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "name",
+            "name2",
+            "x",
+            "x2"
+          ],
+          "encoded_locals": {
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": [
+              "REF",
+              2
+            ],
+            "x2": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ],
+        "2": [
+          "Symbol",
+          ":\"Matz with spaces and !?!\""
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "Matz\nMatz\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "name",
+            "name2",
+            "x",
+            "x2"
+          ],
+          "encoded_locals": {
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": [
+              "REF",
+              2
+            ],
+            "x2": [
+              "REF",
+              2
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ],
+        "2": [
+          "Symbol",
+          ":\"Matz with spaces and !?!\""
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "Matz\nMatz\ntrue\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:12",
+          "frame_id": 1,
+          "unique_hash": "<main>:12_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "name",
+            "name2",
+            "x",
+            "x2"
+          ],
+          "encoded_locals": {
+            "name": [
+              "REF",
+              1
+            ],
+            "name2": "Matz",
+            "x": [
+              "REF",
+              2
+            ],
+            "x2": [
+              "REF",
+              2
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "Symbol",
+          ":Matz"
+        ],
+        "2": [
+          "Symbol",
+          ":\"Matz with spaces and !?!\""
+        ]
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    }
+  ]
+}

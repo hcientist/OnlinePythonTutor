@@ -1,0 +1,131 @@
+/*
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) 2010-2012 Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
+
+
+/*
+Color scheme ideas: 
+
+Current scheme: pastel blue and yellow with a hint of red:
+  http://colorschemedesigner.com/#3N32mmmuew0w0
+
+Primary Color:
+  3D58A2    41507A    142B69    6F89D1    899CD1
+Secondary Color A:
+  EBF048    B1B456    989C17    F4F776    F5F798
+Secondary Color B:
+  F15149    B55B56    9D1E18    F87D76    F89D99
+
+*/
+
+
+body {
+  background-color: white;
+  font-family: verdana, arial, helvetica, sans-serif;
+  /*font-size: 10pt;*/
+  font-size: 14px; /* for better readability */
+}
+
+a {
+  color: #3D58A2;
+}
+
+a:visited {
+  color: #3D58A2;
+}
+
+a:hover {
+  color: #142B69; /* darken during hover */
+}
+
+
+h1 {
+  font-weight: normal;
+  font-size: 20pt;
+  font-family: georgia, serif;
+  line-height: 1em;  /* enforce single spacing so that Georgia works */
+
+  margin-top: 0px;
+  margin-bottom: 3px;
+}
+
+h2 {
+  font-size: 13pt;
+  font-weight: normal;
+  font-family: georgia, serif;
+  line-height: 1.1em; /* enforce single spacing so that Georgia works */
+
+  margin-top: 2px;
+  margin-bottom: 20px;
+}
+
+div.activityPane {
+  /*background-color: #899CD1;*/
+  background-color: #F5F798;
+  /* TOP RIGHT BOTTOM LEFT */
+  padding: 15px 20px 5px 20px;
+  width: 450px;
+  margin: 20px;
+  text-align: left;
+}
+
+pre {
+  font-family: Andale mono, monospace;
+  margin-left: 0.5em;
+}
+
+.titlePane h2 {
+  margin-top: 8px;
+}
+
+.titlePane {
+  margin-bottom: 25px;
+}
+
+#footer {
+  text-align: center;
+  color: #444444;
+  font-size: 9pt;
+  max-width: 700px;
+  border-top: 1px solid #bbbbbb;
+  padding-top: 5px;
+  margin-top: 5px;
+}
+
+h3 {
+  font-size: 14pt;
+  font-weight: normal;
+}
+
+ul {
+  padding-left: 18px;
+}
+
+li {
+  margin-bottom: 6px;
+  font-size: 11pt;
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) 2010-2012 Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ -->
+
+<head>
+
+<title>Online Python Tutor: Learn and practice Python programming in your web browser</title>
+
+<!-- jQuery 1.6.0 -->
+
+<!-- local version for offline testing -->
+<script type="text/javascript" src="jquery.min.js"></script>
+
+<!-- online version hosted by Google -->
+<!--
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+ -->
+
+
+<script type="text/javascript" src="jquery.corner.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  // for rounded corners
+  $(".activityPane").corner('15px');
+});
+</script>
+
+
+<link rel="stylesheet" href="edu-python-title.css"/>
+
+</head>
+
+<body>
+<center>
+
+<div class="titlePane">
+
+<h1>Online Python Tutor</h1>
+<h2>Learn and practice Python programming in your web browser</h2>
+
+</div>
+
+<div class="mainBodyPane">
+
+<div class="activityPane" id="learnPane">
+
+<h1>Learn</h1>
+<h2>Python by writing code and visualizing execution</h2>
+
+<p>This free educational application allows teachers and students to
+write Python scripts directly in the web browser, execute those scripts,
+single-step <b>forwards and backwards</b> through execution, and view
+the run-time state of all data structures.</p>
+
+<p>Rather than displaying a bland text-based console, the Online Python
+Tutor provides a rich visualization of variables, heap objects, and
+stack frames.  For example, the following code:</p>
+
+<pre>
+x = ["Alice", "Bob", "Charlie"]
+y = x
+z = ["Alice", "Bob", "Charlie"]
+</pre>
+
+<p>will be visualized as the following HTML diagram, which properly shows
+aliasing relationships:</p>
+
+<center>
+<img src="alias-screenshot.png"/>
+
+<h3><a href="tutor.html">Go play with the Online Python Tutor!</a></h3>
+</center>
+
+</div>
+
+<div class="activityPane" id="solvePane">
+
+<h1>Solve</h1>
+<h2>programming problems by writing Python code</h2>
+
+<p>The Online Python Tutor also allows students to practice solving
+programming problems like those they would receive for class assignments
+or technical job interviews.</p>
+
+<p>It provides web-based interfaces for writing solution and test code,
+executing on a series of graded test inputs, and showing what tests
+passed and failed.</p>
+
+<center>
+<img src="grading-375.png"/>
+</center>
+
+<p>The above screenshot shows passed and failed tests.  The user can
+click on the "Debug me" button besides one of the sad faces to debug why
+the program failed on a particular test.</p>
+
+<p>Here are some sample practice problems:</p>
+
+<ul>
+
+<li><a href="question.html?two-sum">Two-sum</a></li>
+<li><a href="question.html?reverse">Reverse list</a></li>
+<li><a href="question.html?remove-dups">Remove duplicate characters</a></li>
+
+</ul>
+
+</div>
+
+<div class="activityPane" id="debugPane">
+
+<h1>Debug</h1>
+<h2>existing programs that almost work properly</h2>
+
+<p>Using the Online Python Tutor's bidirectional single-stepping and
+data structure visualization capabilities, students can practice
+debugging, an important skill which is rarely covered in web-based
+programming problems.</p>
+
+<p>They can work on problems like, <i>"Change at most 2 lines of code to
+make this almost-correct Python program work properly."</i> Here are
+some sample debugging problems:</p>
+
+<ul>
+
+<li><a href="question.html?debug-ireverse">In-place reverse</a></li>
+<li><a href="question.html?debug-bsearch">Binary search</a></li>
+<li><a href="question.html?debug-mergesort">Mergesort</a></li>
+
+</ul>
+
+</div>
+
+<div class="activityPane" id="optimizePane">
+
+<h1>Optimize</h1>
+<h2>existing programs to run using fewer instructions</h2>
+
+<p>Students can practice refactoring already-correct programs to run
+faster and execute fewer instructions.</p>
+
+<p>They can work on problems like, <i>"Optimize this program so that it
+terminates correctly after running less than 50 lines of Python
+code."</i> Here are some sample optimization problems:</p>
+
+<ul>
+
+<li><a href="question.html?optimize-sum">Greatest sum</a></li>
+<li><a href="question.html?optimize-find-dups">Find duplicates</a></li>
+<li><a href="question.html?optimize-search">List search</a></li>
+
+</ul>
+
+</div>
+
+<div class="activityPane" id="createPane">
+
+<h1>Create</h1>
+<h2>new practice problems in plain text format</h2>
+
+<p>Teachers can easily create new practice problems by writing them in a
+lightweight plain text format.  For example, <a
+href="questions/reverse.txt">reverse.txt</a> provides the specification
+for the <a href="question.html?reverse">Reverse list</a> problem.</p>
+
+<p>The problem specification format allows constraints like <i>"code
+diffs must be less than N lines"</i> (used for debugging problems) and
+<i>"tests must terminate in at most M executed Python lines"</i> (used
+for optimization problems).</p>
+
+<p>I plan to add support for semantic constraints like <i>"don't allow
+the program to create any auxiliary data structures"</i>, which could be
+used for problems like <i>"merge these two lists in-place without
+creating any new temporary lists"</i>.</p>
+
+</div>
+
+
+</div>
+
+
+<div id="footer">
+
+<p>This application was created by <a
+href="http://www.pgbovine.net/">Philip Guo</a>, a
+Stanford Computer Science Ph.D. student and Python enthusiast.</p>
+
+<p>
+Check out its <a
+href="https://github.com/pgbovine/OnlinePythonTutor/">GitHub
+repository</a> and send all bug reports, feedback, and suggestions to
+philip@pgbovine.net
+</p>
+
+<p>
+Copyright &copy; 2010-2012 <a href="http://www.pgbovine.net/">Philip Guo</a>.  All rights reserved.
+</p>
+
+</div>
+
+</center>
+</body>
+</html>
+

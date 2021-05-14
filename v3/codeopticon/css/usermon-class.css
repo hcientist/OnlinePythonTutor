@@ -1,0 +1,74 @@
+.aceEditor {
+  width: 1px; /* set to something TINY and then resize dynamically */
+  height: 1px; /* set to something TINY and then resize dynamically */
+  margin-bottom: 12px;
+}
+
+.greenMarker {
+  position: absolute; /* ESSENTIAL for working with Ace!!! */
+  /*z-index: 4; maybe needed, maybe not? */
+}
+
+.greenMarker,.greenGutter {
+  /*background-color: #eaffea;*/ /* from GitHub diffs */
+  background-color: #dbffdb; /* a wee bit darker, from GitHub */
+}
+
+.redMarker {
+  position: absolute; /* ESSENTIAL for working with Ace!!! */
+  opacity: 0.8;
+}
+
+.redMarker,.redGutter {
+  /*background-color: #ffecec;*/ /* from GitHub diffs */
+  background-color: #ffbbbb; /* a wee bit darker, from GitHub */
+}
+
+.curLineStepGutter {
+  background-image: url("redarrow.png");
+  background-size: 18px 10px;
+  background-position: 0% 10%;
+}
+
+.prevLineStepGutter {
+  background-image: url("lightgreenarrow.png");
+  background-size: 18px 10px;
+  background-position: 0% 10%;
+}
+
+.usermon .header {
+  font-size: 10pt;
+  font-family: verdana, arial, helvetica, sans-serif;
+  margin-bottom: 8px;
+}
+
+.usermon .header .inputLst {
+  margin-left: 15px;
+}
+
+.usermon .header .lang {
+  float: right;
+}
+
+.usermon .footer {
+  color: red;
+  font-size: 12pt;
+  font-family: verdana, arial, helvetica, sans-serif;
+  margin-bottom: 8px;
+}
+
+/* https://css-tricks.com/stripes-css/ */
+.redGreenStripeGutter {
+  background: repeating-linear-gradient(
+    120deg,
+    #ffbbbb,
+    #ffbbbb 5px,
+    #dbffdb 5px,
+    #dbffdb 10px
+  );
+}
+
+/* override default ace settings */
+.ace_gutter {
+  background-color: white !important;
+}

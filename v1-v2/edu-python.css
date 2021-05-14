@@ -1,0 +1,628 @@
+/*
+
+Online Python Tutor
+https://github.com/pgbovine/OnlinePythonTutor/
+
+Copyright (C) 2010-2012 Philip J. Guo (philip@pgbovine.net)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
+
+
+/*
+Color scheme ideas: 
+
+Current scheme: pastel blue and yellow with a hint of red:
+  http://colorschemedesigner.com/#3N32mmmuew0w0
+
+Primary Color:
+  3D58A2    41507A    142B69    6F89D1    899CD1
+Secondary Color A:
+  EBF048    B1B456    989C17    F4F776    F5F798
+Secondary Color B:
+  F15149    B55B56    9D1E18    F87D76    F89D99
+
+
+Alternates:
+
+pastel green, yellow, and purple:
+  http://colorschemedesigner.com/#2P32PbX--w0w0
+
+  Primary Color:
+    A0FFA0    8ABF8A    34A634    B8FFB8    CBFFCB
+  Secondary Color A:
+    FFEFA0    BFB68A    A69234    FFF3B8    FFF6CB
+  Secondary Color B:
+    BFABFF    9B90BF    5237A6    CFC0FF    DCD1FF
+
+
+pastel blue and yellow:
+  http://colorschemedesigner.com/#0W21TjruJw0w0
+
+Primary Color:
+  F5C260    B89B64    9F741F    FAD388    FADEA6
+Complementary Color:
+  4A67A4    49597B    18326A    7C97D1    93A7D1
+
+
+*/
+
+
+body {
+  background-color: white;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 10pt;
+}
+
+a {
+  color: #3D58A2;
+}
+
+a:visited {
+  color: #3D58A2;
+}
+
+a:hover {
+  color: #3D58A2;
+}
+
+span {
+  padding: 0px;
+}
+
+.codeInputPane {
+  font-size: 12pt;
+  font-family: Andale mono, monospace;
+  /*font-weight: bold;*/
+  padding: 8px;
+  margin-top: 5px;
+}
+
+#pyInputPane {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+td#stack_td,
+td#heap_td {
+  vertical-align:top;
+  font-size: 12pt;
+}
+
+table#pyOutputPane {
+  padding: 15px;
+}
+
+#dataViz {
+  margin-left: 30px;
+}
+
+table.frameDataViz {
+  border-spacing: 0px;
+  font-size: 12pt;
+  margin-top: 5px;
+  margin-left: 15px;
+  background-color: #dddddd;
+  padding: 5px;
+}
+
+table.frameDataViz td.varname {
+  text-align: right;
+  padding: 5px;
+  padding-right: 8px;
+  border-right: 1px dashed #888888;
+}
+
+table.frameDataViz td.val {
+  padding-left: 8px;
+  padding-right: 5px;
+
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+div#pyCodeOutputDiv {
+  max-width: 550px;
+  max-height: 620px;
+  overflow: auto;
+  /*margin-bottom: 4px;*/
+}
+
+table#pyCodeOutput {
+  font-family: Andale mono, monospace;
+  font-size:12pt;
+  line-height:1.1em;
+  border-spacing: 0px;
+  border-top: 1px solid #999999;
+  padding-top: 3px;
+  border-bottom: 1px solid #999999;
+  margin-top: 6px;
+}
+
+/* don't wrap lines within code output ... FORCE scrollbars to appear */
+table#pyCodeOutput td {
+  white-space: nowrap;
+}
+
+table#pyCodeOutput .lineNo {
+  background-color:#FFFFFF;
+  color:#AAAAAA;
+  margin:0;
+  padding:0.2em;
+  padding-right:0.5em;
+  text-align:right;
+  width:2.1em;
+}
+
+table#pyCodeOutput .cod {
+  /*font-weight: bold;*/
+  margin-left: 3px;
+  padding-left: 7px;
+  text-align: left; /* necessary or else doesn't work properly in IE */
+}
+
+div#editCodeLinkDiv {
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+#editCodeLinkOnError {
+  color: #142B69;
+}
+
+
+#errorOutput {
+  background-color: #F87D76;
+  font-size: 12pt;
+  padding: 2px;
+  line-height: 1.5em;
+  margin-bottom: 4px;
+}
+
+button.bigBtn {
+  font-size: 14pt;
+  padding: 3px;
+}
+
+button.medBtn {
+  font-size: 12pt;
+  padding: 3px;
+}
+
+
+/* VCR control buttons for stepping through execution */
+
+#vcrControls {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+#vcrControls button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#pyStdout {
+  border: 1px solid #999999;
+  font-size: 12pt;
+  padding: 4px;
+  font-family: Andale mono, monospace;
+}
+
+
+.vizFrame {
+  margin-bottom: 20px;
+  padding-left: 8px;
+  border-left: 2px solid #cccccc;
+}
+
+
+/* Python data value rendering */
+
+.nullObj {
+  color: #555555;
+}
+
+.numberObj {
+}
+
+.boolObj {
+}
+
+.stringObj {
+  /* don't add a color since strings need to be rendered against various backgrounds */
+  font-family: Andale mono, monospace;
+}
+
+.keyObj {
+}
+
+.customObj {
+  font-family: Andale mono, monospace;
+  /*font-style: italic;*/
+  font-size: 10pt;
+}
+
+
+.retval,
+.returnWarning {
+  font-size: 9pt;
+}
+
+.returnWarning {
+  padding-top: 10px;
+  color: #9d1e18;
+}
+
+
+table.listTbl {
+  border: 0px solid black;
+  background-color: #F5F798;
+  border-spacing: 0px;
+}
+
+table.tupleTbl {
+  background-color: #dddddd; /* must match .frameDataViz background-color */
+  border-spacing: 0px;
+  color: black;
+
+  border-bottom: 1px solid #555555; /* must match td.tupleHeader border */
+  border-top: 1px solid #555555; /* must match td.tupleHeader border */
+  border-right: 1px solid #555555; /* must match td.tupleHeader border */
+}
+
+table.listTbl td.listHeader,
+table.tupleTbl td.tupleHeader {
+  padding-left: 5px;
+  padding-top: 3px;
+  font-size: 8pt;
+  color: #666666;
+  text-align: left;
+  border-left: 1px solid #555555;
+}
+
+table.listTbl td.listElt {
+  border-bottom: 1px solid #555555; /* must match td.listHeader border */
+  border-left: 1px solid #555555; /* must match td.listHeader border */
+}
+
+table.tupleTbl td.tupleElt {
+  border-left: 1px solid #555555; /* must match td.tupleHeader border */
+}
+
+table.listTbl td.listElt,
+table.tupleTbl td.tupleElt {
+  padding-top: 0px;
+  padding-bottom: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: bottom;
+}
+
+table.setTbl {
+  border: 1px solid black;
+  /*background-color: #F4F776;*/ /*slightly brighter than #F5F798 */
+  background-color: #F5F798;
+  border-spacing: 0px;
+  text-align: center;
+}
+
+table.setTbl td.setElt {
+  padding: 8px;
+}
+
+
+table.dictTbl {
+  border-collapse: collapse;
+  border-spacing: 2px;
+}
+
+table.dictTbl tr.dictEntry {
+  border: 1px #111111 solid;
+}
+
+table.dictTbl td.dictKey {
+  background-color: #41507A;
+}
+
+table.dictTbl,
+table.dictTbl td.dictVal {
+  background-color: #899CD1;
+}
+
+
+table.classTbl {
+  background-color: #dddddd;
+  border-collapse: collapse;
+  border-spacing: 2px;
+}
+
+table.classTbl tr.classEntry {
+  border: 1px #777777 solid;
+}
+
+table.classTbl td.classKey {
+  background-color: #222222;
+}
+
+table.classTbl td.classVal {
+  background-color: #ffffff;
+}
+
+
+table.instTbl {
+  border-collapse: collapse;
+  border-spacing: 2px;
+}
+
+table.instTbl tr.instEntry {
+  border: 1px #111111 solid;
+}
+
+table.instTbl td.instKey {
+  background-color: #41507A;
+  color: #ffffff;
+}
+
+table.instTbl,
+table.instTbl td.instVal {
+  background-color: #FFFFDD; /* must match color of table.instTbl */
+}
+
+table.dictTbl td.dictKey,
+table.classTbl td.classKey,
+table.instTbl td.instKey {
+  color: #dddddd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 8px;
+  text-align: right;
+  vertical-align: center;
+}
+
+table.dictTbl td.dictVal,
+table.classTbl td.classVal,
+table.instTbl td.instVal {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 8px;
+  vertical-align: center;
+}
+
+
+
+
+.typeLabel {
+  font-size: 8pt;
+  color: #222222;
+  margin-bottom: 1px;
+}
+
+td.dictKey .typeLabel {
+  color: #eeeeee;
+}
+
+.circRefLabel {
+  font-size: 10pt;
+  color: #222222;
+}
+
+#footer {
+  text-align: center;
+  color: #666666;
+  font-size: 9pt;
+  max-width: 700px;
+  border-top: 1px solid #bbbbbb;
+  padding-top: 5px;
+  margin-top: 5px;
+}
+
+
+/* new stuff added for Online Python Tutor "2.0" release */
+
+div#stack {
+  float: left;
+  padding-left: 10px;
+  padding-right: 30px;
+  border-right: 1px dashed #bbbbbb;
+}
+
+div.stackFrame {
+  background-color: #ffffff;
+  margin-bottom: 15px;
+  padding: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-bottom: 4px;
+  font-size: 11pt;
+  border-left: 1px solid #999999;
+}
+
+/* apply to the currently selected stack frame (e.g., on mouse hover) */
+div.selectedStackFrame {
+  background-color: #dddddd;
+}
+
+div.topStackFrame {
+  border-left: 1px solid #F15149;
+}
+
+div.stackFrameHeader {
+  font-family: Andale mono, monospace;
+  font-size: 10pt;
+  margin-top: 4px;
+  margin-bottom: 3px;
+}
+
+div.inactiveStackFrameHeader {
+  /* simulate a hyperlink */
+  text-decoration: underline;
+  color: #3D58A2;
+  cursor: pointer;
+}
+
+td.stackFrameVar {
+  text-align: right;
+  padding-right: 8px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+td.stackFrameValue {
+  text-align: left;
+  border-bottom: 1px solid #aaaaaa;
+  border-left: 1px solid #aaaaaa;
+
+  padding-top: 3px;
+  padding-left: 3px;
+  padding-bottom: 3px;
+}
+
+.stackFrameVarTable tr {
+
+}
+
+.stackFrameVarTable {
+  text-align: right;
+  padding-top: 3px;
+
+  /* right-align the table */
+  margin-left: auto;
+  margin-right: 0px;
+}
+
+div#heap {
+  float: left;
+  padding-left: 30px;
+}
+
+div.heapObject {
+  margin-bottom: 15px;
+  padding-left: 7px; /* leave some room for connector endpoints */
+}
+
+div#stackHeader {
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+div#heapHeader {
+  margin-top: 2px;
+  margin-bottom: 13px;
+}
+
+div#stackHeader,
+div#heapHeader {
+  color: #333333;
+  font-size: 10pt;
+}
+
+
+/* styles for Online Python Tutor questions site */
+
+#questionsHeaderPane {
+  text-align: left;
+  margin-bottom: 15px;
+  width: 650px;
+  border-bottom: 1px solid #bbbbbb;
+}
+
+.questionsHeaderStmt {
+  margin-bottom: 5px;
+}
+
+.questionsHeaderTitle {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+#submittedCodeRO {
+  font-size: 10pt;
+  font-family: Andale mono, monospace;
+  padding: 4px;
+  margin-top: 5px;
+}
+
+table#gradeMatrix {
+  margin-top: 12px;
+}
+
+table#gradeMatrix thead {
+  font-weight: bold;
+  border: solid;
+}
+
+table#gradeMatrix thead td.statusCell {
+  padding-left: 18px; /* to line up with smiley faces */
+}
+
+table#gradeMatrix td.testInputCell,
+table#gradeMatrix td.testOutputCell {
+  padding-right: 25px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+}
+
+table#gradeMatrix tbody td.statusCell,
+table#gradeMatrix tbody td.expectedCell {
+  padding-left: 12px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+}
+ 
+td.testInputVarnameCell,
+td.testOutputVarnameCell {
+  padding-right: 2px;
+  text-align: right;
+}
+
+td.testInputValCell,
+td.testOutputValCell {
+  padding-right: 5px;
+}
+
+pre#submittedCodePRE {
+  font-size: 10pt;
+  font-family: Andale mono, monospace;
+  background-color: #dddddd;
+  padding: 5px;
+}
+
+div#submittedSolutionDisplay {
+  width: 650px; /* to line up with questionsHeaderPane */
+  text-align: left;
+  font-size: 12pt;
+  margin-bottom: 20px;
+}
+
+#gradeSummary {
+  margin-top: 12px;
+}
+
+#pyGradingPane {
+  margin-bottom: 20px;
+}
+
+

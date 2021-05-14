@@ -1,0 +1,170 @@
+{
+  "code": "int main() {\n  int array1[4][2] = {{0, 1}, {2, 3}, {4, 5}, {6, 7}};\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "array1": [
+              "C_MULTIDIMENSIONAL_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                4, 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                "<UNINITIALIZED>"
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "int", 
+                "<UNINITIALIZED>"
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 2, 
+          "ordered_varnames": [
+            "array1"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "return", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 3, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "array1": [
+              "C_MULTIDIMENSIONAL_ARRAY", 
+              "0xFFF0000F0", 
+              [
+                4, 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F0", 
+                "int", 
+                0
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F4", 
+                "int", 
+                1
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000F8", 
+                "int", 
+                2
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF0000FC", 
+                "int", 
+                3
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000100", 
+                "int", 
+                4
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000104", 
+                "int", 
+                5
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF000108", 
+                "int", 
+                6
+              ], 
+              [
+                "C_DATA", 
+                "0xFFF00010C", 
+                "int", 
+                7
+              ]
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 3, 
+          "ordered_varnames": [
+            "array1"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

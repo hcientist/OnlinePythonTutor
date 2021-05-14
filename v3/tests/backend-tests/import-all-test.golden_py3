@@ -1,0 +1,289 @@
+{
+  "code": "import __future__, abc, array, bisect, calendar, cmath, collections, copy, datetime, decimal, doctest, fractions, functools, hashlib, heapq, io, itertools, json, locale, math, operator, pickle, pprint, random, re, string, time, types, unittest\n", 
+  "trace": [
+    {
+      "ordered_globals": [], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 1, 
+      "event": "step_line"
+    }, 
+    {
+      "ordered_globals": [
+        "heapq", 
+        "__future__", 
+        "locale", 
+        "functools", 
+        "random", 
+        "datetime", 
+        "io", 
+        "operator", 
+        "array", 
+        "calendar", 
+        "abc", 
+        "pprint", 
+        "re", 
+        "json", 
+        "collections", 
+        "unittest", 
+        "math", 
+        "fractions", 
+        "string", 
+        "copy", 
+        "types", 
+        "hashlib", 
+        "bisect", 
+        "decimal", 
+        "itertools", 
+        "cmath", 
+        "doctest", 
+        "time", 
+        "pickle"
+      ], 
+      "stdout": "", 
+      "func_name": "<module>", 
+      "stack_to_render": [], 
+      "globals": {
+        "heapq": [
+          "REF", 
+          1
+        ], 
+        "__future__": [
+          "REF", 
+          2
+        ], 
+        "locale": [
+          "REF", 
+          3
+        ], 
+        "functools": [
+          "REF", 
+          4
+        ], 
+        "random": [
+          "REF", 
+          5
+        ], 
+        "datetime": [
+          "REF", 
+          6
+        ], 
+        "io": [
+          "REF", 
+          7
+        ], 
+        "operator": [
+          "REF", 
+          8
+        ], 
+        "array": [
+          "REF", 
+          9
+        ], 
+        "calendar": [
+          "REF", 
+          10
+        ], 
+        "abc": [
+          "REF", 
+          11
+        ], 
+        "pprint": [
+          "REF", 
+          12
+        ], 
+        "re": [
+          "REF", 
+          13
+        ], 
+        "json": [
+          "REF", 
+          14
+        ], 
+        "collections": [
+          "REF", 
+          15
+        ], 
+        "unittest": [
+          "REF", 
+          16
+        ], 
+        "math": [
+          "REF", 
+          17
+        ], 
+        "fractions": [
+          "REF", 
+          18
+        ], 
+        "string": [
+          "REF", 
+          19
+        ], 
+        "copy": [
+          "REF", 
+          20
+        ], 
+        "types": [
+          "REF", 
+          21
+        ], 
+        "hashlib": [
+          "REF", 
+          22
+        ], 
+        "bisect": [
+          "REF", 
+          23
+        ], 
+        "decimal": [
+          "REF", 
+          24
+        ], 
+        "itertools": [
+          "REF", 
+          25
+        ], 
+        "cmath": [
+          "REF", 
+          26
+        ], 
+        "doctest": [
+          "REF", 
+          27
+        ], 
+        "time": [
+          "REF", 
+          28
+        ], 
+        "pickle": [
+          "REF", 
+          29
+        ]
+      }, 
+      "heap": {
+        "1": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "2": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "3": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "4": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "5": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "6": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "7": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "8": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "9": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "10": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "11": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "12": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "13": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "14": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "15": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "16": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "17": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "18": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "19": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "20": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "21": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "22": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "23": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "24": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "25": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "26": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "27": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "28": [
+          "INSTANCE", 
+          "module"
+        ], 
+        "29": [
+          "INSTANCE", 
+          "module"
+        ]
+      }, 
+      "line": 1, 
+      "event": "return"
+    }
+  ]
+}

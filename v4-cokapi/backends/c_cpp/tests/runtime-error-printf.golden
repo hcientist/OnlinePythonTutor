@@ -1,0 +1,237 @@
+{
+  "code": "int main()\n{\n  int y;\n  int z = y * 2;\n  int x = z * 10;\n  printf (\"x = %d\\n\", x);\n}", 
+  "trace": [
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 2, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF000104", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "y": [
+              "C_DATA", 
+              "0xFFF0000FC", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "z": [
+              "C_DATA", 
+              "0xFFF000100", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 2, 
+          "ordered_varnames": [
+            "y", 
+            "z", 
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 4, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF00010C", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "y": [
+              "C_DATA", 
+              "0xFFF000104", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "z": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 4, 
+          "ordered_varnames": [
+            "y", 
+            "z", 
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 5, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF00010C", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "y": [
+              "C_DATA", 
+              "0xFFF000104", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "z": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 5, 
+          "ordered_varnames": [
+            "y", 
+            "z", 
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "step_line", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 6, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF00010C", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "y": [
+              "C_DATA", 
+              "0xFFF000104", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "z": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 6, 
+          "ordered_varnames": [
+            "y", 
+            "z", 
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }, 
+    {
+      "event": "exception", 
+      "exception_msg": "ERROR: Conditional jump or move depends on uninitialised value(s)\n(Stopped running after the first error. Please fix your code.)", 
+      "func_name": "main", 
+      "globals": {}, 
+      "heap": {}, 
+      "line": 6, 
+      "ordered_globals": [], 
+      "stack_to_render": [
+        {
+          "encoded_locals": {
+            "x": [
+              "C_DATA", 
+              "0xFFF00010C", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "y": [
+              "C_DATA", 
+              "0xFFF000104", 
+              "int", 
+              "<UNINITIALIZED>"
+            ], 
+            "z": [
+              "C_DATA", 
+              "0xFFF000108", 
+              "int", 
+              "<UNINITIALIZED>"
+            ]
+          }, 
+          "frame_id": "0xFFF000110", 
+          "func_name": "main", 
+          "is_highlighted": true, 
+          "is_parent": false, 
+          "is_zombie": false, 
+          "line": 6, 
+          "ordered_varnames": [
+            "y", 
+            "z", 
+            "x"
+          ], 
+          "parent_frame_id_list": [], 
+          "unique_hash": "main_0xFFF000110"
+        }
+      ], 
+      "stdout": ""
+    }
+  ]
+}
+

@@ -1,0 +1,181 @@
+/* Created by Irene Chen (2013) */
+div.HolisticVisualizer div#debug::-webkit-scrollbar {
+    width:9px;
+}
+
+div.HolisticVisualizer div#debug::-webkit-scrollbar-track {
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    background:rgba(0,0,0,0.1);
+}
+
+div.HolisticVisualizer div#debug::-webkit-scrollbar-thumb {
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    background:rgba(0,0,0,0.2);
+}
+
+div.HolisticVisualizer div#debug::-webkit-scrollbar-thumb:hover {
+    background:rgba(0,0,0,0.4);
+}
+
+div.HolisticVisualizer div#debug::-webkit-scrollbar-thumb:window-inactive {
+    background:rgba(0,0,0,0.05);
+}
+
+div.HolisticVisualizer {
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-size: 16px;
+}
+
+div.HolisticVisualizer pre {
+	margin: 0;
+}
+
+div.HolisticVisualizer div.control {
+	border :1px solid black;
+	border-radius: 5px;
+	display: block;
+	height: 100px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	padding: 5px;
+	width: 240px;
+}
+
+div.HolisticVisualizer #wrapper {
+	width: 100%;
+}
+
+div.HolisticVisualizer #left {
+    float: left;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 500px;
+}
+
+div.HolisticVisualizer #right {
+    width: 100%;
+    vertical-align: top;
+}
+
+div.HolisticVisualizer #padder {
+    padding-left: 502px;
+}
+
+div.HolisticVisualizer table#code {
+	border-collapse: collapse;
+	font-family: Courier, monospace;
+	font-size: 11pt;
+	margin: 1px auto;
+	vertical-align: top;
+}
+
+div.HolisticVisualizer #code tr, div.HolisticVisualizer #code td {
+	border-width: 0px;
+	text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+	padding: 0px;
+}
+
+div.HolisticVisualizer #code td.v-hover {
+	background-color: #b0e0e6;
+}
+
+div.HolisticVisualizer div#slider {
+  	border: 1px solid gray;
+  	display: inline-block;
+  	height: 100%;
+  	overflow-x: scroll;
+  	vertical-align: top;
+	width: 100%;
+}
+
+div.HolisticVisualizer div#debugPanel {
+  	display: inline-block;
+  	font-size: 10pt;
+  	height: 400px;
+  	vertical-align: top;
+  	width: 400px;
+}
+
+div.HolisticVisualizer div#debug {
+	height: 90%;
+	overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+}
+
+#altContainer {
+  display: none;
+}
+
+#altVisual {
+}
+
+#holisticTooltip {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	display: none;
+    height: auto;
+    padding: 10px;
+    pointer-events: none;
+    position: absolute;
+    width: auto;
+}
+
+#holisticTooltip.hidden {
+    display: none;
+}
+
+#holisticTooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+div.HolisticVisualizer path {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 1;
+}
+
+div.HolisticVisualizer .delimiter {
+ 	stroke: black;
+ 	stroke-opacity: 0.8;
+ 	stroke-width: 1px;
+}
+
+div.HolisticVisualizer .h-hover {
+	fill-opacity: 0;
+ 	stroke: black;
+ 	stroke-opacity: 0;
+ 	stroke-width: 20px;
+}
+
+div.HolisticVisualizer .v-hover {
+	fill-opacity: 0;
+}
+
+div.HolisticVisualizer .v-guide, div.HolisticVisualizer .h-guide {
+ 	stroke: black;
+ 	stroke-opacity: 0.4;
+ 	stroke-width: 1px;
+}
+
+div.HolisticVisualizer .axis path,
+div.HolisticVisualizer .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+div.HolisticVisualizer .axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}

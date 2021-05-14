@@ -1,0 +1,1002 @@
+{
+  "code": "# Adapted from http://www.reactive.io/tips/2008/12/21/understanding-ruby-blocks-procs-and-lambdas/\n\ndef args(code)\n  one, two = 1, 2\n  code.call(one, two)\nend\n\nargs(Proc.new{|a, b, c| puts \"Give me a #{a} and a #{b} and a #{c.class}\"})\n# lambdas check number of args while Procs don't\nargs(lambda{|a, b, c| puts \"Give me a #{a} and a #{b} and a #{c.class}\"})\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "args",
+          ""
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "args:3",
+          "frame_id": 2,
+          "unique_hash": "args:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": null,
+            "two": null
+          }
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 8"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "args:4",
+          "frame_id": 2,
+          "unique_hash": "args:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": null,
+            "two": null
+          }
+        }
+      ],
+      "heap": {
+        "4": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 8"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          4
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "args:5",
+          "frame_id": 2,
+          "unique_hash": "args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2
+          }
+        }
+      ],
+      "heap": {
+        "5": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 8"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "args:5",
+          "frame_id": 2,
+          "unique_hash": "args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:8",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:8_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "a",
+            "b",
+            "c"
+          ],
+          "encoded_locals": {
+            "a": 1,
+            "b": 2,
+            "c": null
+          }
+        }
+      ],
+      "heap": {
+        "6": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 8"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "args:5",
+          "frame_id": 2,
+          "unique_hash": "args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:8",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:8_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "a",
+            "b",
+            "c"
+          ],
+          "encoded_locals": {
+            "a": 1,
+            "b": 2,
+            "c": null
+          }
+        }
+      ],
+      "heap": {
+        "7": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 8"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "return",
+      "stdout": "Give me a 1 and a 2 and a NilClass\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": false,
+          "func_name": "args:5",
+          "frame_id": 2,
+          "unique_hash": "args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in <main>:8",
+          "frame_id": 3,
+          "unique_hash": "block in <main>:8_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "a",
+            "b",
+            "c",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "a": 1,
+            "b": 2,
+            "c": null,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "8": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 8"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          8
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 6,
+      "event": "return",
+      "stdout": "Give me a 1 and a 2 and a NilClass\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "args:6",
+          "frame_id": 2,
+          "unique_hash": "args:6_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              3
+            ],
+            "one": 1,
+            "two": 2,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "9": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "3": [
+          "Proc",
+          "Proc on line 8"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          9
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "Give me a 1 and a 2 and a NilClass\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        }
+      ],
+      "heap": {
+        "10": [
+          "FUNCTION",
+          "args",
+          ""
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "Give me a 1 and a 2 and a NilClass\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "args:3",
+          "frame_id": 2,
+          "unique_hash": "args:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              12
+            ],
+            "one": null,
+            "two": null
+          }
+        }
+      ],
+      "heap": {
+        "11": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "12": [
+          "Proc",
+          "Lambda on line 10"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          11
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "Give me a 1 and a 2 and a NilClass\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "args:4",
+          "frame_id": 2,
+          "unique_hash": "args:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              12
+            ],
+            "one": null,
+            "two": null
+          }
+        }
+      ],
+      "heap": {
+        "13": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "12": [
+          "Proc",
+          "Lambda on line 10"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "step_line",
+      "stdout": "Give me a 1 and a 2 and a NilClass\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "args:5",
+          "frame_id": 2,
+          "unique_hash": "args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              12
+            ],
+            "one": 1,
+            "two": 2
+          }
+        }
+      ],
+      "heap": {
+        "14": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "12": [
+          "Proc",
+          "Lambda on line 10"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          14
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "exception",
+      "stdout": "Give me a 1 and a 2 and a NilClass\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "args:5",
+          "frame_id": 2,
+          "unique_hash": "args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              12
+            ],
+            "one": 1,
+            "two": 2
+          }
+        }
+      ],
+      "heap": {
+        "15": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "12": [
+          "Proc",
+          "Lambda on line 10"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          15
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ],
+      "exception_msg": "wrong number of arguments (2 for 3)"
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "return",
+      "stdout": "Give me a 1 and a 2 and a NilClass\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+
+          ],
+          "encoded_locals": {
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "args:5",
+          "frame_id": 2,
+          "unique_hash": "args:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "code",
+            "one",
+            "two",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "code": [
+              "REF",
+              12
+            ],
+            "one": 1,
+            "two": 2,
+            "__return__": null
+          }
+        }
+      ],
+      "heap": {
+        "16": [
+          "FUNCTION",
+          "args",
+          ""
+        ],
+        "12": [
+          "Proc",
+          "Lambda on line 10"
+        ]
+      },
+      "globals": {
+        "args": [
+          "REF",
+          16
+        ]
+      },
+      "ordered_globals": [
+        "args"
+      ]
+    }
+  ]
+}

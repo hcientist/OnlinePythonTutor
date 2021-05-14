@@ -1,0 +1,1162 @@
+{
+  "code": "# adapted from http://eli.thegreenplace.net/2006/04/18/understanding-ruby-blocks-procs-and-methods/\n\ndef gen_times(factor)\n    return Proc.new {|n| n*factor }\nend\n\ntimes3 = gen_times(3)\ntimes5 = gen_times(5)\n\nputs times3.call(12)               #=> 36\nputs times5.call(5)                #=> 25\n",
+  "trace": [
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:3",
+          "frame_id": 1,
+          "unique_hash": "<main>:3_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": null,
+            "times5": null
+          }
+        }
+      ],
+      "heap": {
+      },
+      "globals": {
+      },
+      "ordered_globals": [
+
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 7,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": null,
+            "times5": null
+          }
+        }
+      ],
+      "heap": {
+        "1": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          1
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": null,
+            "times5": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gen_times:3",
+          "frame_id": 2,
+          "unique_hash": "gen_times:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "factor"
+          ],
+          "encoded_locals": {
+            "factor": 3
+          }
+        }
+      ],
+      "heap": {
+        "2": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          2
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": null,
+            "times5": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gen_times:4",
+          "frame_id": 2,
+          "unique_hash": "gen_times:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "factor"
+          ],
+          "encoded_locals": {
+            "factor": 3
+          }
+        }
+      ],
+      "heap": {
+        "3": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          3
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:7",
+          "frame_id": 1,
+          "unique_hash": "<main>:7_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": null,
+            "times5": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gen_times:5",
+          "frame_id": 2,
+          "unique_hash": "gen_times:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "factor",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "factor": 3,
+            "__return__": [
+              "REF",
+              4
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "5": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          5
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 8,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": null
+          }
+        }
+      ],
+      "heap": {
+        "6": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          6
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 3,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gen_times:3",
+          "frame_id": 2,
+          "unique_hash": "gen_times:3_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "factor"
+          ],
+          "encoded_locals": {
+            "factor": 5
+          }
+        }
+      ],
+      "heap": {
+        "7": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          7
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gen_times:4",
+          "frame_id": 2,
+          "unique_hash": "gen_times:4_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "factor"
+          ],
+          "encoded_locals": {
+            "factor": 5
+          }
+        }
+      ],
+      "heap": {
+        "8": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          8
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 5,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:8",
+          "frame_id": 1,
+          "unique_hash": "<main>:8_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": null
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "gen_times:5",
+          "frame_id": 2,
+          "unique_hash": "gen_times:5_f2",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "factor",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "factor": 5,
+            "__return__": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "10": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          10
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 10,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "11": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          11
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "call",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in gen_times:4",
+          "frame_id": 3,
+          "unique_hash": "block in gen_times:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "n",
+            "parent:factor"
+          ],
+          "encoded_locals": {
+            "n": 12,
+            "parent:factor": 3
+          }
+        }
+      ],
+      "heap": {
+        "12": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          12
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in gen_times:4",
+          "frame_id": 3,
+          "unique_hash": "block in gen_times:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "n",
+            "parent:factor"
+          ],
+          "encoded_locals": {
+            "n": 12,
+            "parent:factor": 3
+          }
+        }
+      ],
+      "heap": {
+        "13": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          13
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "return",
+      "stdout": "",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:10",
+          "frame_id": 1,
+          "unique_hash": "<main>:10_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in gen_times:4",
+          "frame_id": 3,
+          "unique_hash": "block in gen_times:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "n",
+            "parent:factor",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "n": 12,
+            "parent:factor": 3,
+            "__return__": 36
+          }
+        }
+      ],
+      "heap": {
+        "14": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          14
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "36\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "15": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          15
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "call",
+      "stdout": "36\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in gen_times:4",
+          "frame_id": 3,
+          "unique_hash": "block in gen_times:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "n",
+            "parent:factor"
+          ],
+          "encoded_locals": {
+            "n": 5,
+            "parent:factor": 5
+          }
+        }
+      ],
+      "heap": {
+        "16": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          16
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "step_line",
+      "stdout": "36\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in gen_times:4",
+          "frame_id": 3,
+          "unique_hash": "block in gen_times:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "n",
+            "parent:factor"
+          ],
+          "encoded_locals": {
+            "n": 5,
+            "parent:factor": 5
+          }
+        }
+      ],
+      "heap": {
+        "17": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          17
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 4,
+      "event": "return",
+      "stdout": "36\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": false,
+          "func_name": "<main>:11",
+          "frame_id": 1,
+          "unique_hash": "<main>:11_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
+          }
+        },
+        {
+          "is_highlighted": true,
+          "func_name": "block in gen_times:4",
+          "frame_id": 3,
+          "unique_hash": "block in gen_times:4_f3",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "n",
+            "parent:factor",
+            "__return__"
+          ],
+          "encoded_locals": {
+            "n": 5,
+            "parent:factor": 5,
+            "__return__": 25
+          }
+        }
+      ],
+      "heap": {
+        "18": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          18
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    },
+    {
+      "func_name": "<toplevel>",
+      "line": 11,
+      "event": "step_line",
+      "stdout": "36\n25\n",
+      "stack_to_render": [
+        {
+          "is_highlighted": true,
+          "func_name": "<main>:12",
+          "frame_id": 1,
+          "unique_hash": "<main>:12_f1",
+          "is_parent": false,
+          "is_zombie": false,
+          "parent_frame_id_list": [
+
+          ],
+          "ordered_varnames": [
+            "times3",
+            "times5"
+          ],
+          "encoded_locals": {
+            "times3": [
+              "REF",
+              4
+            ],
+            "times5": [
+              "REF",
+              9
+            ]
+          }
+        }
+      ],
+      "heap": {
+        "19": [
+          "FUNCTION",
+          "gen_times",
+          ""
+        ],
+        "4": [
+          "Proc",
+          "Proc on line 4"
+        ],
+        "9": [
+          "Proc",
+          "Proc on line 4"
+        ]
+      },
+      "globals": {
+        "gen_times": [
+          "REF",
+          19
+        ]
+      },
+      "ordered_globals": [
+        "gen_times"
+      ]
+    }
+  ]
+}
